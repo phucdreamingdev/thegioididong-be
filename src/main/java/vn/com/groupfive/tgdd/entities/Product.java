@@ -1,7 +1,5 @@
 package vn.com.groupfive.tgdd.entities;
 
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
