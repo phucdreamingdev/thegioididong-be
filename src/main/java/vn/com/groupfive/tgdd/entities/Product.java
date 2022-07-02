@@ -9,53 +9,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
 @Data
 @Entity
 @Table(name = "product")
 
 public class Product {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name = "is_actived")
-	private boolean is_actived;
-	
+	private Long id;
+
 	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "level")
-	private int level;
-	
-	@Column(name = "parent_name")
-	private String parent_name;
-	
-	@Column(name = "status")
-	private boolean status;
-	
+
+	@Column(name = "is_actived")
+	private boolean isActived;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manufacturer_id")
+	@JoinColumn(name = "category_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-    private Manufacturer manufacturer;
-	
+	private Category category;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "manufacturer_id")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Manufacturer manufacturer;
+
 }

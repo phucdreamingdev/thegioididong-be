@@ -20,6 +20,7 @@ public class AdminServiceImpl implements AdminService{
 		for (Category category : list) {
 			out+= category.getName() + "\n";
 		}
+	
 		return out;
 	}
 	
