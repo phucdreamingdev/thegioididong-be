@@ -1,6 +1,8 @@
 package vn.com.groupfive.tgdd.entities;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,7 +43,7 @@ public class Branch {
 	private Ward ward;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branch")
-	private Collection<Promotion> promotions;
+	private Set<Promotion> promotions = new HashSet<>();
 
 	@OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude

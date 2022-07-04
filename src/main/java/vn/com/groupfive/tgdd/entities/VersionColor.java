@@ -52,26 +52,26 @@ public class VersionColor {
 	@ToString.Exclude
 	private Color color;
 
-	@OneToMany(mappedBy = "version_color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<Promotion> promotions;
 
-	@OneToMany(mappedBy = "version_color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<TransactionDetail> transactionDetails;
 
-	@OneToMany(mappedBy = "version_color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<OrderDetail> orderDetails;
 
-	@OneToMany(mappedBy = "version_color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<BranchStock> branchStocks;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "version_color")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "versionColors")
 	private Set<Image> images = new HashSet<>();
 }

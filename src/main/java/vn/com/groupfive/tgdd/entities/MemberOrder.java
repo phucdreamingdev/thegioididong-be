@@ -55,7 +55,7 @@ public class MemberOrder {
 	@ToString.Exclude
 	private Member member;
 
-	@OneToMany(mappedBy = "member_order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "memberOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<OrderDetail> orderDetails;

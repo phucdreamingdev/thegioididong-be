@@ -1,5 +1,9 @@
 package vn.com.groupfive.tgdd.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -37,5 +43,8 @@ public class ImageGroupVersion {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Version version;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "imageGroupVersions")
+	private Set<Image> image = new HashSet<>();
 	
 }

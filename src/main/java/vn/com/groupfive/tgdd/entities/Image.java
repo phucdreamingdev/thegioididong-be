@@ -44,4 +44,10 @@ public class Image {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<Specification> specifications;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+	@JoinTable(name = "image_detail",
+			joinColumns = { @JoinColumn(name ="image_id")},
+			inverseJoinColumns = { @JoinColumn(name ="image_group_version_id")})
+	private Set<ImageGroupVersion> imageGroupVersions = new HashSet<>();
 }

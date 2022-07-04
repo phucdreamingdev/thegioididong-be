@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import vn.com.groupfive.tgdd.entities.Manufacturer;
 
 @Repository
-public interface ManufacturerRepository extends CrudRepository<Manufacturer, Integer>{
-
+public interface ManufacturerRepository extends CrudRepository<Manufacturer, Long>{
+	
 }

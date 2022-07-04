@@ -44,7 +44,7 @@ public class BranchTransaction {
 	@ToString.Exclude
 	private Branch branch;
 
-	@OneToMany(mappedBy = "branch_transaction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "branchTransaction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<TransactionDetail> transactionDetails;

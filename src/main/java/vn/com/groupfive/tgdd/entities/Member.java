@@ -1,6 +1,8 @@
 package vn.com.groupfive.tgdd.entities;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,11 +37,11 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<MemberAddress> memberAddresses;
+	private Set<MemberAddress> memberAddresses = new HashSet<>();
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<MemberOrder> memberOrders;
+	private Set<MemberOrder> memberOrders;
 
 }

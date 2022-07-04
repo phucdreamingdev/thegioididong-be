@@ -31,7 +31,7 @@ public class ImageGroup {
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany(mappedBy = "image_group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "imageGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<ImageGroupVersion> imageGroupVersions ;

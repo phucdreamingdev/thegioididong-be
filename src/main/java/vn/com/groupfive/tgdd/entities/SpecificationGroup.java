@@ -31,7 +31,7 @@ public class SpecificationGroup {
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(mappedBy = "specification_group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "specificationGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<SpecificationDetail> specificationDetails;

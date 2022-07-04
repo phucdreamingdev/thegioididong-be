@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import vn.com.groupfive.tgdd.entities.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer>, CrudRepository<Category, Integer>{
+public interface CategoryRepository extends JpaRepository<Category, Long>{
 }
