@@ -1,4 +1,4 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
 import java.util.Collection;
 
@@ -18,8 +18,9 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "manufacturer")
+
+public class Manufacturer {
 
 	@Id
 	@Column(name = "id")
@@ -29,28 +30,20 @@ public class Category {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "level")
-	private int level;
+	@Column(name = "logo_url")
+	private String logo;
 
-	@Column(name = "parent_name")
-	private String parentName;
+	@Column(name = "description")
+	private String description;
 
-	@Column(name = "status")
-	private boolean status;
-
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Collection<Product> products;
 
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<ImageGroup> imageGroups;
-
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private Collection<SpecificationGroup> specificationGroups;
+	private Collection<Color> colors;
 
 }

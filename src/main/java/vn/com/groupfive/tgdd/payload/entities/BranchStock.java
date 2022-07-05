@@ -1,4 +1,4 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,32 +16,26 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "order_detail")
-public class OrderDetail {
+@Table(name = "branch_stock")
+public class BranchStock {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "original_price")
-	private float originalPrice;
+	@Column(name = "stock")
+	private int stock;
 
-	@Column(name = "promotion_price")
-	private float promotionPrice;
-
-	@Column(name = "quantity")
-	private int quantity;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "branch_id")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Branch branch;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "version_color_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private VersionColor versionColor;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_order_id")
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private MemberOrder memberOrder;
 
 }

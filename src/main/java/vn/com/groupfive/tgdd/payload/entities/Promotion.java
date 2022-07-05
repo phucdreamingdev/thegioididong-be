@@ -1,6 +1,5 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,8 +46,7 @@ public class Promotion {
 	private VersionColor versionColor;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "promotion_branch",
-		joinColumns = { @JoinColumn(name = "promotion_id")},
-		inverseJoinColumns = { @JoinColumn(name = "branch_id")})
-	private Set<Branch> branch = new HashSet<>();
+	@JoinTable(name = "promotion_branch", joinColumns = { @JoinColumn(name = "promotion_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "branch_id") })
+	private Set<Branch> branchs = new HashSet<>();
 }

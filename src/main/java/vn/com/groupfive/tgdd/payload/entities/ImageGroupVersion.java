@@ -1,6 +1,7 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -20,25 +21,28 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "specification_group")
-public class SpecificationGroup {
-
+@Table(name = "image_group_version")
+public class ImageGroupVersion {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name")
-	private String name;
-
-	@OneToMany(mappedBy = "specificationGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private Collection<SpecificationDetail> specificationDetails;
+	@Column(name = "detail")
+	private String detail;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_id")
+	@JoinColumn(name = "image_group_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Category category;
+	private ImageGroup imageGroup;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "version_id")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Version version;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "imageGroupVersions")
+	private Set<Image> image = new HashSet<>();
+
 }

@@ -1,8 +1,7 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,28 +21,34 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "member")
-public class Member {
+@Table(name = "branch_transaction")
 
+public class BranchTransaction {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "fullname")
-	private String fullname;
+	@Column(name = "transaction_date")
+	private Date transactionDate;
 
-	@Column(name = "phone")
-	private String phone;
+	@Column(name = "total")
+	private int total;
 
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@Column(name = "detail")
+	private String detail;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "branch_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Set<MemberAddress> memberAddresses = new HashSet<>();
+	private Branch branch;
 
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "branchTransaction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Set<MemberOrder> memberOrders;
+	private Collection<TransactionDetail> transactionDetails;
 
 }
+
+

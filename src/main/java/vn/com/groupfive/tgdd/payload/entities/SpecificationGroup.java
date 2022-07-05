@@ -1,4 +1,4 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
 import java.util.Collection;
 
@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,9 +20,8 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "manufacturer")
-
-public class Manufacturer {
+@Table(name = "specification_group")
+public class SpecificationGroup {
 
 	@Id
 	@Column(name = "id")
@@ -30,20 +31,14 @@ public class Manufacturer {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "logo_url")
-	private String logo;
-
-	@Column(name = "description")
-	private String description;
-
-	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "specificationGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<Product> products;
+	private Collection<SpecificationDetail> specificationDetails;
 
-	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<Color> colors;
-
+	private Category category;
 }

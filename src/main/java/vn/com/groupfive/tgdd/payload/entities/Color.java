@@ -1,5 +1,8 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -16,26 +20,25 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "branch_stock")
-public class BranchStock {
+@Table(name = "color")
+public class Color {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "stock")
-	private int stock;
+	@Column(name = "name")
+	private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "branch_id")
+	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Branch branch;
+	private Collection<VersionColor> versionColors;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "version_color_id")
+	@JoinColumn(name = "manufacturer_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private VersionColor versionColor;
+	private Manufacturer manufacturer;
 
 }

@@ -1,4 +1,4 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,7 +42,7 @@ public class Branch {
 	@ToString.Exclude
 	private Ward ward;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branch")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branchs")
 	private Set<Promotion> promotions = new HashSet<>();
 
 	@OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

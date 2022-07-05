@@ -1,4 +1,4 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
 import java.util.Collection;
 
@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,10 +16,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+
 @Data
 @Entity
-@Table(name = "color")
-public class Color {
+@Table(name = "province")
+public class Province {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,15 +29,9 @@ public class Color {
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "province", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<VersionColor> versionColors;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "manufacturer_id")
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private Manufacturer manufacturer;
+	private Collection<District> districts;
 
 }

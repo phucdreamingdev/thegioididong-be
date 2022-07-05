@@ -1,26 +1,25 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-
 @Data
 @Entity
-@Table(name = "province")
-public class Province {
+@Table(name = "product")
+
+public class Product {
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +28,19 @@ public class Province {
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(mappedBy = "province", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@Column(name = "is_actived")
+	private boolean isActived;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<District> districts;
+	private Category category;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "manufacturer_id")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Manufacturer manufacturer;
 
 }

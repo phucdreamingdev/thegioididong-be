@@ -1,6 +1,4 @@
-package vn.com.groupfive.tgdd.entities;
-
-import java.util.Date;
+package vn.com.groupfive.tgdd.payload.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,38 +16,31 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "transaction_detail")
-public class TransactionDetail {
+@Table(name = "specification_detail")
+public class SpecificationDetail {
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column(name = "stock")
-	private int stock;
-
-	@Column(name = "in_stock")
-	private boolean in_stock;
-
-	@Column(name = "transaction_date")
-	private Date transactionDate;
-
-	@Column(name = "transaction_quantity")
-	private int transactionQuantity;
-
-	@Column(name = "note")
-	private String note;
-
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "content")
+	private String content;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "branch_transaction_id")
+	@JoinColumn(name = "specification_group_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private BranchTransaction branchTransaction;
-
+	private SpecificationGroup specificationGroup;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "version_color_id")
+	@JoinColumn(name = "specification_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private VersionColor versionColor;
-
+	private Specification specification;
+	
+	
 }

@@ -1,9 +1,7 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -21,34 +18,38 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "branch_transaction")
-
-public class BranchTransaction {
+@Table(name = "transaction_detail")
+public class TransactionDetail {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "stock")
+	private int stock;
+
+	@Column(name = "in_stock")
+	private boolean in_stock;
+
 	@Column(name = "transaction_date")
 	private Date transactionDate;
 
-	@Column(name = "total")
-	private int total;
+	@Column(name = "transaction_quantity")
+	private int transactionQuantity;
 
-	@Column(name = "detail")
-	private String detail;
+	@Column(name = "note")
+	private String note;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "branch_id")
+	@JoinColumn(name = "branch_transaction_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Branch branch;
+	private BranchTransaction branchTransaction;
 
-	@OneToMany(mappedBy = "branchTransaction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "version_color_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<TransactionDetail> transactionDetails;
+	private VersionColor versionColor;
 
 }
-
-

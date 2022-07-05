@@ -1,9 +1,5 @@
-package vn.com.groupfive.tgdd.entities;
+package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,29 +16,32 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "image_group_version")
-public class ImageGroupVersion {
+@Table(name = "order_detail")
+public class OrderDetail {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "detail")
-	private String detail;
+	@Column(name = "original_price")
+	private float originalPrice;
+
+	@Column(name = "promotion_price")
+	private float promotionPrice;
+
+	@Column(name = "quantity")
+	private int quantity;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "image_group_id")
+	@JoinColumn(name = "version_color_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private ImageGroup imageGroup;
+	private VersionColor versionColor;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "version_id")
+	@JoinColumn(name = "member_order_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Version version;
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "imageGroupVersions")
-	private Set<Image> image = new HashSet<>();
-	
+	private MemberOrder memberOrder;
+
 }
