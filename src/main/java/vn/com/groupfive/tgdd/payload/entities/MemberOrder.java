@@ -1,7 +1,8 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
+import java.util.Set;
 import java.util.Date;
+import java.util.HashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,7 +59,7 @@ public class MemberOrder {
 	@OneToMany(mappedBy = "memberOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<OrderDetail> orderDetails;
+	private Set<OrderDetail> orderDetails  = new HashSet<>();
 
 	@Column(name = "delivery_status")
 	@Enumerated(EnumType.STRING)

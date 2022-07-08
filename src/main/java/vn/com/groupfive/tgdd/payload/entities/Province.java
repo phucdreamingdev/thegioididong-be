@@ -1,6 +1,7 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,6 +33,6 @@ public class Province {
 	@OneToMany(mappedBy = "province", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<District> districts;
+	private Set<District> districts  = new HashSet<>();
 
 }

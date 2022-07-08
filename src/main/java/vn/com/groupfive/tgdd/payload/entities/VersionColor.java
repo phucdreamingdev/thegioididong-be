@@ -1,6 +1,5 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,22 +53,22 @@ public class VersionColor {
 	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<Promotion> promotions;
+	private Set<Promotion> promotions = new HashSet<>();
 
 	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<TransactionDetail> transactionDetails;
+	private Set<TransactionDetail> transactionDetails = new HashSet<>();
 
 	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<OrderDetail> orderDetails;
+	private Set<OrderDetail> orderDetails = new HashSet<>();
 
 	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<BranchStock> branchStocks;
+	private Set<BranchStock> branchStocks = new HashSet<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "versionColors")
 	private Set<Image> images = new HashSet<>();

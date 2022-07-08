@@ -1,6 +1,7 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,12 +31,12 @@ public class ImageGroup {
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@OneToMany(mappedBy = "imageGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<ImageGroupVersion> imageGroupVersions ;
-	
+	private Set<ImageGroupVersion> imageGroupVersions = new HashSet<>();
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
 	@EqualsAndHashCode.Exclude

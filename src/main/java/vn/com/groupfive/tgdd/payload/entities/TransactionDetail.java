@@ -41,15 +41,14 @@ public class TransactionDetail {
 	private String note;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "branch_transaction_id")
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private BranchTransaction branchTransaction;
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "version_color_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private VersionColor versionColor;
-
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "transaction_id")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Transaction transaction;
 }

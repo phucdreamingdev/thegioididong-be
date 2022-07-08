@@ -1,6 +1,5 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,16 +47,14 @@ public class Branch {
 	@OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<BranchTransaction> branchTransactions;
+	private Set<BranchStock> branchStocks = new HashSet<>();
 
 	@OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<BranchStock> branchStocks;
-
-	@OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private Collection<MemberOrder> memberOrders;
+	private Set<MemberOrder> memberOrders = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branchs")
+	private Set<Transaction> transactions = new HashSet<>();
 
 }

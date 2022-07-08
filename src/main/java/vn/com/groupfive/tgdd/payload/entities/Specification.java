@@ -1,6 +1,7 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +35,7 @@ public class Specification {
 	@OneToMany(mappedBy = "specification", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<SpecificationDetail> specificationDetails;
+	private Set<SpecificationDetail> specificationDetails  = new HashSet<>();
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "version_id")

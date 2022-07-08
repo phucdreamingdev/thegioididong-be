@@ -41,6 +41,6 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Set<MemberOrder> memberOrders;
+	private Set<MemberOrder> memberOrders  = new HashSet<>();
 
 }

@@ -1,6 +1,8 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,7 +51,7 @@ public class Version {
 	@OneToMany(mappedBy = "version", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<VersionColor> versionColors;
+	private Set<VersionColor> versionColors  = new HashSet<>();
 	
 	@OneToMany(mappedBy = "version", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude

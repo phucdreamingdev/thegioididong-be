@@ -36,6 +36,7 @@ public class ImageGroupVersion {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private ImageGroup imageGroup;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "version_id")
 	@EqualsAndHashCode.Exclude

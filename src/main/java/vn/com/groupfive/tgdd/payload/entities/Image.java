@@ -1,6 +1,5 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,7 +42,7 @@ public class Image {
 	@OneToMany(mappedBy = "image", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<Specification> specifications;
+	private Set<Specification> specifications = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
 	@JoinTable(name = "image_detail",
