@@ -30,7 +30,7 @@ public class Category {
 	@Column(name = "logo")
 	private String logo;
 
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar(50)")
 	private String name;
 
 	@Column(name = "level")
