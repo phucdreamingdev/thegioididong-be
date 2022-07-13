@@ -13,4 +13,8 @@ public class CategoryDTO {
 	private Long id;
 	private String name;
 	private String logo;
+	private int level;
+	private String parentName;
+	private boolean status;
+	private boolean isParent;
 }

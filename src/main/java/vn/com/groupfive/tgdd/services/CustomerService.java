@@ -8,9 +8,9 @@ import vn.com.groupfive.tgdd.payload.entities.Category;
 import vn.com.groupfive.tgdd.payload.entities.Product;
 
 public interface CustomerService {
-	List<ProductDTO> getAllProduct();
-
-	ProductDTO productToProductDTO(Product product);
+//	List<ProductDTO> getAllProduct();
+//
+//	ProductDTO productToProductDTO(Product product);
 
 	List<CategoryDTO> getAllCategory();
 

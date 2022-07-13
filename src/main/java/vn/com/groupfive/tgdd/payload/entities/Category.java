@@ -30,17 +30,20 @@ public class Category {
 	@Column(name = "logo")
 	private String logo;
 
-	@Column(name = "name", columnDefinition = "nvarchar(50)")
+	@Column(name = "name", columnDefinition = "nvarchar(100)")
 	private String name;
 
 	@Column(name = "level")
 	private int level;
 
-	@Column(name = "parent_name")
+	@Column(name = "parent_name", columnDefinition = "nvarchar(100)")
 	private String parentName;
 
 	@Column(name = "status")
 	private boolean status;
+	
+	@Column(name = "is_parent")
+	private boolean isParent;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
