@@ -12,7 +12,7 @@ public interface CustomerService {
 //
 //	ProductDTO productToProductDTO(Product product);
 
-	List<CategoryDTO> getAllCategory();
+	List<CategoryDTO> getAllCategoryByLevel(int level);
 
 	CategoryDTO categoryToCategoryDTO(Category category);
 }

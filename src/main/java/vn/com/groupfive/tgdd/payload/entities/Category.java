@@ -44,6 +44,9 @@ public class Category {
 	
 	@Column(name = "is_parent")
 	private boolean isParent;
+	
+	@Column(name = "children_level")
+	private int childenLevel;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude

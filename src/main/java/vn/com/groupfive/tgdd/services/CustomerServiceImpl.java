@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import vn.com.groupfive.tgdd.payload.dto.CategoryDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.entities.Category;
-import vn.com.groupfive.tgdd.payload.entities.Product;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
-import vn.com.groupfive.tgdd.repositories.ProductRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -39,8 +36,8 @@ public class CustomerServiceImpl implements CustomerService {
 //	}
 
 	@Override
-	public List<CategoryDTO> getAllCategory() {
-		List<Category> categories = categoryRepository.findAll();
+	public List<CategoryDTO> getAllCategoryByLevel(int level) {
+		List<Category> categories = categoryRepository.getByLevel(level);
 		List<CategoryDTO> categoryDTOs = new ArrayList<>();
 		for (Category category : categories) {
 			categoryDTOs.add(categoryToCategoryDTO(category));
@@ -52,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public CategoryDTO categoryToCategoryDTO(Category category) {
 		CategoryDTO categoryDTO = new CategoryDTO(category.getId(), category.getName() , 
 				category.getLogo(), category.getLevel(), category.getParentName(), 
-				category.isStatus(), category.isParent());
+				category.isStatus(), category.isParent(), category.getChildenLevel());
 		return categoryDTO;
 	}
 

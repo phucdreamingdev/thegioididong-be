@@ -17,4 +17,5 @@ public class CategoryDTO {
 	private String parentName;
 	private boolean status;
 	private boolean isParent;
+	private int childrenLevel;
 }
