@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -46,5 +49,10 @@ public class Manufacturer {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Set<Color> colors  = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "manufacturer_category", joinColumns = { @JoinColumn(name = "manufacturer_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "category_id") })
+	private Set<Category> categories = new HashSet<>();
 
 }

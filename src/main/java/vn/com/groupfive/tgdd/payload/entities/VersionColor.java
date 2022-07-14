@@ -32,11 +32,14 @@ public class VersionColor {
 	@Column(name = "is_default")
 	private boolean isDefault;
 
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar(100)")
 	private String name;
 
 	@Column(name = "price")
 	private float price;
+	
+	@Column(name = "avartar")
+	private String avartar;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "version_id")

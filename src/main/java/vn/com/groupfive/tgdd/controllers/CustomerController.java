@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import vn.com.groupfive.tgdd.payload.dto.CategoryDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.services.CustomerService;
 
 @RestController
@@ -23,5 +24,10 @@ public class CustomerController {
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategoryDTO> getCategoryByLevel(@PathVariable("level") int level) {
 		return customerService.getAllCategoryByLevel(level);
+	}
+
+	@GetMapping("/get-all-products")
+	List<ProductListItemDTO> getListProduct() {
+		return customerService.getAllProduct();
 	}
 }
