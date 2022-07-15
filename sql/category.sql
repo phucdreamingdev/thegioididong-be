@@ -1,25 +1,25 @@
 ﻿
 ------------------------------CATEGORY_LEVEL_0-------------------------------------
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
-VALUES ('cdn.tgdd.vn/content/icon-phone-96x96-2.png', '', 0, N'Điện Thoại', 1, 0, 0)
+VALUES ('https://cdn.tgdd.vn//content/icon-phone-96x96-2.png', '', 0, N'Điện Thoại', 1, 0, 0)
 
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
-VALUES ('cdn.tgdd.vn/content/icon-laptop-96x96-1.png', '', 0, N'Laptop', 1, 0, 0)
+VALUES ('https://cdn.tgdd.vn/content/icon-laptop-96x96-1.png', '', 0, N'Laptop', 1, 0, 0)
 
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
-VALUES ('cdn.tgdd.vn/content/icon-tablet-96x96-1.png', '', 0, N'Tablet', 1, 0, 0)
+VALUES ('https://cdn.tgdd.vn/content/icon-tablet-96x96-1.png', '', 0, N'Tablet', 1, 0, 0)
 
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
-VALUES ('cdn.tgdd.vn/content/icon-phu-kien-96x96-1.png', '', 0, N'Phụ Kiện', 1, 1, 1)
+VALUES ('https://cdn.tgdd.vn/content/icon-phu-kien-96x96-1.png', '', 0, N'Phụ Kiện', 1, 1, 1)
 
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
-VALUES ('cdn.tgdd.vn/content/icon-smartwatch-96x96-1.png', '', 0, N'Smartwatch', 1, 0, 0)
+VALUES ('https://cdn.tgdd.vn/content/icon-smartwatch-96x96-1.png', '', 0, N'Smartwatch', 1, 0, 0)
 
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
-VALUES ('cdn.tgdd.vn/content/watch-icon-96x96.png', '', 0, N'Đồng Hồ', 1, 0, 0)
+VALUES ('https://cdn.tgdd.vn/content/watch-icon-96x96.png', '', 0, N'Đồng Hồ', 1, 0, 0)
 
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
-VALUES ('cdn.tgdd.vn/content/icon-pc-96x96.png', '', 0, N'PC, Máy in', 1, 1, 2)
+VALUES ('https://cdn.tgdd.vn/content/icon-pc-96x96.png', '', 0, N'PC, Máy in', 1, 1, 2)
 -----------------------------END CATEGOORY------------------------------------
 
 
