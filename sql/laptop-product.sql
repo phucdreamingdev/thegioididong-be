@@ -1,30 +1,30 @@
-﻿---------------------------------MANUFACTURER_LAPTOP----------------------------------
+﻿---------------------------------MANUFACTURER_LAPTOP---------------------------------------
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-macbook-149x40.png', 'Macbook') --11
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-macbook-149x40.png', 'Macbook') --11
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-asus-149x40.png', 'Asus') --12
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-asus-149x40.png', 'Asus') --12
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-hp-149x40-1.png', 'HP') --13
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-hp-149x40-1.png', 'HP') --13
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-lenovo-149x40.png', 'Lenovo') --14
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-lenovo-149x40.png', 'Lenovo') --14
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-acer-149x40.png', 'Acer') --15
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-acer-149x40.png', 'Acer') --15
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-dell-149x40.png', 'DELL') --16
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-dell-149x40.png', 'DELL') --16
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-msi-149x40.png', 'MSI') --17
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-msi-149x40.png', 'MSI') --17
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-surface-149x40-1.png', 'Surface') --18
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-surface-149x40-1.png', 'Surface') --18
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-lg-149x40.png', 'LG') --19
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-lg-149x40.png', 'LG') --19
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-gigabyte-149x40.png', 'Gigabyte') --20
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-gigabyte-149x40.png', 'Gigabyte') --20
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-intel-149x40.png', 'Intel') --21
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-intel-149x40.png', 'Intel') --21
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-chuwi-149x40.png', 'CHUWI') --22
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-chuwi-149x40.png', 'CHUWI') --22
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-itel-149x40.png', 'Itel') --23
+VALUES ('', 'http://cdn.tgdd.vn/Brand/1/logo-itel-149x40.png', 'Itel') --23
 ---------------------------------END_MANUFACTURER_LAPTOP----------------------------------
 
 
@@ -92,21 +92,32 @@ INSERT INTO color (name, manufacturer_id)--26
 VALUES (N'Xám', 13)
 ---------------------------------END_COLOR----------------------------------
 
----------------------------------VERSION_COLOR----------------------------------
+---------------------------------VERSION_COLOR------------------------------------------
+--MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU
+INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)  
+VALUES (N'MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU', 64990000, 22, 15, 0, 'https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-180x125.jpg') --- 512 mau bac
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU  ', 64990000, 22, 15, 0, 'cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1.jpg') --- 512 mau bac
+VALUES (N'MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU', 64990000, 21, 15, 0, 'https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-1-180x125.jpg') --- 512 mau xam
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU  ', 64990000, 21, 15, 0, 'cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-1.jpg') --- 512 mau xam
+VALUES (N'MacBook Pro 16 M1 Pro 2021/1TB/16 core-GPU', 64990000, 21, 16, 0, 'https://cdn.tgdd.vn/Products/Images/44/253706/apple-macbook-pro-16-m1-pro-2021-1-180x125.jpg') --- 1tb mau xam
+
+--MacBook Pro 14 M1 Max 2021/24-core GPU
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'MacBook Pro 16 M1 Pro 2021/1TB/16 core-GPU  ', 64990000, 21, 16, 0, 'cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-1.jpg') --- 1tb mau xam
+VALUES (N'MacBook Pro 14 M1 Max 2021/24-core GPU',  76900000, 21, 14, 0, 'https://cdn.tgdd.vn/Products/Images/44/263914/macbook-pro-14-m1-max-2021-10-core-cpu-xam-1-180x125.jpg')
+
+--Asus Vivobook 15 X1502ZA i5 1240P
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'MacBook Pro 14 M1 Max 2021/24-core GPU  ',  76900000, 21, 14, 0, 'cdn.tgdd.vn/Products/Images/44/263914/macbook-pro-14-m1-max-2021-10-core-cpu-xam-1.jpg')
+VALUES (N'Asus Vivobook 15 X1502ZA i5 1240P (EJ120W)',   17990000, 23, 17, 0, 'https://cdn.tgdd.vn/Products/Images/44/281483/asus-vivobook-15-x1502za-i5-ej120w-1-1-180x125.jpg')
+
+--Asus ZenBook UX425EA i5 1135G7
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Asus Vivobook 15 X1502ZA i5 1240P (EJ120W)  ',   17990000, 23, 17, 0, 'cdn.tgdd.vn/Products/Images/44/281483/asus-vivobook-15-x1502za-i5-ej120w-1-1.jpg')
+VALUES (N'Asus ZenBook UX425EA i5 1135G7 (KI839W)',   22490000, 24, 18, 0, 'https://cdn.tgdd.vn/Products/Images/44/269582/asus-zenbook-ux425ea-i5-ki839w-1-180x125.jpg')
+
+--HP EliteBook X360 1040 G8 i7 1165G7
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Asus ZenBook UX425EA i5 1135G7 (KI839W)  ',   22490000, 24, 18, 0, 'cdn.tgdd.vn/Products/Images/44/269582/asus-zenbook-ux425ea-i5-ki839w-1.jpg')
+VALUES (N'HP EliteBook X360 1040 G8 i7 1165G7',   49590000, 25, 19, 0, 'https://cdn.tgdd.vn/Products/Images/44/242415/hp-elitebook-x360-1040-g8-i7-3g1h4pa-1-180x125.jpg')
+
+--HP ZBook Firefly 14 G8 i5 1135G7
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'HP EliteBook X360 1040 G8 i7 1165G7  ',   49590000, 25, 19, 0, 'cdn.tgdd.vn/Products/Images/44/242415/hp-elitebook-x360-1040-g8-i7-3g1h4pa-1-org.jpg')
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'HP ZBook Firefly 14 G8 i5 1135G7  ',   39890000, 26, 20, 0, 'cdn.tgdd.vn/Products/Images/44/264438/hp-zbook-firefly-14-g8-i5-275v5av-1-2.jpg')
----------------------------------END_VERSION_COLOR----------------------------------
+VALUES (N'HP ZBook Firefly 14 G8 i5 1135G7',   39890000, 26, 20, 0, 'https://cdn.tgdd.vn/Products/Images/44/264438/hp-zbook-firefly-14-g8-i5-275v5av-1-2-180x125.jpg')
+---------------------------------END_VERSION_COLOR-------------------------------------------
