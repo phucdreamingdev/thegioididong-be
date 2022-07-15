@@ -44,7 +44,7 @@ INSERT INTO manufacturer_category (manufacturer_id, category_id) VALUES(31,3)
 INSERT INTO product (name, is_actived, category_id, manufacturer_id)--13
 VALUES ('iPad Pro M1 11 inch 5G', 1, 3, 24)
 INSERT INTO product (name, is_actived, category_id, manufacturer_id)--14
-VALUES ('iPad Air 5 M1 WiFi Cellular', 1, 3, 24)
+VALUES ('iPad Air 5 M1 WiFi', 1, 3, 24)
 INSERT INTO product (name, is_actived, category_id, manufacturer_id)--15
 VALUES ('Samsung Galaxy Tab S8 5G', 1, 3, 25)
 INSERT INTO product (name, is_actived, category_id, manufacturer_id)--16
@@ -58,33 +58,29 @@ VALUES ('Lenovo Tab P11 Plus 4G', 1, 3, 27)
 
 --------------------------------VERSION-------------------------------------------------------
 INSERT INTO version (name, video_url, product_id)--21
-VALUES ('128GB', '',  1)
+VALUES ('128GB', '',  13)
 INSERT INTO version (name, video_url, product_id)--22
-VALUES ('256GB', '',  1)
+VALUES ('256GB', '',  13)
 INSERT INTO version (name, video_url, product_id)--23
-VALUES ('512GB', '',  1)
+VALUES ('512GB', '',  13)
 INSERT INTO version (name, video_url, product_id)--24
-VALUES ('1TB', '',  1)
+VALUES ('1TB', '',  13)
 INSERT INTO version (name, video_url, product_id)--25
-VALUES ('2TB', '',  1)
+VALUES ('2TB', '',  13)
 INSERT INTO version (name, video_url, product_id)--26
-VALUES ('64GB', '',  1)
+VALUES ('64GB', '',  14)
 INSERT INTO version (name, video_url, product_id)--27
-VALUES ('256GB', '',  1)
+VALUES ('256GB', '',  14)
 INSERT INTO version (name, video_url, product_id)--28
-VALUES ('S8+', '',  1)
+VALUES ('S8+', '',  15)
 INSERT INTO version (name, video_url, product_id)--29
-VALUES ('S8', '',  1)
+VALUES ('S8', '',  15)
 INSERT INTO version (name, video_url, product_id)--30
-VALUES ('A7 Lite', '',  1)
+VALUES ('A7 Lite', '',  16)
 INSERT INTO version (name, video_url, product_id)--31
-VALUES ('128GB', '',  1)
+VALUES ('Yoga Tab 11 ', '',  17)
 INSERT INTO version (name, video_url, product_id)--32
-VALUES ('256GB', '',  1)
-INSERT INTO version (name, video_url, product_id)--33
-VALUES ('Yoga Tab 11 ', '',  1)
-INSERT INTO version (name, video_url, product_id)--34
-VALUES ('Tab P11 Plus', '',  1)
+VALUES ('Tab P11 Plus', '',  18)
 
 --------------------------------END_VERSION---------------------------------------------------
 
@@ -138,82 +134,46 @@ VALUES (N'iPad Pro M1 11 inch 5G 512GB', 32490000, 27, 23, 0, 'cdn.tgdd.vn/Produ
 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 1TB', 32490000, 2, 3, 1, 'cdn.tgdd.vn/Products/Images/522/269329/TimerThumb/ipad-pro-m1-11-inch-wifi-cellular-1tb-2021.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 1TB', 41990000, 28, 24, 1, 'cdn.tgdd.vn/Products/Images/522/269329/TimerThumb/ipad-pro-m1-11-inch-wifi-cellular-1tb-2021.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 1TB', 32490000, 3, 3, 0, 'cdn.tgdd.vn/Products/Images/522/269329/ipad-pro-m1-11-inch-wifi-cellular-bac-1.jpeg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 1TB', 32490000, 4, 3, 0, 'cdn.tgdd.vn/Products/Images/522/269329/ipad-pro-m1-11-inch-wifi-cellular-1.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 1TB', 41990000, 27, 24, 0, 'cdn.tgdd.vn/Products/Images/522/269329/ipad-pro-m1-11-inch-wifi-cellular-bac-1.jpeg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 2TB', 32490000, 2, 3, 1, 'cdn.tgdd.vn/Products/Images/522/269330/pad-pro-m1-11-inch-wifi-cellular-1tb-2021-xam-thumb-600x600.jpeg') 
+VALUES (N'iPad Pro M1 11 inch 5G 2TB', 55990000, 28, 25, 0, 'cdn.tgdd.vn/Products/Images/522/269330/pad-pro-m1-11-inch-wifi-cellular-1tb-2021-xam-thumb-600x600.jpeg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 2TB', 32490000, 3, 3, 0, 'cdn.tgdd.vn/Products/Images/522/269330/ipad-pro-m1-11-inch-wifi-cellular-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 2TB', 32490000, 4, 3, 0, 'cdn.tgdd.vn/Products/Images/522/269330/ipad-pro-m1-11-inch-wifi-cellular-bac-1.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 2TB', 55990000, 30, 25, 0, 'https://cdn.tgdd.vn/Products/Images/522/269330/ipad-pro-m1-11-inch-wifi-cellular-bac-1.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular  ', 2499000, 1, 1, 1, 'cdn.tgdd.vn/Products/Images/522/274155/ipad-air-5-wifi-cellular-tim-thumb-600x600.jpg') 
+VALUES (N'Máy tính bảng iPad Air 5 M1 Wifi 64GB', 16990000, 30, 26, 1, 'cdn.tgdd.vn/Products/Images/522/274155/ipad-air-5-wifi-cellular-tim-thumb-600x600.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 64GB  ', 2499000, 2, 1, 0, 'cdn.tgdd.vn/Products/Images/522/274155/ipad-air-5-m1-wifi-cellular-tim-1.jpg') 
+VALUES (N'iPad Air 5 M1 WiFi Cellular 64GB  ', 16990000, 30, 26, 0, 'cdn.tgdd.vn/Products/Images/522/274155/ipad-air-5-m1-wifi-cellular-tim-1.jpg') 
+
+
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 256GB  ', 2799000, 2, 2, 0, 'cdn.tgdd.vn/Products/Images/522/274156/ipad-air-5-m1-wifi-cellular-xam-1.jpg') 
+VALUES (N'Samsung Galaxy Tab S8 5G S8  ', 20990000, 34, 27, 1, 'cdn.tgdd.vn/Products/Images/522/247510/samsung-galaxy-tab-s8-white-1.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 256GB  ', 2799000, 2, 2, 0, 'cdn.tgdd.vn/Products/Images/522/274156/ipad-air-5-m1-wifi-cellular-tim-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 256GB  ', 2799000, 2, 2, 0, 'cdn.tgdd.vn/Products/Images/522/274156/ipad-air-5-m1-wifi-cellular-trang-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 256GB  ', 2799000, 2, 2, 0, 'cdn.tgdd.vn/Products/Images/522/274156/ipad-air-5-m1-wifi-cellular-xanh-duong-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 256GB  ', 2799000, 2, 2, 0, 'cdn.tgdd.vn/Products/Images/522/274156/ipad-air-5-m1-wifi-cellular-hong-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 256GB  ', 2799000, 2, 2, 0, 'cdn.tgdd.vn/Products/Images/522/274156/ipad-air-5-wifi-cellular-tim-thumb-600x600.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi Cellular 256GB  ', 2799000, 2, 2, 0, 'cdn.tgdd.vn/Products/Images/522/274156/ipad-air-5-wifi-cellular-tim-thumb-600x600.jpg') 
+VALUES (N'Samsung Galaxy Tab S8 5G S8  ', 20990000, 35, 27, 0, 'cdn.tgdd.vn/Products/Images/522/247510/samsung-galaxy-tab-s8-1-2.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Samsung Galaxy Tab S8 5G ', 2499000, 1, 1, 1, 'cdn.tgdd.vn/Products/Images/522/247510/Samsung-Galaxy-Tab-s8-white-thumb-1-600x600.jpg') 
+VALUES (N'Samsung Galaxy Tab S8 5G S8+  ', 25990000, 34, 28, 0, 'cdn.tgdd.vn/Products/Images/522/247512/samsung-galaxy-tab-s8-plus-1-3.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Samsung Galaxy Tab S8 5G S8  ', 2499000, 2, 1, 0, 'cdn.tgdd.vn/Products/Images/522/247510/samsung-galaxy-tab-s8-white-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Samsung Galaxy Tab S8 5G S8  ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/247510/samsung-galaxy-tab-s8-1-2.jpg') 
+VALUES (N'Samsung Galaxy Tab S8 5G S8+  ', 25990000, 35, 28, 0, 'cdn.tgdd.vn/Products/Images/522/247512/samsung-galaxy-tab-s8-plus-1-4.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Samsung Galaxy Tab S8 5G S8+  ', 2499000, 2, 1, 0, 'cdn.tgdd.vn/Products/Images/522/247512/samsung-galaxy-tab-s8-plus-1-3.jpg') 
+VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 4990000, 34, 29, 1, 'https://cdn.tgdd.vn/Products/Images/522/237325/TimerThumb/samsung-galaxy-tab-a7-lite-(2).jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Samsung Galaxy Tab S8 5G S8+  ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/247512/samsung-galaxy-tab-s8-plus-1-4.jpg') 
+VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 4990000, 35, 29, 0, 'https://cdn.tgdd.vn/Products/Images/522/237325/TimerThumb/samsung-galaxy-tab-a7-lite-(2).jpg') 
+
+
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 2499000, 1, 1, 1, 'cdn.tgdd.vn/Products/Images/522/237325/TimerThumb/samsung-galaxy-tab-a7-lite-(2).jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 2499000, 2, 1, 0, 'cdn.tgdd.vn/Products/Images/522/237325/samsung-galaxy-tab-a7-lite-1-2-org.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/237325/samsung-galaxy-tab-a7-lite-1-3-org.jpg') 
+VALUES (N'Lenovo Yoga Tab 11 4G ', 9990000, 38, 30, 1, 'cdn.tgdd.vn/Products/Images/522/244565/TimerThumb/lenovo-yoga-tab-11.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Xiaomi Pad 5 WiFi ', 2499000, 1, 1, 1, 'cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-grey-600x600.jpg') 
-
+VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 7390000, 38, 31, 1, 'cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-2-600x600.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Xiaomi Pad 5 WiFi 128GB ', 2499000, 2, 1, 0, 'cdn.tgdd.vn/Products/Images/522/239210/xiaomi-pad-5-1-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Xiaomi Pad 5 WiFi 128GB ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/239210/xiaomi-pad-5-1.jpg') 
-
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Xiaomi Pad 5 WiFi 256GB ', 2499000, 2, 1, 0, 'cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Xiaomi Pad 5 WiFi 256GB ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-1-1.jpg') 
-
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Lenovo Yoga Tab 11 4G ', 2499000, 1, 1, 1, 'cdn.tgdd.vn/Products/Images/522/244565/TimerThumb/lenovo-yoga-tab-11.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Lenovo Yoga Tab 11 4G ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/244565/lenovo-yoga-tab-11-1-2.jpg') 
-
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 2499000, 1, 1, 1, 'cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-2-600x600.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-1-1.jpg') 
-INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 2499000, 3, 1, 0, 'cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-1-2.jpg') 
+VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 7390000, 39, 31, 0, 'cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-1-1.jpg') 
 
 ------------------------------------------------------END_VERSION_COLOR------------------------------------------------------------------------
 
