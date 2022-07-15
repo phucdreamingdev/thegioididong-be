@@ -1,25 +1,25 @@
 --Manufacturer la cac hang san xuat va cung cap cac san pham
 -----------------------------------------MANUFACTURER--------------------------------------
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png', 'Iphone') --1
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png', 'Iphone') --1
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/samsungnew-220x48-1.png', 'SamSung') --2
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/samsungnew-220x48-1.png', 'SamSung') --2
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/OPPO42-b_5.jpg', 'OPPO') --3
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/OPPO42-b_5.jpg', 'OPPO') --3
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/logo-xiaomi-220x48-5.png', 'Xiaomi') --4
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/logo-xiaomi-220x48-5.png', 'Xiaomi') --4
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/vivo-logo-220-220x48-3.png', 'Vivo') --5
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/vivo-logo-220-220x48-3.png', 'Vivo') --5
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/Realme42-b_37.png', 'Realme') --6
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/Realme42-b_37.png', 'Realme') --6
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg', 'Nokia') --7
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg', 'Nokia') --7
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/Mobell42-b_19.jpg', 'Mobell') --8
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/Mobell42-b_19.jpg', 'Mobell') --8
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/Itel42-b_54.jpg', 'Itel') --9
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/Itel42-b_54.jpg', 'Itel') --9
 INSERT INTO manufacturer (description, logo_url, name)
-VALUES ('', 'cdn.tgdd.vn/Brand/1/Masstel42-b_0.png', 'Masstel') --10
+VALUES ('', 'https://cdn.tgdd.vn/Brand/1/Masstel42-b_0.png', 'Masstel') --10
 -----------------------------------------END_MANUFACTURER-------------------------------------
 
 
