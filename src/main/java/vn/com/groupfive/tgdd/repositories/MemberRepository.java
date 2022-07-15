@@ -7,5 +7,5 @@ import vn.com.groupfive.tgdd.payload.entities.Member;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long>{
-
+	
 }
