@@ -155,7 +155,7 @@ INSERT INTO version_color (name, price, color_id, version_id, is_default, avarta
 VALUES (N'Điện thoại iPhone 13 128GB  ', 24990000, 6, 1, 0, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-red-1-200x200.jpg') 
 --iphone 13 256GB
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại iPhone 13 256GB  ', 27990000, 1, 2, 0, https://'cdn.tgdd.vn/Products/Images/42/223602/iphone-13-starlight-1-200x200.jpg') 
+VALUES (N'Điện thoại iPhone 13 256GB  ', 27990000, 1, 2, 1, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-starlight-1-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại iPhone 13 256GB  ', 27990000, 2, 2, 0, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-blue-1-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
@@ -165,10 +165,10 @@ VALUES (N'Điện thoại iPhone 13 256GB  ', 27990000, 4, 2, 0, 'https://cdn.tg
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại iPhone 13 256GB  ', 27990000, 5, 2, 0, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-xanh-la-thumb-new-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại iPhone 13 256GB  ', 27990000, 6, 2, 0, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-red-1-200x200.jpg') https://
+VALUES (N'Điện thoại iPhone 13 256GB  ', 27990000, 6, 2, 0, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-red-1-200x200.jpg')
 --iphone 13 512GB
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại iPhone 13 512GB', 32490000, 1, 3, 0, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-starlight-1-200x200.jpg') 
+VALUES (N'Điện thoại iPhone 13 512GB', 32490000, 1, 3, 1, 'https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-starlight-1-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại iPhone 13 512GB', 32490000, 2, 3, 0, 'https://cdn.tgdd.vn/Products/Images/42/250257/iphone-13-blue-1-600x600.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
@@ -192,7 +192,7 @@ INSERT INTO version_color (name, price, color_id, version_id, is_default, avarta
 VALUES (N'Điện thoại iPhone 11 64GB  ', 14990000, 6, 4, 0, 'https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-200x200.jpg') 
 --iphone 11 128GB
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại iPhone 11 128GB  ', 16990000, 4, 5, 0, 'https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-200x200.jpg') 
+VALUES (N'Điện thoại iPhone 11 128GB  ', 16990000, 4, 5, 1, 'https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại iPhone 11 128GB  ', 16990000, 5, 5, 0, 'https://cdn.tgdd.vn/Products/Images/42/210644/iphone-11-tim-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
@@ -212,7 +212,7 @@ INSERT INTO version_color (name, price, color_id, version_id, is_default, avarta
 VALUES (N'Điện thoại Samsung Galaxy A03 3GB', 2990000, 11, 6, 0, 'https://cdn.tgdd.vn/Products/Images/42/251856/samsung-galaxy-a03-1-3.jpg') 
 --Samsung Galaxy A03 4GB
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại Samsung Galaxy A03 3GB  ', 3490000, 9, 7, 0, 'https://cdn.tgdd.vn/Products/Images/42/251856/samsung-galaxy-a03-xanh-thumb-200x200.jpg') 
+VALUES (N'Điện thoại Samsung Galaxy A03 3GB  ', 3490000, 9, 7, 1, 'https://cdn.tgdd.vn/Products/Images/42/251856/samsung-galaxy-a03-xanh-thumb-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại Samsung Galaxy A03 3GB', 3490000, 10, 7, 0, 'https://cdn.tgdd.vn/Products/Images/42/251856/samsung-galaxy-a03-den-thumb-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
@@ -231,17 +231,17 @@ INSERT INTO version_color (name, price, color_id, version_id, is_default, avarta
 VALUES (N'Điện thoại OPPO Reno7 Z 5G', 10490000, 16, 9, 0, 'https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-2-1-200x200.jpg') 
 --Oppo Reno7 4G
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại OPPO Reno7 4G', 8990000, 17, 10, 0, 'https://cdn.tgdd.vn/Products/Images/42/274721/OPPO-Reno7-4G-Thumb-cam-1-200x200.jpg') 
+VALUES (N'Điện thoại OPPO Reno7 4G', 8990000, 17, 10, 1, 'https://cdn.tgdd.vn/Products/Images/42/274721/OPPO-Reno7-4G-Thumb-cam-1-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại OPPO Reno7 4G', 8990000, 16, 10, 0, 'https://cdn.tgdd.vn/Products/Images/42/274721/OPPO-Reno7-4G-Thumb-den-1-200x200.jpg') 
 --Oppo Reno7 5G
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại OPPO Reno7 5G', 12990000, 16, 11, 0, 'https://cdn.tgdd.vn/Products/Images/42/247361/oppo-reno7-5g-den-thumb-1-200x200.jpg') 
+VALUES (N'Điện thoại OPPO Reno7 5G', 12990000, 16, 11, 1, 'https://cdn.tgdd.vn/Products/Images/42/247361/oppo-reno7-5g-den-thumb-1-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại OPPO Reno7 5G', 12990000, 18, 11, 0, 'https://cdn.tgdd.vn/Products/Images/42/247361/oppo-reno7-5g-xanh-thumb-200x200.jpg') 
 --Oppo Reno7 Pro 5G
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Điện thoại OPPO Reno7 Pro 5G', 18990000, 16, 12, 0, 'https://cdn.tgdd.vn/Products/Images/42/251964/OPPO-Reno7-Pro-5G-thumb-xanh-200x200.jpg') 
+VALUES (N'Điện thoại OPPO Reno7 Pro 5G', 18990000, 16, 12, 1, 'https://cdn.tgdd.vn/Products/Images/42/251964/OPPO-Reno7-Pro-5G-thumb-xanh-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Điện thoại OPPO Reno7 Pro 5G', 18990000, 19, 12, 0, 'https://cdn.tgdd.vn/Products/Images/42/251964/OPPO-Reno7-Pro-5G-thumb-den-200x200.jpg') 
 --OPPO A55
