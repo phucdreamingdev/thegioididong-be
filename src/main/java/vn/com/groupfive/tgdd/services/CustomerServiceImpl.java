@@ -28,15 +28,6 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	VersionColorRepository versionColorRepository;
 
-	@Override
-	public List<ProductListItemDTO> getAllProduct() {
-		List<VersionColor> versionColors = versionColorRepository.getAllByDefault();
-		List<ProductListItemDTO> productDTOs = new ArrayList<>();
-		for (VersionColor versionColor : versionColors) {
-			productDTOs.add(versionColorToProductDTO(versionColor));
-		}
-		return productDTOs;
-	}
 
 	@Override
 	public List<CategoryDTO> getAllCategoryByLevel(int level) {
@@ -57,10 +48,23 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	public List<ProductListItemDTO> getAllProduct() {
+		List<VersionColor> versionColors = versionColorRepository.getAllByDefault();
+		List<ProductListItemDTO> productDTOs = new ArrayList<>();
+		for (VersionColor versionColor : versionColors) {
+			productDTOs.add(versionColorToProductDTO(versionColor));
+		}
+		return productDTOs;
+	}
+	
+	@Override
 	public ProductListItemDTO versionColorToProductDTO(VersionColor versionColor) {
 		Locale localeVN = new Locale("vi", "VN");
 		NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
-		return new ProductListItemDTO(versionColor.getId(), versionColor.getName(), versionColor.getAvartar(),
+		return new ProductListItemDTO(
+				versionColor.getId(), 
+				versionColor.getName(), 
+				versionColor.getAvartar(),
 				versionColor.getVersion().getProduct().getCategory().getName(),
 				versionColor.getVersion().getProduct().getManufacturer().getName(),
 				currencyVN.format(versionColor.getPrice()));

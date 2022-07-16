@@ -20,6 +20,15 @@ VALUES ('https://cdn.tgdd.vn/content/watch-icon-96x96.png', '', 0, N'Đồng H�
 
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
 VALUES ('https://cdn.tgdd.vn/content/icon-pc-96x96.png', '', 0, N'PC, Máy in', 1, 1, 2)
+
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', '', 0, N'Máy cũ giá rẻ', 0, 0, 0)
+
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', '', 0, N'Sim, Thẻ cào', 0, 0, 0)
+
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', '', 0, N'Dịch vụ tiện ích', 0, 1, 2)
 -----------------------------END CATEGOORY------------------------------------
 
 
@@ -151,6 +160,31 @@ INSERT INTO category (logo, parent_name, level, name, status, is_parent, childre
 VALUES ('', N'PC, Máy in', 2, N'Màn hình máy tính', 1, 0, 2)
 INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
 VALUES ('', N'PC, Máy in', 2, N'Máy tính để bàn', 1, 0, 2)
+----------------------------END_CATEGORY_CHILDREN_LEVEL_2----------------------------------------------------------------
+
+
+
+----------------------------CATEGORY_CHILDREN_LEVEL_2_DICH_VU_TIEN_ICH--------------------------------------------------
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền trả góp', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền điện', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền nước', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền net FPT', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền net, cáp VNPT', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền bảo hiểm', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền vé tàu, xe, máy bay', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền viện phí Đại Học Y Dược TP.HCM', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Đóng tiền cước điện thoại trả sau', 1, 0, 2)
+INSERT INTO category (logo, parent_name, level, name, status, is_parent, children_level)
+VALUES ('', N'Dịch vụ tiện ích', 2, N'Mua bảo hiểm xe máy, ô tô', 1, 0, 2)
 ----------------------------END_CATEGORY_CHILDREN_LEVEL_2----------------------------------------------------------------
 
 

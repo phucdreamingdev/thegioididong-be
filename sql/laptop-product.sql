@@ -95,29 +95,29 @@ VALUES (N'Xám', 13)
 ---------------------------------VERSION_COLOR------------------------------------------
 --MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)  
-VALUES (N'MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU', 64990000, 22, 15, 1, 'https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-180x125.jpg') --- 512 mau bac
+VALUES (N'MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU', 64990000, 22, 15, 1, 'https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-10-core-cpu-600x600.jpg') --- 512 mau bac
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'MacBook Pro 16 M1 Pro 2021/512GB/16 core-GPU', 64990000, 21, 15, 0, 'https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-1-180x125.jpg') --- 512 mau xam
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'MacBook Pro 16 M1 Pro 2021/1TB/16 core-GPU', 64990000, 21, 16, 0, 'https://cdn.tgdd.vn/Products/Images/44/253706/apple-macbook-pro-16-m1-pro-2021-1-180x125.jpg') --- 1tb mau xam
+VALUES (N'MacBook Pro 16 M1 Pro 2021/1TB/16 core-GPU', 64990000, 21, 16, 0, 'https://cdn.tgdd.vn/Products/Images/44/253706/apple-macbook-pro-16-m1-pro-2021-10-core-cpu-600x600.jpg') --- 1tb mau xam
 
 --MacBook Pro 14 M1 Max 2021/24-core GPU
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'MacBook Pro 14 M1 Max 2021/24-core GPU',  76900000, 21, 14, 1, 'https://cdn.tgdd.vn/Products/Images/44/263914/macbook-pro-14-m1-max-2021-10-core-cpu-xam-1-180x125.jpg')
+VALUES (N'MacBook Pro 14 M1 Max 2021/24-core GPU',  76900000, 21, 14, 1, 'https://cdn.tgdd.vn/Products/Images/44/263914/macbook-pro-14-m1-max-2021-10-core-cpu-600x600.jpg')
 
 --Asus Vivobook 15 X1502ZA i5 1240P
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Asus Vivobook 15 X1502ZA i5 1240P (EJ120W)',   17990000, 23, 17, 1, 'https://cdn.tgdd.vn/Products/Images/44/281483/asus-vivobook-15-x1502za-i5-ej120w-1-1-180x125.jpg')
+VALUES (N'Asus Vivobook 15 X1502ZA i5 1240P (EJ120W)',   17990000, 23, 17, 1, 'https://cdn.tgdd.vn/Products/Images/44/281483/asus-vivobook-15-x1502za-i5-ej120w-600x600.jpg')
 
 --Asus ZenBook UX425EA i5 1135G7
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Asus ZenBook UX425EA i5 1135G7 (KI839W)',   22490000, 24, 18, 1, 'https://cdn.tgdd.vn/Products/Images/44/269582/asus-zenbook-ux425ea-i5-ki839w-1-180x125.jpg')
+VALUES (N'Asus ZenBook UX425EA i5 1135G7 (KI839W)',   22490000, 24, 18, 1, 'https://cdn.tgdd.vn/Products/Images/44/269582/TimerThumb/asus-zenbook-ux425ea-i5-ki839w-(20).jpg')
 
 --HP EliteBook X360 1040 G8 i7 1165G7
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'HP EliteBook X360 1040 G8 i7 1165G7',   49590000, 25, 19, 1, 'https://cdn.tgdd.vn/Products/Images/44/242415/hp-elitebook-x360-1040-g8-i7-3g1h4pa-1-180x125.jpg')
+VALUES (N'HP EliteBook X360 1040 G8 i7 1165G7',   49590000, 25, 19, 1, 'https://cdn.tgdd.vn/Products/Images/44/242415/hp-elitebook-x360-1040-g8-i7-3g1h4pa-18-600x600.jpg')
 
 --HP ZBook Firefly 14 G8 i5 1135G7
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'HP ZBook Firefly 14 G8 i5 1135G7',   39890000, 26, 20, 1, 'https://cdn.tgdd.vn/Products/Images/44/264438/hp-zbook-firefly-14-g8-i5-275v5av-1-2-180x125.jpg')
+VALUES (N'HP ZBook Firefly 14 G8 i5 1135G7',   39890000, 26, 20, 1, 'https://cdn.tgdd.vn/Products/Images/44/264438/TimerThumb/hp-zbook-firefly-14-g8-i5-275v5av-(2).jpg')
 ---------------------------------END_VERSION_COLOR-------------------------------------------
