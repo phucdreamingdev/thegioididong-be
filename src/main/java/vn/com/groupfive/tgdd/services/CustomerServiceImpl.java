@@ -8,10 +8,10 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import vn.com.groupfive.tgdd.payload.dto.CategoryDTO;
+import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.entities.Category;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
+import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
@@ -27,24 +27,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	VersionColorRepository versionColorRepository;
+	
+	@Autowired 
+	CategoryMapper categoryMapper;
 
 
 	@Override
-	public List<CategoryDTO> getAllCategoryByLevel(int level) {
-		List<Category> categories = categoryRepository.getByLevel(level);
-		List<CategoryDTO> categoryDTOs = new ArrayList<>();
-		for (Category category : categories) {
-			categoryDTOs.add(categoryToCategoryDTO(category));
-		}
-		return categoryDTOs;
-	}
-
-	@Override
-	public CategoryDTO categoryToCategoryDTO(Category category) {
-		CategoryDTO categoryDTO = new CategoryDTO(category.getId(), category.getName(), category.getLogo(),
-				category.getLevel(), category.getParentName(), category.isStatus(), category.isParent(),
-				category.getChildenLevel());
-		return categoryDTO;
+	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
+		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.getByLevel(level));
 	}
 
 	@Override

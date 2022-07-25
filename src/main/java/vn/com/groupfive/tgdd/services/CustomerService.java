@@ -2,9 +2,8 @@ package vn.com.groupfive.tgdd.services;
 
 import java.util.List;
 
-import vn.com.groupfive.tgdd.payload.dto.CategoryDTO;
+import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.entities.Category;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 
 public interface CustomerService {
@@ -12,7 +11,5 @@ public interface CustomerService {
 
 	ProductListItemDTO versionColorToProductDTO(VersionColor versionColor);
 
-	List<CategoryDTO> getAllCategoryByLevel(int level);
-
-	CategoryDTO categoryToCategoryDTO(Category category);
+	List<CategorySlimDTO> getAllCategoryByLevel(int level);
 }
