@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import vn.com.groupfive.tgdd.payload.dto.CategoryDTO;
+import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.VerificationResult;
 import vn.com.groupfive.tgdd.services.CustomerService;
@@ -29,7 +29,7 @@ public class CustomerController {
 	PhoneverificationService phonesmsservice;
 
 	@GetMapping("/get-all-category-by-level/{level}")
-	List<CategoryDTO> getCategoryByLevel(@PathVariable("level") int level) {
+	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {
 		return customerService.getAllCategoryByLevel(level);
 	}
 
