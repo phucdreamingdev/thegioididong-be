@@ -25,7 +25,7 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerService;
-	
+
 	@Autowired
 	PhoneverificationService phonesmsservice;
 
@@ -40,27 +40,26 @@ public class CustomerController {
 	}
 
 	@PostMapping("/sendotp")
-	public ResponseEntity<String> sendotp(@RequestParam("phone") String phone)
-	{
-	    VerificationResult result=phonesmsservice.startVerification(phone);
-	    if(result.isValid())
-	    {
-	    	return new ResponseEntity<>("Otp Sent..",HttpStatus.OK);
-	    }
-		return new ResponseEntity<>("Otp failed to sent..",HttpStatus.BAD_REQUEST);
+	public ResponseEntity<String> sendotp(@RequestParam("phone") String phone) {
+		VerificationResult result = phonesmsservice.startVerification(phone);
+		if (result.isValid()) {
+			return new ResponseEntity<>("Otp Sent..", HttpStatus.OK);
+		}
+		return new ResponseEntity<>("Otp failed to sent..", HttpStatus.BAD_REQUEST);
 	}
+
 	@PostMapping("/verifyotp")
-	public ResponseEntity<String> sendotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp)
-	{
-	    VerificationResult result=phonesmsservice.checkverification(phone,otp);
-	    if(result.isValid())
-	    {
-	    	return new ResponseEntity<>("Your number is Verified",HttpStatus.OK);
-	    }
-		return new ResponseEntity<>("Something wrong/ Otp incorrect",HttpStatus.BAD_REQUEST);
+	public ResponseEntity<String> sendotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp) {
+		VerificationResult result = phonesmsservice.checkverification(phone, otp);
+		if (result.isValid()) {
+			return new ResponseEntity<>("Your number is Verified", HttpStatus.OK);
+		}
+		return new ResponseEntity<>("Something wrong/ Otp incorrect", HttpStatus.BAD_REQUEST);
 	}
+
 	@GetMapping("/get-branchs-in-stock")
-	List<BranchSlimResponeDTO> getBranchInStock(@RequestParam("versionColorid")Long versionColorid, @RequestParam("provinceId") Long provinceId){
+	List<BranchSlimResponeDTO> getBranchInStock(@RequestParam("versionColorid") Long versionColorid,
+			@RequestParam("provinceId") Long provinceId) {
 		return customerService.getBranchInStock(versionColorid, provinceId);
 	}
 }
