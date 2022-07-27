@@ -107,14 +107,14 @@ VALUES (N'Xanh Ngọc', 27)
 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 128GB  ', 2499000, 27, 21, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-gray-200x200.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 128GB  ', 24990000, 27, 21, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-gray-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 128GB  ', 2499000, 28, 21, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 128GB  ', 24990000, 28, 21, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 256GB  ', 2799000, 27, 22, 1, 'https://cdn.tgdd.vn/Products/Images/522/238626/ipad-pro-2021-11-inch-gray-200x200.jpg')
+VALUES (N'iPad Pro M1 11 inch 5G 256GB  ', 27990000, 27, 22, 1, 'https://cdn.tgdd.vn/Products/Images/522/238626/ipad-pro-2021-11-inch-gray-200x200.jpg')
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 256GB  ', 2799000, 28, 22, 1, 'https://cdn.tgdd.vn/Products/Images/522/238626/ipad-pro-2021-11-inch-silver-200x200.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 256GB  ', 27990000, 28, 22, 1, 'https://cdn.tgdd.vn/Products/Images/522/238626/ipad-pro-2021-11-inch-silver-200x200.jpg') 
 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
