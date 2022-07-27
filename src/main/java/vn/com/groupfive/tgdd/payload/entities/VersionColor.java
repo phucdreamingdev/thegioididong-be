@@ -36,7 +36,7 @@ public class VersionColor {
 	private String name;
 
 	@Column(name = "price")
-	private float price;
+	private double price;
 	
 	@Column(name = "avartar")
 	private String avartar;
@@ -75,4 +75,5 @@ public class VersionColor {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "versionColors")
 	private Set<Image> images = new HashSet<>();
+	
 }

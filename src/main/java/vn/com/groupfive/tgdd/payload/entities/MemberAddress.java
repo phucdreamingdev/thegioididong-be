@@ -24,7 +24,7 @@ public class MemberAddress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "address_detail")
+	@Column(name = "address_detail", columnDefinition = "nvarchar(200)")
 	private String address;
 
 	@Column(name = "is_default")

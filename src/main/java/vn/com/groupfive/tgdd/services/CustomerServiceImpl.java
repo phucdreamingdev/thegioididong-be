@@ -1,9 +1,7 @@
 package vn.com.groupfive.tgdd.services;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +9,18 @@ import org.springframework.stereotype.Service;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
+import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
+import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
+import vn.com.groupfive.tgdd.repositories.VersionRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -30,12 +33,22 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	VersionColorRepository versionColorRepository;
+
+
+	@Autowired
+	VersionRepository versionRepository;
+
+	@Autowired
+	CategoryMapper categoryMapper;
+
+	@Autowired
+	ProductMapper productMapper;
+
+	@Autowired
+	VersionMapper versionMapper;
 	
 	@Autowired
 	BranchStockRepository branchStockRepository;
-	
-	@Autowired 
-	CategoryMapper categoryMapper;
 	
 	@Autowired
 	BranchMapper branchMapper;
@@ -54,18 +67,39 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		return productDTOs;
 	}
-	
+
 	@Override
 	public ProductListItemDTO versionColorToProductDTO(VersionColor versionColor) {
-		Locale localeVN = new Locale("vi", "VN");
-		NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
-		return new ProductListItemDTO(
-				versionColor.getId(), 
-				versionColor.getName(), 
-				versionColor.getAvartar(),
+
+		return new ProductListItemDTO(versionColor.getId(), versionColor.getName(), versionColor.getAvartar(),
 				versionColor.getVersion().getProduct().getCategory().getName(),
-				versionColor.getVersion().getProduct().getManufacturer().getName(),
-				currencyVN.format(versionColor.getPrice()));
+				versionColor.getVersion().getProduct().getManufacturer().getName(), versionColor.getPrice());
+	}
+
+	@Override
+	public ProductSlimDTO getProductSlimDtoById(Long id) {
+		return productMapper.productToProductSlimDTO(productRepository.getById(id));
+	}
+
+	@Override
+	public List<ProductListItemDTO> getAllProductByCategoryId(Long categoryId) {
+		List<VersionColor> versionColors = versionColorRepository.getAllByDefaultAndCategoryId(categoryId);
+		List<ProductListItemDTO> productDTOs = new ArrayList<>();
+		for (VersionColor versionColor : versionColors) {
+			productDTOs.add(versionColorToProductDTO(versionColor));
+		}
+		return productDTOs;
+	}
+
+	@Override
+	public List<VersionColorItemDTO> getAllVersionColorItemDTOs() {
+		return versionMapper.versionColorsToVersionColorItemDtos(versionColorRepository.getAllByDefault());
+	}
+
+	@Override
+	public List<VersionColorItemDTO> getAllVersionColorItemDTOsByCategoryId(Long id) {
+		return versionMapper.versionColorsToVersionColorItemDtos(versionColorRepository.getAllByDefaultAndCategoryId(id));
+
 	}
 	
 	

@@ -27,7 +27,7 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "fullname")
+	@Column(name = "fullname" , columnDefinition = "nvarchar(50)")
 	private String fullname;
 
 	@Column(name = "phone")

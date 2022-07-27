@@ -30,7 +30,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar(100)")
 	private String name;
 
 	@Column(name = "is_actived")

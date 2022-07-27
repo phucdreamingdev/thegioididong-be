@@ -29,7 +29,7 @@ public class ImageGroup {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar(100)")
 	private String name;
 
 	@OneToMany(mappedBy = "imageGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

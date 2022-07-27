@@ -28,7 +28,7 @@ public class Ward {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar(50)")
 	private String name;
 
 	@ManyToOne(fetch = FetchType.LAZY)

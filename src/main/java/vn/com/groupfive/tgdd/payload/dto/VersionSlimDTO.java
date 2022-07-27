@@ -1,21 +1,26 @@
 package vn.com.groupfive.tgdd.payload.dto;
 
+import java.util.List;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vn.com.groupfive.tgdd.payload.entities.Product;
-import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VersionDTO {
+public class VersionSlimDTO {
+	@JsonProperty("id")
 	private Long id;
+	
+	@JsonProperty("name")
 	private String name;
-	private Product product;
-	private Set<VersionColor> versionColors;
+	
+	@JsonProperty("versionColors")
+	private List<VersionColorSlimDTO> versionColors;
 }
