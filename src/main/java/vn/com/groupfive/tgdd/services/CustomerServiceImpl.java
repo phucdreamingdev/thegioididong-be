@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
-import vn.com.groupfive.tgdd.payload.entities.Version;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
+import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
+import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
@@ -33,6 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	VersionColorRepository versionColorRepository;
 
+
 	@Autowired
 	VersionRepository versionRepository;
 
@@ -44,7 +46,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	VersionMapper versionMapper;
-
+	
+	@Autowired
+	BranchStockRepository branchStockRepository;
+	
+	@Autowired
+	BranchMapper branchMapper;
+	
 	@Override
 	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
 		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.getByLevel(level));
@@ -92,6 +100,12 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<VersionColorItemDTO> getAllVersionColorItemDTOsByCategoryId(Long id) {
 		return versionMapper.versionColorsToVersionColorItemDtos(versionColorRepository.getAllByDefaultAndCategoryId(id));
 
+	}
+	
+	
+	@Override
+	public List<BranchSlimResponeDTO> getBranchInStock(Long versionColorid, Long provinceId) {
+		return branchMapper.branchsToBranchSlimResponeDtos(branchStockRepository.getBranchInStock(versionColorid, provinceId));
 	}
 
 }
