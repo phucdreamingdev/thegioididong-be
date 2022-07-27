@@ -8,10 +8,13 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
+import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
+import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
@@ -28,10 +31,15 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	VersionColorRepository versionColorRepository;
 	
+	@Autowired
+	BranchStockRepository branchStockRepository;
+	
 	@Autowired 
 	CategoryMapper categoryMapper;
-
-
+	
+	@Autowired
+	BranchMapper branchMapper;
+	
 	@Override
 	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
 		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.getByLevel(level));
@@ -58,6 +66,12 @@ public class CustomerServiceImpl implements CustomerService {
 				versionColor.getVersion().getProduct().getCategory().getName(),
 				versionColor.getVersion().getProduct().getManufacturer().getName(),
 				currencyVN.format(versionColor.getPrice()));
+	}
+	
+	
+	@Override
+	public List<BranchSlimResponeDTO> getBranchInStock(Long versionColorid, Long provinceId) {
+		return branchMapper.branchsToBranchSlimResponeDtos(branchStockRepository.getBranchInStock(versionColorid, provinceId));
 	}
 
 }

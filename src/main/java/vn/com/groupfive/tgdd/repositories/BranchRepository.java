@@ -7,5 +7,5 @@ import vn.com.groupfive.tgdd.payload.entities.Branch;
 
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Long> {
-
+	
 }

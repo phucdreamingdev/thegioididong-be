@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.VerificationResult;
@@ -37,6 +38,7 @@ public class CustomerController {
 	List<ProductListItemDTO> getListProduct() {
 		return customerService.getAllProduct();
 	}
+
 	@PostMapping("/sendotp")
 	public ResponseEntity<String> sendotp(@RequestParam("phone") String phone)
 	{
@@ -56,5 +58,9 @@ public class CustomerController {
 	    	return new ResponseEntity<>("Your number is Verified",HttpStatus.OK);
 	    }
 		return new ResponseEntity<>("Something wrong/ Otp incorrect",HttpStatus.BAD_REQUEST);
+	}
+	@GetMapping("/get-branchs-in-stock")
+	List<BranchSlimResponeDTO> getBranchInStock(@RequestParam("versionColorid")Long versionColorid, @RequestParam("provinceId") Long provinceId){
+		return customerService.getBranchInStock(versionColorid, provinceId);
 	}
 }
