@@ -47,7 +47,7 @@ public class Category {
 	private boolean isParent;
 	
 	@Column(name = "children_level")
-	private int childenLevel;
+	private int childrenLevel;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
