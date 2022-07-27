@@ -28,7 +28,7 @@ public class Color {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar(50)")
 	private String name;
 
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

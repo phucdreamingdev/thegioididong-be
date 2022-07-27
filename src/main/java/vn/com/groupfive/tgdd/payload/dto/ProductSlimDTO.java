@@ -1,5 +1,10 @@
 package vn.com.groupfive.tgdd.payload.dto;
 
+import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,12 +14,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductListItemDTO {
+public class ProductSlimDTO {
+	@JsonProperty("id")
 	private Long id;
+	
+	@JsonProperty("name")
 	private String name;
-	private String img;
-	private String categoryName;
-	private String brand;
-	private double price;
-
+	
+	@JsonProperty("versions")
+	private List<VersionSlimDTO> versions;
+	
 }

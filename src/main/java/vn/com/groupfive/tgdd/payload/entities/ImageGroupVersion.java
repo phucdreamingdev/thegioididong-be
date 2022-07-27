@@ -28,7 +28,7 @@ public class ImageGroupVersion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "detail")
+	@Column(name = "detail", columnDefinition = "nvarchar(200)")
 	private String detail;
 
 	@ManyToOne(fetch = FetchType.LAZY)

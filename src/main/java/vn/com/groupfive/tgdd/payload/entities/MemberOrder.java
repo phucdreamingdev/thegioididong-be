@@ -41,7 +41,7 @@ public class MemberOrder {
 	@Column(name = "recieve_date")
 	private Date recieveDate;
 
-	@Column(name = "note")
+	@Column(name = "note",columnDefinition = "nvarchar(200)")
 	private String note;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

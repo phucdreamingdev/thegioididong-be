@@ -1,6 +1,5 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,6 +35,9 @@ public class Version {
 
 	@Column(name = "video_url")
 	private String videoUrl;
+	
+//	@Column(name = "isDefault")
+//	private boolean isDefault;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id")
@@ -56,7 +58,7 @@ public class Version {
 	@OneToMany(mappedBy = "version", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Collection<ImageGroupVersion> imageGroupVersions;
+	private Set<ImageGroupVersion> imageGroupVersions = new HashSet<>();
 	
 
 }

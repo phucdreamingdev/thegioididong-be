@@ -37,7 +37,7 @@ public class TransactionDetail {
 	@Column(name = "transaction_quantity")
 	private int transactionQuantity;
 
-	@Column(name = "note")
+	@Column(name = "note", columnDefinition = "nvarchar(200)")
 	private String note;
 
 	@ManyToOne(fetch = FetchType.LAZY)

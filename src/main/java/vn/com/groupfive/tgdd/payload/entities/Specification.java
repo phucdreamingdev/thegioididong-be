@@ -29,7 +29,7 @@ public class Specification {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar(50)")
 	private String name;
 	
 	@OneToMany(mappedBy = "specification", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

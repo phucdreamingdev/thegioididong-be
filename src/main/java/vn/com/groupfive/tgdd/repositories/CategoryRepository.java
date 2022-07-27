@@ -10,6 +10,6 @@ import vn.com.groupfive.tgdd.payload.entities.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long>{
 	
-	@Query("SELECT c FROM Category c WHERE c.level = :level")
+	@Query("SELECT c FROM Category c WHERE c.level = :level and c.status = true")
 	List<Category> getByLevel(@Param("level") int level);
 }	
