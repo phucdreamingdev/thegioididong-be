@@ -8,4 +8,6 @@ public interface AdminService {
 	Category addCategory(CategoryRequest categoryRequest) throws CrudException;
 	
 	Category updateCategory(Long id, CategoryRequest categoryRequest) throws CrudException;
+	
+	VersionColorItemDTO getVersionColorById(Long id);
 }
