@@ -2,6 +2,8 @@ package vn.com.groupfive.tgdd.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
@@ -72,12 +75,20 @@ public class CustomerController {
 	}
 
 	@PostMapping("/verifyotp")
-	public ResponseEntity<String> sendotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp) {
+	public ResponseEntity<Object> verifyotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp, HttpSession session) {
 		VerificationResult result = phonesmsservice.checkverification(phone, otp);
 		if (result.isValid()) {
-			return new ResponseEntity<>("Your number is Verified", HttpStatus.OK);
+			
+			MemberDTO member = customerService.getMemberDTOByPhone(phone);
+			if(member == null) {
+				//
+			}
+			session.setAttribute("member",member);
+			System.out.println("Your number is verified");		
+			return new ResponseEntity<>(member,HttpStatus.OK);
 		}
-		return new ResponseEntity<>("Something wrong/ Otp incorrect", HttpStatus.BAD_REQUEST);
+		String msg = "Something wrong / Incorrect OTP";
+		return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
 	}
 
 	@GetMapping("/get-branchs-in-stock")

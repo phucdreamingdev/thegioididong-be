@@ -4,6 +4,7 @@ import java.util.List;
 
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
@@ -27,5 +28,9 @@ public interface CustomerService {
 	List<VersionColorItemDTO> getAllVersionColorItemDTOsByCategoryId(Long id);
 
 	List<BranchSlimResponeDTO> getBranchInStock(Long versionColorid, Long provinceId);
+	
+	List<MemberDTO> getAllMemberDTO();
+	
+	MemberDTO getMemberDTOByPhone(String phone);
 
 }

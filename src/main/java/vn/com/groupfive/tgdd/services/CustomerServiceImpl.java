@@ -8,19 +8,21 @@ import org.springframework.stereotype.Service;
 
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
+import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
+import vn.com.groupfive.tgdd.repositories.MemberRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
-import vn.com.groupfive.tgdd.repositories.VersionRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -33,10 +35,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	VersionColorRepository versionColorRepository;
-
-
+	
 	@Autowired
-	VersionRepository versionRepository;
+	MemberRepository memberRepository;
+	
+	@Autowired
+	BranchStockRepository branchStockRepository;
 
 	@Autowired
 	CategoryMapper categoryMapper;
@@ -48,10 +52,11 @@ public class CustomerServiceImpl implements CustomerService {
 	VersionMapper versionMapper;
 	
 	@Autowired
-	BranchStockRepository branchStockRepository;
+	BranchMapper branchMapper;
 	
 	@Autowired
-	BranchMapper branchMapper;
+	MemberMapper memberMapper;
+	
 	
 	@Override
 	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
@@ -107,5 +112,19 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<BranchSlimResponeDTO> getBranchInStock(Long versionColorid, Long provinceId) {
 		return branchMapper.branchsToBranchSlimResponeDtos(branchStockRepository.getBranchInStock(versionColorid, provinceId));
 	}
+
+	@Override
+	public List<MemberDTO> getAllMemberDTO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberDTO getMemberDTOByPhone(String phone) {
+		
+		return memberMapper.memberToMemberDto(memberRepository.getByPhone(phone));
+	}
+
+
 
 }

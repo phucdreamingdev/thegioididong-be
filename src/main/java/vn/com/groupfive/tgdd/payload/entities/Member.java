@@ -32,6 +32,10 @@ public class Member {
 
 	@Column(name = "phone")
 	private String phone;
+	
+	@Column(name = "gender")
+	private boolean gender;
+	
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
