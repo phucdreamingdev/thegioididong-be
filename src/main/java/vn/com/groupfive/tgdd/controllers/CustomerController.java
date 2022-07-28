@@ -13,18 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
+import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.VerificationResult;
+import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.services.CustomerService;
 import vn.com.groupfive.tgdd.services.PhoneverificationService;
-import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
-import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 
 @RestController
 @RequestMapping("/customer")
@@ -35,6 +37,9 @@ public class CustomerController {
 
 	@Autowired
 	PhoneverificationService phonesmsservice;
+	
+	@Autowired
+	MemberMapper memberMapper;
 
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {
@@ -77,13 +82,13 @@ public class CustomerController {
 	}
 
 	@PostMapping("/verifyotp")
-	public ResponseEntity<Object> verifyotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp, HttpSession session) {
+	public ResponseEntity<Object> verifyotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp, HttpSession session) throws CrudException {
 		VerificationResult result = phonesmsservice.checkverification(phone, otp);
 		if (result.isValid()) {
 			
 			MemberDTO member = customerService.getMemberDTOByPhone(phone);
 			if(member == null) {
-				//
+				member = memberMapper.memberToMemberDto(customerService.addNewMember(phone));
 			}
 			session.setAttribute("member",member);
 			System.out.println("Your number is verified");		

@@ -12,8 +12,10 @@ import vn.com.groupfive.tgdd.payload.entities.Member;
 public interface MemberRepository extends JpaRepository<Member, Long>{
 
 	@Query("SELECT m FROM Member m WHERE m.phone = :phone")
-	Member getByPhone(@Param("phone") String phone);
+	Member getByPhone(@Param("phone") String phone);	
 	
+	@Query("SELECT CASE WHEN (count(m) > 0) THEN true ELSE false END FROM Member m WHERE m.phone = :phone")
+	boolean existsByPhone(@Param("phone") String phone);
 	
 	
 }

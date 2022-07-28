@@ -29,7 +29,5 @@ public class MemberDTO {
 	
 	@JsonProperty("memberAddresses")
 	private List<MemberAddressDTO> memberAddresses;
-	
-	@JsonProperty("memberOrders")
-	private List<MemberOrderDTO> memberOrders;
+
 }
