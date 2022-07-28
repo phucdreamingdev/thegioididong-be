@@ -23,5 +23,4 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberOrderDTO> getMemberOrderDTOsByID(Long id) {
 		return memberMapper.memberOrdersToMemberOrderDtos(new ArrayList<>(memberRepository.getById(id).getMemberOrders()));
 	}
-
 }

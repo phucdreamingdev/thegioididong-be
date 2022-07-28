@@ -27,7 +27,7 @@ public interface CustomerService {
 
 	List<CategorySlimDTO> getAllCategoryByLevel(int level);
 
-	ProductDTO getProductDtoById(Long id);
+	VersionColorItemDTO getVersionColorDefault(Long productId);
 
 	List<VersionColorItemDTO> getAllVersionColorItemDTOs();
 

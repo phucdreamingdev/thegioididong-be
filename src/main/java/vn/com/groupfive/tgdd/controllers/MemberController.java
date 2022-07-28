@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
@@ -26,4 +27,5 @@ public class MemberController {
 	List<MemberOrderDTO> getListMemberOrderDTOs(@PathVariable("id") Long id) {
 		return memberService.getMemberOrderDTOsByID(id);
 	}
+	
 }

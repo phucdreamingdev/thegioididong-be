@@ -19,4 +19,7 @@ public interface VersionColorRepository extends JpaRepository<VersionColor, Long
 	List<VersionColor> getAllByDefaultAndCategoryId(@Param("id") Long id);
 	
 	VersionColor getVersionColorById(@Param("id") Long id);
+	
+	@Query("SELECT vc FROM VersionColor vc WHERE vc.version.product.id = :productId AND vc.isDefault = true")
+	List<VersionColor> getDefaultByProductId(@Param("productId") Long productId);
 }

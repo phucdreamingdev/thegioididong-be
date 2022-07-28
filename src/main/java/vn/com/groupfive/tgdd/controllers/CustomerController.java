@@ -70,8 +70,8 @@ public class CustomerController {
 
 	
 	@GetMapping("/get-product-slim-by-id/{id}") 
-	ProductDTO getProductSlimById(@PathVariable("id") Long productId) {
-		return customerService.getProductDtoById(productId);
+	VersionColorItemDTO getProductSlimById(@PathVariable("id") Long productId) {
+		return customerService.getVersionColorDefault(productId);
 	}
 
 	@PostMapping("/sendotp")

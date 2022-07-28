@@ -139,11 +139,6 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public ProductDTO getProductDtoById(Long id) {
-		return productMapper.productToProductDto(productRepository.getById(id));
-	}
-
-	@Override
 	public List<ProductListItemDTO> getAllProductByCategoryId(Long categoryId) {
 		List<VersionColor> versionColors = versionColorRepository.getAllByDefaultAndCategoryId(categoryId);
 		List<ProductListItemDTO> productDTOs = new ArrayList<>();
@@ -440,6 +435,12 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 		}
 		return "Need To Delivery At destination to checkout";
+	}
+
+	@Override
+	public VersionColorItemDTO getVersionColorDefault(Long productId) {
+		List<VersionColor> versionColors = versionColorRepository.getDefaultByProductId(productId);
+		return versionMapper.versionColorToVersionColorItemDto(versionColors.get(0));
 	}
 
 }
