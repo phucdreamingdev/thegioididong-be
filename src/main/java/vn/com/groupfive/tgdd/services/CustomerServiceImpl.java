@@ -2,6 +2,7 @@ package vn.com.groupfive.tgdd.services;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -22,23 +23,32 @@ import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.BranchStock;
 import vn.com.groupfive.tgdd.payload.entities.Member;
+import vn.com.groupfive.tgdd.payload.entities.MemberAddress;
+import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
+import vn.com.groupfive.tgdd.payload.entities.Ward;
 import vn.com.groupfive.tgdd.payload.mapper.AddressMapper;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
+import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.DistrictRepository;
+import vn.com.groupfive.tgdd.repositories.MemberAddressRepository;
+import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
 import vn.com.groupfive.tgdd.repositories.MemberRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
+import vn.com.groupfive.tgdd.repositories.WardRepository;
+import vn.com.groupfive.tgdd.utils.DeliveryStatus;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -81,6 +91,22 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	DistrictRepository districtRepo;
+	
+	@Autowired
+	WardRepository wardRepo;
+
+	@Autowired
+	MemberRepository memberRepo;
+	
+	@Autowired
+	MemberAddressRepository memberAddressRepo;
+	
+	@Autowired
+	MemberOrderRepository memberOrderRepo;
+	
+	@Autowired
+	BranchRepository branchRepo;
+	
 
 	private Cart cart = new Cart();
 
@@ -281,13 +307,114 @@ public class CustomerServiceImpl implements CustomerService {
 		return memberRepository.save(member);
 	}
 	
-
-
-
-
 	
-
-
+	@Override
+	public List<WardDTO> getAllWardByDistrictId(Long districtId) {
+		return addressMapper.wardsToWardDtos(wardRepo.getAllWardByDistrictId(districtId));
+	}
 	
+	@Override
+	public String checkOutCart(String fullName, String phoneNumber, boolean deliveryAD, Long provinceId,
+			Long districtId, Long wardId, String addressDetail, Date receiveDate) {
+		if(cart.getCartProducts().size() == 0) return "Nothing in cart to checkout";
+		if(deliveryAD) {
+			if(fullName == null) {
+				return "Not Found Fullname parameter";
+			} else if(fullName.length() == 0) {
+				return "Fullname must not empty";
+			}
+			if(phoneNumber == null) {
+				return "Not Found phoneNumber parameter";
+			} else if(phoneNumber.length() != 10 || phoneNumber.contains("[a-zA-Z]+")) {
+				return "Phone number must be 10 number";
+			}
+			if(addressDetail == null) {
+				return "Not Found memberAddress parameter";
+			} else if(addressDetail.length() == 0) {
+				return "Address must not empty";
+			}
+			if(provinceId == null) {
+				return "Not Found provinceId parameter";
+			}
+			if(districtId == null) {
+				return "Not Found districtId parameter";
+			}
+			
+			if(wardId == null) {
+				return "Not Found wardId parameter";
+			}
+			
+			List<CartProductDTO> listCart = cart.getCartProducts();
+			if(listCart != null && listCart.size() > 0) {
+				List<BranchStock> leftInStocks = new ArrayList<>();
+				for (CartProductDTO cartProd : listCart) {
+					List<Branch> listBranch = branchStockRepository.getBranchInStock(cartProd.getProduct().getId(), provinceId);
+					if (listBranch != null && listBranch.size() > 0) {
+						for (Branch branch : listBranch) {
+							Set<BranchStock> branchStocks = branch.getBranchStocks();
+							if (branchStocks != null && branchStocks.size() > 0) {
+								for (BranchStock branchStock : branchStocks) {
+									if (branchStock.getVersionColor().getId().equals(cartProd.getProduct().getId())
+											&& branchStock.getStock() > 0) {
+										int inStock = branchStock.getStock() - cartProd.getQuantity();
+										if(inStock > 0) {
+											branchStock.setStock(inStock);
+											leftInStocks.add(branchStock);
+										} else return cartProd.getProduct().getId() + "/" + provinceId +" Not Enough in stock";
+									}
+								}
+							}
+						}
+					}
+				}
+				if(leftInStocks.size() > 0) {
+					for(BranchStock stock : leftInStocks) {
+						branchStockRepository.save(stock);
+					}
+				} else return "Not Found Any Stock";
+				cart.getCartProducts().clear();
+				Member member = memberRepo.getByPhone(phoneNumber);
+				if(member != null) {
+					MemberAddress memberAddress = memberAddressRepo.getMemberAddressByMemberId(member.getId());
+					MemberOrder memberOrder = new MemberOrder();
+					memberOrder.setOrderDate(new Date());
+					memberOrder.setDeliveryDate(new Date());
+					memberOrder.setRecieveDate(receiveDate);
+					Branch branch = branchRepo.getBranchByWardId(wardId);
+					if(branch == null) return "Not Found branch to checkout";
+					memberOrder.setBranch(branch);
+					memberOrder.setDeliveryStatus(DeliveryStatus.PREPARING);
+					memberOrder.setMember(member);
+					memberOrderRepo.save(memberOrder);
+				}else {
+					member = new Member();
+					member.setFullname(fullName);
+					member.setPhone(phoneNumber);
+					memberRepo.save(member);
+					MemberAddress memberAddress = new MemberAddress();
+					memberAddress.setAddress(addressDetail);
+					memberAddress.setDefault(true);
+					Member curMem = memberRepo.getByPhone(phoneNumber);
+					Ward ward = wardRepo.getWardById(wardId);
+					if(ward == null) return "Need Ward Information to using";
+					memberAddress.setMember(curMem);
+					memberAddress.setWard(ward);
+					memberAddressRepo.save(memberAddress);
+					MemberOrder memberOrder = new MemberOrder();
+					memberOrder.setOrderDate(new Date());
+					memberOrder.setDeliveryDate(new Date());
+					memberOrder.setRecieveDate(receiveDate);
+					Branch branch = branchRepo.getBranchByWardId(wardId);
+					if(branch == null) return "Not Found branch to checkout";
+					memberOrder.setBranch(branch);
+					memberOrder.setDeliveryStatus(DeliveryStatus.PREPARING);
+					memberOrder.setMember(member);
+					memberOrderRepo.save(memberOrder);
+				}
+				return "Check out successful";
+			}
+		}
+		return "Need To Delivery At destination to checkout";
+	}
 
 }

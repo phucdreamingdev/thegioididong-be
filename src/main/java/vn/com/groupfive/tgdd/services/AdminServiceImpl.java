@@ -1,5 +1,7 @@
 package vn.com.groupfive.tgdd.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,8 +10,10 @@ import vn.com.groupfive.tgdd.exceptions.CategoryDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
+import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Category;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
+import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
@@ -28,6 +32,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	VersionColorRepository versionColorRepository;
+	
+	@Autowired
+	AdminAccountRepository adminAccRepo;
 	
 	private Category setCategory(CategoryRequest categoryRequest) {
 		Category category = new Category();
@@ -78,6 +85,24 @@ public class AdminServiceImpl implements AdminService{
 		return versionMapper.versionColorToVersionColorItemDto(versionColorRepository.getVersionColorById(id));
 	}
 	
+	@Override
+	public AdminAccount login(String username, String password) {
+		return adminAccRepo.getAdminAccountByUserNameAndPassword(username, password);
+	}
+
+
+
+	@Override
+	public AdminAccount getAdminAccountByUsername(String username) {
+		return adminAccRepo.getAdminAccountByUserName(username);
+	}
+
+
+
+	@Override
+	public List<AdminAccount> getAllAccount() {
+		return adminAccRepo.findAll();
+	}
 
 	
 }
