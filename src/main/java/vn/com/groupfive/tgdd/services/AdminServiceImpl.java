@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.CategoryDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
+import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.entities.Category;
+import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
-import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
-import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -25,6 +25,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	VersionMapper versionMapper;
+	
+	@Autowired
+	VersionColorRepository versionColorRepository;
 	
 	private Category setCategory(CategoryRequest categoryRequest) {
 		Category category = new Category();
