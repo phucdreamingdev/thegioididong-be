@@ -64,8 +64,10 @@ public class AdminServiceImpl implements AdminService{
 		return categoryRepository.save(updateCategory(category, categoryRequest));
 	}
 	
-	
-	
+	@Override
+	public VersionColorItemDTO getVersionColorById(Long id) {
+		return versionMapper.versionColorToVersionColorItemDto(versionColorRepository.getVersionColorById(id));
+	}
 	
 
 	
