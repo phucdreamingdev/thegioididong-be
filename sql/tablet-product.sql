@@ -109,12 +109,12 @@ VALUES (N'Xanh Ngọc', 27)
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'iPad Pro M1 11 inch 5G 128GB  ', 24990000, 27, 21, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-gray-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 128GB  ', 24990000, 28, 21, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 128GB  ', 24990000, 28, 21, 0, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'iPad Pro M1 11 inch 5G 256GB  ', 27990000, 27, 22, 1, 'https://cdn.tgdd.vn/Products/Images/522/238626/ipad-pro-2021-11-inch-gray-200x200.jpg')
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 256GB  ', 27990000, 28, 22, 1, 'https://cdn.tgdd.vn/Products/Images/522/238626/ipad-pro-2021-11-inch-silver-200x200.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 256GB  ', 27990000, 28, 22, 0, 'https://cdn.tgdd.vn/Products/Images/522/238626/ipad-pro-2021-11-inch-silver-200x200.jpg') 
 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
@@ -125,12 +125,12 @@ VALUES (N'iPad Pro M1 11 inch 5G 512GB', 32490000, 28, 23, 1, 'https://cdn.tgdd.
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'iPad Pro M1 11 inch 5G 1TB', 41990000, 27, 24, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-gray-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 1TB', 41990000, 28, 24, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 1TB', 41990000, 28, 24, 0, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'iPad Pro M1 11 inch 5G 2TB', 55990000, 28, 25, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-gray-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Pro M1 11 inch 5G 2TB', 55990000, 30, 25, 1, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
+VALUES (N'iPad Pro M1 11 inch 5G 2TB', 55990000, 30, 25, 0, 'https://cdn.tgdd.vn/Products/Images/522/238624/ipad-pro-2021-11-inch-silver-200x200.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'iPad Air 5 M1 Wifi 64GB', 16990000, 30, 24, 1, 'https://cdn.tgdd.vn/Products/Images/522/248096/ipad-air-5-wifi-tim-thumb-200x200.jpg')
@@ -138,34 +138,34 @@ VALUES (N'iPad Air 5 M1 Wifi 64GB', 16990000, 30, 24, 1, 'https://cdn.tgdd.vn/Pr
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 1, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-grey-thumb-200x200.jpg')
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 1, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-tim-thumb-200x200.jpg')  
+VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 0, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-tim-thumb-200x200.jpg')  
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 1, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-tim-thumb-200x200.jpg')  
+VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 0, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-tim-thumb-200x200.jpg')  
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 1, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-blue-thumb-1-200x200.jpg')  
+VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 0, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-blue-thumb-1-200x200.jpg')  
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 1, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-pink-thumb-200x200.jpg')  
+VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 0, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-pink-thumb-200x200.jpg')  
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 1, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-white-thumb-600x600.jpg')  
+VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 0, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-white-thumb-600x600.jpg')  
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 1, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-white-thumb-600x600.jpg')  
+VALUES (N'iPad Air 5 M1 WiFi 256GB  ', 20790000, 30, 26, 0, 'https://cdn.tgdd.vn/Products/Images/522/274154/ipad-air-5-wifi-white-thumb-600x600.jpg')  
 
 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Samsung Galaxy Tab S8 5G S8  ', 20990000, 34, 27, 1, 'https://cdn.tgdd.vn/Products/Images/522/247510/Samsung-Galaxy-Tab-s8-white-thumb-1-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Samsung Galaxy Tab S8 5G S8  ', 20990000, 35, 28, 1, 'https://cdn.tgdd.vn/Products/Images/522/247510/Samsung-Galaxy-tab-s8-black-thumb-200x200.jpg') 
+VALUES (N'Samsung Galaxy Tab S8 5G S8  ', 20990000, 35, 28, 0, 'https://cdn.tgdd.vn/Products/Images/522/247510/Samsung-Galaxy-tab-s8-black-thumb-200x200.jpg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Samsung Galaxy Tab S8 5G S8+  ', 25990000, 34, 27, 1, 'https://cdn.tgdd.vn/Products/Images/522/247512/Tab-S8+-White-200x200.jpeg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Samsung Galaxy Tab S8 5G S8+  ', 25990000, 35, 28, 1, '	https://cdn.tgdd.vn/Products/Images/522/247512/Tab-S8+-Black-1-200x200.jpeg') 
+VALUES (N'Samsung Galaxy Tab S8 5G S8+  ', 25990000, 35, 28, 0, '	https://cdn.tgdd.vn/Products/Images/522/247512/Tab-S8+-Black-1-200x200.jpeg') 
 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 4990000, 34, 29, 1, 'https://cdn.tgdd.vn/Products/Images/522/237325/samsung-galaxy-tab-a7-lite-gray-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 4990000, 35, 29, 1, 'https://cdn.tgdd.vn/Products/Images/522/237325/samsung-galaxy-tab-a7-lite-sliver-200x200.jpg') 
+VALUES (N'Máy tính bảng Samsung Galaxy Tab A7 Lite  ', 4990000, 35, 29, 0, 'https://cdn.tgdd.vn/Products/Images/522/237325/samsung-galaxy-tab-a7-lite-sliver-200x200.jpg') 
 
 
 
@@ -175,7 +175,7 @@ VALUES (N'Lenovo Yoga Tab 11 4G ', 9990000, 38, 27, 1, 'https://cdn.tgdd.vn/Prod
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
 VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 7390000, 38, 39, 1, 'https://cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-2-200x200.jpg') 
 INSERT INTO version_color (name, price, color_id, version_id, is_default, avartar)
-VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 7390000, 39, 39, 1, 'https://cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-thumb-1-200x200.jpg') 
+VALUES (N'Máy tính bảng Lenovo Tab P11 Plus ', 7390000, 39, 39, 0, 'https://cdn.tgdd.vn/Products/Images/522/244684/lenovo-tab-p11-plus-thumb-1-200x200.jpg') 
 
 ------------------------------------------------------END_VERSION_COLOR------------------------------------------------------------------------
 
