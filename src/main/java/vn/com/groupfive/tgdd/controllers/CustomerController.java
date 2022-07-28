@@ -1,5 +1,4 @@
 package vn.com.groupfive.tgdd.controllers;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
-import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
-import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.VerificationResult;
 import vn.com.groupfive.tgdd.services.CustomerService;
 import vn.com.groupfive.tgdd.services.PhoneverificationService;
+import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 
 @RestController
 @RequestMapping("/customer")
