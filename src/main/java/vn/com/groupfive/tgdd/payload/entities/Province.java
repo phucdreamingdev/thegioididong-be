@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,5 +35,8 @@ public class Province {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Set<District> districts  = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "provinces")
+	private Set<Promotion> promotions = new HashSet<>();
 
 }

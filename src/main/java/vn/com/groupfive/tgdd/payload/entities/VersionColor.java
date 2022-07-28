@@ -53,9 +53,7 @@ public class VersionColor {
 	@ToString.Exclude
 	private Color color;
 
-	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "versionColors")
 	private Set<Promotion> promotions = new HashSet<>();
 
 	@OneToMany(mappedBy = "versionColor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

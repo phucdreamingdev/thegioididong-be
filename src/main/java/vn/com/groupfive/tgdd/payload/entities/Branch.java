@@ -41,8 +41,7 @@ public class Branch {
 	@ToString.Exclude
 	private Ward ward;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branchs")
-	private Set<Promotion> promotions = new HashSet<>();
+	
 
 	@OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude

@@ -14,12 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 @Data
 @Entity
@@ -39,14 +36,19 @@ public class Promotion {
 	@Column(name = "end_date")
 	private Date endDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "version_color_id")
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private VersionColor versionColor;
+	@Column(name = "is_actived")
+	private boolean isActived;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "promotion_verion_color", 
+	joinColumns = { @JoinColumn(name = "promotion_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "version_color_id")})
+	private Set<VersionColor> versionColors = new HashSet<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "promotion_branch", joinColumns = { @JoinColumn(name = "promotion_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "branch_id") })
-	private Set<Branch> branchs = new HashSet<>();
+	@JoinTable(name = "promotion_province", 
+	joinColumns = { @JoinColumn(name = "promotion_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "province_id")})
+	private Set<Province> provinces = new HashSet<>();
+	
 }
