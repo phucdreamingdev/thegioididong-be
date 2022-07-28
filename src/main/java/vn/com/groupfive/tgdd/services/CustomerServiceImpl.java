@@ -397,6 +397,7 @@ public class CustomerServiceImpl implements CustomerService {
 					member = new Member();
 					member.setFullname(fullName);
 					member.setPhone(phoneNumber);
+					member.setGender(gender);
 					memberRepo.save(member);
 					MemberAddress memberAddress = new MemberAddress();
 					memberAddress.setAddress(addressDetail);
