@@ -20,6 +20,9 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	PromotionRepository promotionRepository;
 	
+	@Autowired
+	VersionMapper versionMapper;
+	
 	private Category setCategory(CategoryRequest categoryRequest) {
 		Category category = new Category();
 		category.setName(categoryRequest.getName());
