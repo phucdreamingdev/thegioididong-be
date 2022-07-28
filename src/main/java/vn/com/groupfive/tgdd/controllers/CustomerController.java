@@ -147,8 +147,8 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/checkoutCart")
-	public String checkoutCart(@RequestParam String fullName, String phoneNumber, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String memberAddress, Date receiveDate) {
-		return customerService.checkOutCart(fullName, phoneNumber, deliveryAD, provinceId, districtId, wardId, memberAddress, receiveDate);
+	public String checkoutCart(@RequestParam String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String memberAddress, Date receiveDate) {
+		return customerService.checkOutCart(fullName, phoneNumber, gender, deliveryAD, provinceId, districtId, wardId, memberAddress, receiveDate);
 	}
 		
 }
