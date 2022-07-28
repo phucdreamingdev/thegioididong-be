@@ -29,6 +29,7 @@ import vn.com.groupfive.tgdd.payload.entities.BranchStock;
 import vn.com.groupfive.tgdd.payload.entities.Member;
 import vn.com.groupfive.tgdd.payload.entities.MemberAddress;
 import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
+import vn.com.groupfive.tgdd.payload.entities.OrderDetail;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 import vn.com.groupfive.tgdd.payload.entities.Ward;
 import vn.com.groupfive.tgdd.payload.mapper.AddressMapper;
@@ -44,6 +45,7 @@ import vn.com.groupfive.tgdd.repositories.DistrictRepository;
 import vn.com.groupfive.tgdd.repositories.MemberAddressRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
 import vn.com.groupfive.tgdd.repositories.MemberRepository;
+import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
@@ -106,6 +108,9 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	BranchRepository branchRepo;
+	
+	@Autowired
+	OrderDetailRepository orderDetailRepo;
 	
 
 	private Cart cart = new Cart();
@@ -314,7 +319,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
-	public String checkOutCart(String fullName, String phoneNumber, boolean deliveryAD, Long provinceId,
+	public String checkOutCart(String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId,
 			Long districtId, Long wardId, String addressDetail, Date receiveDate) {
 		if(cart.getCartProducts().size() == 0) return "Nothing in cart to checkout";
 		if(deliveryAD) {
@@ -374,7 +379,6 @@ public class CustomerServiceImpl implements CustomerService {
 						branchStockRepository.save(stock);
 					}
 				} else return "Not Found Any Stock";
-				cart.getCartProducts().clear();
 				Member member = memberRepo.getByPhone(phoneNumber);
 				if(member != null) {
 					MemberAddress memberAddress = memberAddressRepo.getMemberAddressByMemberId(member.getId());
@@ -415,6 +419,22 @@ public class CustomerServiceImpl implements CustomerService {
 					memberOrder.setTotalPayment(totalPayment);
 					memberOrderRepo.save(memberOrder);
 				}
+				MemberOrder memberOrder = memberOrderRepo.findTopByOrderByIdDesc();
+				if(memberOrder != null) {
+					if(listCart != null && listCart.size() > 0) {
+						for(CartProductDTO cartProd : listCart) {
+							OrderDetail orderDetail = new OrderDetail();
+							orderDetail.setMemberOrder(memberOrder);
+							orderDetail.setOriginalPrice(Float.parseFloat(cartProd.getProduct().getPrice()));
+							orderDetail.setPromotionPrice(0);
+							orderDetail.setQuantity(cartProd.getQuantity());
+							VersionColor versionColor = versionColorRepository.getVersionColorById(cartProd.getProduct().getId());
+							orderDetail.setVersionColor(versionColor);
+							orderDetailRepo.save(orderDetail);
+						}
+					}
+				}
+				cart.getCartProducts().clear();
 				return "Check out successful";
 			}
 		}

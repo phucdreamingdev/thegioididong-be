@@ -57,6 +57,6 @@ public interface CustomerService {
 	
 	List<WardDTO> getAllWardByDistrictId(Long districtId);
 	
-	String checkOutCart(String fullName, String phoneNumber, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String addressDetail, Date receiveDate);
+	String checkOutCart(String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String addressDetail, Date receiveDate);
 
 }
