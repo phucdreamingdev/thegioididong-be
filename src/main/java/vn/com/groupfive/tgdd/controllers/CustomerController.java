@@ -21,7 +21,7 @@ import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.WardDTO;
@@ -70,8 +70,8 @@ public class CustomerController {
 
 	
 	@GetMapping("/get-product-slim-by-id/{id}") 
-	ProductSlimDTO getProductSlimById(@PathVariable("id") Long productId) {
-		return customerService.getProductSlimDtoById(productId);
+	ProductDTO getProductSlimById(@PathVariable("id") Long productId) {
+		return customerService.getProductDtoById(productId);
 	}
 
 	@PostMapping("/sendotp")

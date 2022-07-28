@@ -32,4 +32,5 @@ public class VersionColorItemDTO {
 	
 	@JsonProperty("color")
 	private ColorItemDTO color;	
+	
 }	

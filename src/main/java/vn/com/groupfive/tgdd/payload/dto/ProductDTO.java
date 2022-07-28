@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductSlimDTO {
+public class ProductDTO {
 	@JsonProperty("id")
 	private Long id;
 	

@@ -20,7 +20,7 @@ import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.ItemCartDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.WardDTO;
@@ -139,8 +139,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public ProductSlimDTO getProductSlimDtoById(Long id) {
-		return productMapper.productToProductSlimDTO(productRepository.getById(id));
+	public ProductDTO getProductDtoById(Long id) {
+		return productMapper.productToProductDto(productRepository.getById(id));
 	}
 
 	@Override
