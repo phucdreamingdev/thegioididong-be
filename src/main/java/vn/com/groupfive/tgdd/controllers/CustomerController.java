@@ -1,4 +1,5 @@
 package vn.com.groupfive.tgdd.controllers;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -23,6 +24,7 @@ import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
 import vn.com.groupfive.tgdd.payload.entities.VerificationResult;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.services.CustomerService;
@@ -137,6 +139,16 @@ public class CustomerController {
 	@GetMapping("/get-all-district-by-provinceid")
 	public List<DistrictDTO> getAllDistrict(@RequestParam Long provinceId) {
 		return customerService.getAllDistrictByProvinceId(provinceId);
+	}
+	
+	@GetMapping("/get-all-ward-by-districtId")
+	public List<WardDTO> getAllWard(@RequestParam Long districtId) {
+		return customerService.getAllWardByDistrictId(districtId);
+	}
+	
+	@GetMapping("/checkoutCart")
+	public String checkoutCart(@RequestParam String fullName, String phoneNumber, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String memberAddress, Date receiveDate) {
+		return customerService.checkOutCart(fullName, phoneNumber, deliveryAD, provinceId, districtId, wardId, memberAddress, receiveDate);
 	}
 		
 }
