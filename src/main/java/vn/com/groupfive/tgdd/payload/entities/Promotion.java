@@ -35,7 +35,7 @@ public class Promotion {
 
 	@Column(name = "end_date")
 	private Date endDate;
-	
+
 	@Column(name = "is_actived")
 	private boolean isActived;
 	
