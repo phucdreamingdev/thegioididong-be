@@ -85,4 +85,40 @@ public class CustomerController {
 			@RequestParam("provinceId") Long provinceId) {
 		return customerService.getBranchInStock(versionColorid, provinceId);
 	}
+	
+	@GetMapping("/addToCart")
+	public String addToCart(@RequestParam Long id, int quantity, Long provinceId) {
+		return customerService.addToCart(id, quantity, provinceId);
+	}
+
+	@GetMapping("/viewCart")
+	public List<CartProductDTO> viewCart(Long provinceId) {
+		return customerService.getAllCartProduct(provinceId);
+	}
+	
+	@GetMapping("/editQuantityCart")
+	public boolean editCart(@RequestParam Long id, int quantity) {
+		return customerService.editQuantityProductCart(id, quantity);
+	}
+	
+	@GetMapping("/changeVersionColorCartProduct")
+	public boolean editCart(@RequestParam Long versionColorId, Long nVersionColorId) {
+		return customerService.changeVersionColorProductCartById(versionColorId, nVersionColorId);
+	}
+
+	@GetMapping("/removeCart")
+	public boolean removeCart(@RequestParam Long id) {
+		return customerService.removeFromCart(id);
+	}
+	
+	@GetMapping("/get-all-provinces")
+	public List<ProvinceDTO> getAllProvinces() {
+		return customerService.getAllProvince();
+	}
+	
+	@GetMapping("/get-all-district-by-provinceid")
+	public List<DistrictDTO> getAllDistrict(@RequestParam Long provinceId) {
+		return customerService.getAllDistrictByProvinceId(provinceId);
+	}
+		
 }
