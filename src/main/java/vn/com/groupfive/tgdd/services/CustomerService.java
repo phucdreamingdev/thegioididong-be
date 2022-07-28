@@ -27,5 +27,19 @@ public interface CustomerService {
 	List<VersionColorItemDTO> getAllVersionColorItemDTOsByCategoryId(Long id);
 
 	List<BranchSlimResponeDTO> getBranchInStock(Long versionColorid, Long provinceId);
+	
+	String addToCart(Long versionColorId, int quantity,  Long provinceId);
+	
+	boolean removeFromCart(Long versionColorId);
+	
+	boolean editQuantityProductCart(Long versionColorId, int quantity);
+	
+	boolean changeVersionColorProductCartById(Long versionColorId, Long nVersionColorId);
+	
+	List<CartProductDTO> getAllCartProduct(Long provineId);
+
+	List<ProvinceDTO> getAllProvince();
+	
+	List<DistrictDTO> getAllDistrictByProvinceId(Long provinceId);
 
 }
