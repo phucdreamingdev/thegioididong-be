@@ -7,5 +7,5 @@ import vn.com.groupfive.tgdd.payload.entities.District;
 
 @Repository
 public interface DistrictRepository extends JpaRepository<District, Long>{
-
+  List<District> getAllDistrictByProvinceId(@Param("provinceId") Long provinceId);
 }
