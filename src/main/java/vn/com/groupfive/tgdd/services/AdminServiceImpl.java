@@ -9,6 +9,7 @@ import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.CategoryDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
+import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
@@ -19,6 +20,7 @@ import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
+import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
 
@@ -42,6 +44,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	MemberOrderRepository memberOrderRepo;
+	
+	@Autowired
+	OrderDetailRepository orderDetailRepo;
 	
 	@Autowired
 	MemberMapper memberMapper;
@@ -120,5 +125,15 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<MemberOrderDTO> getAllMemberOrdersByBranch(Long branchId) {
 		return memberMapper.memberOrdersToMemberOrderDtos(memberOrderRepo.getMemberOrdersByBranchId(branchId));
+	}
+	
+	@Override
+	public List<OrderDetailDTO> getAllOrderDetailsByMemberOrderId(Long memberOrderId) {
+		return memberMapper.orderDetailsToOderDetailDtos(orderDetailRepo.getOrderDetailsByMemberOrderId(memberOrderId));
+	}
+	
+	@Override
+	public List<MemberOrderDTO> getAllMemberOrdersByPhoneNumber(String phoneNumber) {
+		return memberMapper.memberOrdersToMemberOrderDtos(memberOrderRepo.getAllMemberOrderByPhoneNumber(phoneNumber));
 	}
 }
