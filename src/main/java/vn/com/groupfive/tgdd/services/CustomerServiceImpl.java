@@ -345,6 +345,7 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 			
 			List<CartProductDTO> listCart = cart.getCartProducts();
+			double totalPayment = 0;
 			if(listCart != null && listCart.size() > 0) {
 				List<BranchStock> leftInStocks = new ArrayList<>();
 				for (CartProductDTO cartProd : listCart) {
@@ -366,6 +367,7 @@ public class CustomerServiceImpl implements CustomerService {
 							}
 						}
 					}
+					totalPayment += Double.parseDouble(cartProd.getTotalPrice());
 				}
 				if(leftInStocks.size() > 0) {
 					for(BranchStock stock : leftInStocks) {
@@ -385,6 +387,7 @@ public class CustomerServiceImpl implements CustomerService {
 					memberOrder.setBranch(branch);
 					memberOrder.setDeliveryStatus(DeliveryStatus.PREPARING);
 					memberOrder.setMember(member);
+					memberOrder.setTotalPayment(totalPayment);
 					memberOrderRepo.save(memberOrder);
 				}else {
 					member = new Member();
@@ -409,6 +412,7 @@ public class CustomerServiceImpl implements CustomerService {
 					memberOrder.setBranch(branch);
 					memberOrder.setDeliveryStatus(DeliveryStatus.PREPARING);
 					memberOrder.setMember(member);
+					memberOrder.setTotalPayment(totalPayment);
 					memberOrderRepo.save(memberOrder);
 				}
 				return "Check out successful";
