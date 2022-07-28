@@ -16,10 +16,10 @@ import vn.com.groupfive.tgdd.payload.entities.Ward;
 @Mapper(componentModel = "spring")
 public interface BranchMapper {
 	ProvinceDTO provinceToProvinceDto(Province province);
-	List<ProvinceDTO> provincesToProvinceDtos(List<ProvinceDTO> provinces);
+	List<ProvinceDTO> provincesToProvinceDtos(List<Province> provinces);
 	
 	DistrictDTO districtTDistrictDto(District district);
-	List<DistrictDTO> districtsToDistrictDtos(List<DistrictDTO> districts);
+	List<DistrictDTO> districtsToDistrictDtos(List<District> districts);
 	
 	WardDTO wardToWardDto(Ward ward);
 	List<WardDTO> wardsToWardDtos(List<WardDTO> wards);
