@@ -133,7 +133,7 @@ public class CustomerServiceImpl implements CustomerService {
 		VersionColor versionColor = versionColorRepository.getVersionColorById(versionColorId);
 		if (versionColor == null)
 			return "Not Found VersionColor Id";
-		List<Branch> listBranch = branchStockRepository.getBranchInStock(versionColorId, versionColorId);
+		List<Branch> listBranch = branchStockRepository.getBranchInStock(versionColorId, provinceId);
 		int totalInStock = 0;
 		if (listBranch != null && listBranch.size() > 0) {
 			for (Branch branch : listBranch) {
