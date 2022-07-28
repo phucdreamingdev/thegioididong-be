@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
+import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
@@ -54,5 +55,15 @@ public class AdminController {
 	@GetMapping("/get-all-order-by-branchid")
 	public List<MemberOrderDTO> getAllOrdersByBranchId(Long branchId) {
 		return adminService.getAllMemberOrdersByBranch(branchId);
+	}
+	
+	@GetMapping("/get-all-orderdetail-by-memberorderid")
+	public List<OrderDetailDTO> getAllOrderDetailByMemberOrderId(Long memberOrderId) {
+		return adminService.getAllOrderDetailsByMemberOrderId(memberOrderId);
+	}
+	
+	@GetMapping("/search-order-by-phone")
+	public List<MemberOrderDTO> searchOrdersByPhone(String phoneNumber) {
+		return adminService.getAllMemberOrdersByPhoneNumber(phoneNumber);
 	}
 }
