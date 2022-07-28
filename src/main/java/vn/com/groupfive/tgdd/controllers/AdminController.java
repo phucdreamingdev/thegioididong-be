@@ -34,5 +34,10 @@ public class AdminController {
 											@RequestBody CategoryRequest category) throws CrudException {
 		return categoryMapper.categoryToCategorySlimDto(adminService.updateCategory(id, category));
 	}
+	
+	@GetMapping("/get-version-color-by-id")
+    	public VersionColorItemDTO getVersionColorById(Long id) {
+        	return adminService.getVersionColorById(id);
+    	}
 
 }
