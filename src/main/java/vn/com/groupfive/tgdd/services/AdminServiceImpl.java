@@ -10,6 +10,9 @@ import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.entities.Category;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
+import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
+import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 
 @Service
 public class AdminServiceImpl implements AdminService{
