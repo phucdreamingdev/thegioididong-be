@@ -39,14 +39,15 @@ public class Promotion {
 	@Column(name = "end_date")
 	private Date endDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "version_color_id")
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private VersionColor versionColor;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "promotion_version_color", 
+	joinColumns = {@JoinColumn(name = "promotion_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "verion_color_id") })
+	private Set<VersionColor> versionColors = new HashSet<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "promotion_branch", joinColumns = { @JoinColumn(name = "promotion_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "branch_id") })
+	@JoinTable(name = "promotion_branch", 
+	joinColumns = { @JoinColumn(name = "promotion_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "branch_id") })
 	private Set<Branch> branchs = new HashSet<>();
 }

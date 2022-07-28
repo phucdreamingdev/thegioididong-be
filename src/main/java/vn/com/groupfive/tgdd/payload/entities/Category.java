@@ -16,9 +16,11 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "category")
 public class Category {
@@ -28,11 +30,11 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "logo")
-	private String logo;
-
 	@Column(name = "name", columnDefinition = "nvarchar(100)")
 	private String name;
+	
+	@Column(name = "logo")
+	private String logo;
 
 	@Column(name = "level")
 	private int level;
@@ -66,6 +68,19 @@ public class Category {
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "categories")
 	private Set<Manufacturer> manufacturers= new HashSet<>();
+
+	//Create Category contructor
+	public Category(String name, String logo, int level, String parentName, boolean status, boolean isParent,
+			int childrenLevel) {
+		super();
+		this.name = name;
+		this.logo = logo;
+		this.level = level;
+		this.parentName = parentName;
+		this.status = status;
+		this.isParent = isParent;
+		this.childrenLevel = childrenLevel;
+	}
 	
 	
 
