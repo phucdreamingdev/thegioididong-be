@@ -10,5 +10,6 @@ import vn.com.groupfive.tgdd.payload.entities.Category;
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
 	CategorySlimDTO categoryToCategorySlimDto(Category category);
+
 	List<CategorySlimDTO> categoriesToCategorySlimDtos(List<Category> categories);
 }

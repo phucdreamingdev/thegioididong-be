@@ -13,13 +13,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VersionSlimDTO {
+public class ProductDTO {
 	@JsonProperty("id")
 	private Long id;
 	
 	@JsonProperty("name")
 	private String name;
 	
-	@JsonProperty("versionColors")
-	private List<VersionColorSlimDTO> versionColors;
+	@JsonProperty("versions")
+	private List<VersionSlimDTO> versions;
+	
 }

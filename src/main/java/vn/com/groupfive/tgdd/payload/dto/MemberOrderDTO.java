@@ -1,5 +1,6 @@
 package vn.com.groupfive.tgdd.payload.dto;
 
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,26 +9,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class MemberDTO {
+public class MemberOrderDTO {
 	@JsonProperty("id")
 	private Long id;
-
-	@JsonProperty("fullname")
-	private String fullname;
 	
-	@JsonProperty("phone")
-	private String phone;
+	@JsonProperty("orderDate")
+	private Date orderDate;
 	
-	@JsonProperty("gender")
-	private boolean gender;
+	@JsonProperty("totalPayment")
+	private double totalPayment;
 	
-	@JsonProperty("memberAddresses")
-	private List<MemberAddressDTO> memberAddresses;
-
+	@JsonProperty("deliveryStatus")
+	private String deliveryStatus;
+	
+	@JsonProperty("orderDetails")
+	private List<OrderDetailDTO> orderDetails;
 }

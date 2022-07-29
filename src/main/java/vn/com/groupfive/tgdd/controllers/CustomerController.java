@@ -1,6 +1,8 @@
 package vn.com.groupfive.tgdd.controllers;
-
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
+import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
 import vn.com.groupfive.tgdd.payload.entities.VerificationResult;
+import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.services.CustomerService;
 import vn.com.groupfive.tgdd.services.PhoneverificationService;
 
@@ -30,6 +39,9 @@ public class CustomerController {
 
 	@Autowired
 	PhoneverificationService phonesmsservice;
+	
+	@Autowired
+	MemberMapper memberMapper;
 
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {
@@ -58,8 +70,8 @@ public class CustomerController {
 
 	
 	@GetMapping("/get-product-slim-by-id/{id}") 
-	ProductSlimDTO getProductSlimById(@PathVariable("id") Long productId) {
-		return customerService.getProductSlimDtoById(productId);
+	VersionColorItemDTO getProductSlimById(@PathVariable("id") Long productId) {
+		return customerService.getVersionColorDefault(productId);
 	}
 
 	@PostMapping("/sendotp")
@@ -72,12 +84,20 @@ public class CustomerController {
 	}
 
 	@PostMapping("/verifyotp")
-	public ResponseEntity<String> sendotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp) {
+	public ResponseEntity<Object> verifyotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp, HttpSession session) throws CrudException {
 		VerificationResult result = phonesmsservice.checkverification(phone, otp);
 		if (result.isValid()) {
-			return new ResponseEntity<>("Your number is Verified", HttpStatus.OK);
+			
+			MemberDTO member = customerService.getMemberDTOByPhone(phone);
+			if(member == null) {
+				member = memberMapper.memberToMemberDto(customerService.addNewMember(phone));
+			}
+			session.setAttribute("member",member);
+			System.out.println("Your number is verified");		
+			return new ResponseEntity<>(member,HttpStatus.OK);
 		}
-		return new ResponseEntity<>("Something wrong/ Otp incorrect", HttpStatus.BAD_REQUEST);
+		String msg = "Something wrong / Incorrect OTP";
+		return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
 	}
 
 	@GetMapping("/get-branchs-in-stock")
@@ -85,4 +105,50 @@ public class CustomerController {
 			@RequestParam("provinceId") Long provinceId) {
 		return customerService.getBranchInStock(versionColorid, provinceId);
 	}
+	
+	@GetMapping("/addToCart")
+	public String addToCart(@RequestParam Long id, int quantity, Long provinceId) {
+		return customerService.addToCart(id, quantity, provinceId);
+	}
+
+	@GetMapping("/viewCart")
+	public List<CartProductDTO> viewCart(Long provinceId) {
+		return customerService.getAllCartProduct(provinceId);
+	}
+	
+	@GetMapping("/editQuantityCart")
+	public boolean editCart(@RequestParam Long id, int quantity) {
+		return customerService.editQuantityProductCart(id, quantity);
+	}
+	
+	@GetMapping("/changeVersionColorCartProduct")
+	public boolean editCart(@RequestParam Long versionColorId, Long nVersionColorId) {
+		return customerService.changeVersionColorProductCartById(versionColorId, nVersionColorId);
+	}
+
+	@GetMapping("/removeCart")
+	public boolean removeCart(@RequestParam Long id) {
+		return customerService.removeFromCart(id);
+	}
+	
+	@GetMapping("/get-all-provinces")
+	public List<ProvinceDTO> getAllProvinces() {
+		return customerService.getAllProvince();
+	}
+	
+	@GetMapping("/get-all-district-by-provinceid")
+	public List<DistrictDTO> getAllDistrict(@RequestParam Long provinceId) {
+		return customerService.getAllDistrictByProvinceId(provinceId);
+	}
+	
+	@GetMapping("/get-all-ward-by-districtId")
+	public List<WardDTO> getAllWard(@RequestParam Long districtId) {
+		return customerService.getAllWardByDistrictId(districtId);
+	}
+	
+	@GetMapping("/checkoutCart")
+	public String checkoutCart(@RequestParam String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String memberAddress, Date receiveDate) {
+		return customerService.checkOutCart(fullName, phoneNumber, gender, deliveryAD, provinceId, districtId, wardId, memberAddress, receiveDate);
+	}
+		
 }

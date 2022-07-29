@@ -40,7 +40,10 @@ public class MemberOrder {
 
 	@Column(name = "recieve_date")
 	private Date recieveDate;
-
+	
+	@Column(name = "total_payment")
+	private double totalPayment;
+	
 	@Column(name = "note",columnDefinition = "nvarchar(200)")
 	private String note;
 	

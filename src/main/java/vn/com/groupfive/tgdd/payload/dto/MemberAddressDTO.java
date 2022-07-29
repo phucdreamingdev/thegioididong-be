@@ -1,7 +1,5 @@
 package vn.com.groupfive.tgdd.payload.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -11,15 +9,20 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class VersionSlimDTO {
-	@JsonProperty("id")
+@NoArgsConstructor
+
+public class MemberAddressDTO {
+	@JsonProperty ("id")
 	private Long id;
 	
-	@JsonProperty("name")
-	private String name;
+	@JsonProperty ("address")	
+	private String address;
 	
-	@JsonProperty("versionColors")
-	private List<VersionColorSlimDTO> versionColors;
+	@JsonProperty ("isDefault")	
+	private boolean isDefault;
+	
+	@JsonProperty ("ward")
+	private WardDTO ward;
+	
 }

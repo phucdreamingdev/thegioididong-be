@@ -18,4 +18,7 @@ public class VersionItemDTO {
 	@JsonProperty("name")
 	private String name;
 	
+	@JsonProperty("product")
+	private ProductSlimDTO product;
+	
 }
