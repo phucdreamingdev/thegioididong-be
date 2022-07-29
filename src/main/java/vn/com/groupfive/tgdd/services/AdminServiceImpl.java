@@ -11,9 +11,11 @@ import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.CategoryDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.PromotionDoesNotExist;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
+import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
@@ -28,6 +30,7 @@ import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
+import vn.com.groupfive.tgdd.repositories.MemberRepository;
 import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
@@ -47,8 +50,11 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	ProvinceRepository provinceRepository;
-
 	
+	@Autowired
+	MemberRepository memberRepository;
+	
+	@Autowired
 	VersionMapper versionMapper;
 	
 	@Autowired
@@ -186,6 +192,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MemberOrderDTO> getAllMemberOrdersByPhoneNumber(String phoneNumber) {
 		return memberMapper.memberOrdersToMemberOrderDtos(memberOrderRepo.getAllMemberOrderByPhoneNumber(phoneNumber));
+	}
+
+	@Override
+	public MemberDTO findMemberById(Long id) {
+		return memberMapper.memberToMemberDto(memberRepository.findMemberById(id));
+	}
+
+	@Override
+	public List<VersionColorSlimDTO> searchVersionColorByName(String name) {
+		return versionMapper.verionColorsToVersionColorSlimDtos(versionColorRepository.findVersionCorlorByName(name));
 	}
 
 }
