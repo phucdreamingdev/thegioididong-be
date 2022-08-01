@@ -6,28 +6,50 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vn.com.groupfive.tgdd.exceptions.MemberDoesNotExistedException;
+import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.MemberAddressDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
+import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
+import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
 import vn.com.groupfive.tgdd.repositories.MemberRepository;
+import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberRepository memberRepository;
-
+	
+	@Autowired
+	OrderDetailRepository orderDetailRepository;
+	
+	@Autowired
+	MemberOrderRepository memberOrderRepository;
+	
 	@Autowired
 	MemberMapper memberMapper;
 
 	@Override
-	public List<MemberOrderDTO> getMemberOrderDTOsByID(Long id) {
-		return memberMapper.memberOrdersToMemberOrderDtos(new ArrayList<>(memberRepository.getById(id).getMemberOrders()));
+	public List<MemberOrderDTO> getMemberOrderDTOsByID(Long id) throws CrudException{
+		if(memberRepository.findById(id) == null) {
+			throw new MemberDoesNotExistedException();
+		}
+		return memberMapper.memberOrdersToMemberOrderDtos(new ArrayList<>(memberRepository.findById(id).get().getMemberOrders()));
 	}
 
 	@Override
-	public List<MemberAddressDTO> getListMemberAddressDTOs(Long id) {
+	public List<MemberAddressDTO> getListMemberAddressDTOs(Long id) throws CrudException{
+		if(memberRepository.findById(id) == null) {
+			throw new MemberDoesNotExistedException();
+		}
 		return memberMapper.memberAddressesToMemberAddressDtos(new ArrayList<>(memberRepository.findById(id).get().getMemberAddresses()));
+	}
+
+	@Override
+	public List<OrderDetailDTO> getListOrderDetailDTOs(Long orderId) throws CrudException{			
+		return memberMapper.orderDetailsToOderDetailDtos(new ArrayList<>(memberOrderRepository.findById(orderId).get().getOrderDetails()));
 	}
 
 

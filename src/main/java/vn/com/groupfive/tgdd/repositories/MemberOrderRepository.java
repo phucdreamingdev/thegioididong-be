@@ -7,9 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import vn.com.groupfive.tgdd.payload.entities.MemberAddress;
 import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
-import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 
 @Repository
 public interface MemberOrderRepository extends JpaRepository<MemberOrder, Long>{
