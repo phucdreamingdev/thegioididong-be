@@ -3,7 +3,6 @@ package vn.com.groupfive.tgdd.services;
 import java.util.HashSet;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +10,18 @@ import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.CategoryDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.PromotionDoesNotExist;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
+import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
-
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
-import vn.com.groupfive.tgdd.payload.entities.Category;
-import vn.com.groupfive.tgdd.payload.entities.Promotion;
-import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Category;
-import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
+import vn.com.groupfive.tgdd.payload.entities.Promotion;
+import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
@@ -68,6 +65,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	MemberMapper memberMapper;
+	
+	@Autowired
+	CategoryMapper categoryMapper;
 	// create Category
 		
 	private Category createCategory(CategoryRequest categoryRequest) {
@@ -202,6 +202,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<VersionColorSlimDTO> searchVersionColorByName(String name) {
 		return versionMapper.verionColorsToVersionColorSlimDtos(versionColorRepository.findVersionCorlorByName(name));
+	}
+
+	@Override
+	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
+		
+		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevel(level));
 	}
 
 }

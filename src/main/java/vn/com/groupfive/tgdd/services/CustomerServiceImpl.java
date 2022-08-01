@@ -117,7 +117,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
-		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.getByLevel(level));
+		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevel(level));
 	}
 
 	@Override

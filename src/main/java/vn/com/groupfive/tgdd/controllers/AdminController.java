@@ -18,6 +18,7 @@ import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
@@ -48,6 +49,11 @@ public class AdminController {
 	public CategorySlimDTO updateCategory(@PathVariable Long id, @RequestBody CategoryRequest category)
 			throws CrudException {
 		return categoryMapper.categoryToCategorySlimDto(adminService.updateCategory(id, category));
+	}
+	
+	@GetMapping("/get-all-category-by-level/{level}")
+	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {
+		return adminService.getAllCategoryByLevel(level);
 	}
 
 	@PostMapping("/create-new-promotion")

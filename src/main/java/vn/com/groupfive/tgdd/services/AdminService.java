@@ -3,6 +3,7 @@ package vn.com.groupfive.tgdd.services;
 import java.util.List;
 
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
+import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
@@ -29,6 +30,7 @@ public interface AdminService {
 	VersionColorItemDTO getVersionColorById(Long id);
 	
 	AdminAccount login(String username, String password);
+	
 	AdminAccount getAdminAccountByUsername(String username);
 	
 	List<AdminAccount> getAllAccount();
@@ -44,4 +46,7 @@ public interface AdminService {
 	MemberDTO findMemberById(Long id);
 	
 	List<VersionColorSlimDTO> searchVersionColorByName(String name);
+	
+	List<CategorySlimDTO> getAllCategoryByLevel(int level);
+	
 }
