@@ -32,4 +32,5 @@ public class MemberDTO {
 	
 	@JsonProperty("memberOrders")
 	private List<MemberOrderDTO> memberOrders;
+
 }

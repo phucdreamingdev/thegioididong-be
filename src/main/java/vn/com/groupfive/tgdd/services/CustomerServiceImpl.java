@@ -9,6 +9,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
+import vn.com.groupfive.tgdd.exceptions.MemberAlreadyExistedException;
+import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.Cart;
 import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
@@ -16,12 +19,15 @@ import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.ItemCartDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
+import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.BranchStock;
+import vn.com.groupfive.tgdd.payload.entities.Member;
+import vn.com.groupfive.tgdd.payload.entities.OrderDetail;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 import vn.com.groupfive.tgdd.payload.mapper.AddressMapper;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
@@ -102,11 +108,6 @@ public class CustomerServiceImpl implements CustomerService {
 		return new ProductListItemDTO(versionColor.getId(), versionColor.getName(), versionColor.getAvartar(),
 				versionColor.getVersion().getProduct().getCategory().getName(),
 				versionColor.getVersion().getProduct().getManufacturer().getName(), versionColor.getPrice());
-	}
-
-	@Override
-	public ProductSlimDTO getProductSlimDtoById(Long id) {
-		return productMapper.productToProductSlimDTO(productRepository.getById(id));
 	}
 
 	@Override
@@ -262,5 +263,37 @@ public class CustomerServiceImpl implements CustomerService {
 
 		return memberMapper.memberToMemberDto(memberRepository.getByPhone(phone));
 	}
+	
+	private Member setMember(String phone) {
+		Member member = new Member();	
+		member.setPhone(phone);	
+		return member;
+	}
+
+	@Override
+	public Member addNewMember(String phone) throws CrudException {
+		if(memberRepository.existsByPhone(phone)) {
+			throw new MemberAlreadyExistedException();
+		}
+		Member member= setMember(phone);
+		return memberRepository.save(member);
+	}
+
+	@Override
+	public VersionColorItemDTO getVersionColorDefault(Long productId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+
+
+
+
+	
+
+
+	
 
 }
