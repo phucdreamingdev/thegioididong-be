@@ -24,14 +24,15 @@ public class MemberController {
 	@Autowired
 	MemberMapper memberMapper;
 
-	@GetMapping("/get-member-order-by-member-id/{id}")
+	@GetMapping("/get-member-order-by-id/{id}")
 	List<MemberOrderDTO> getListMemberOrderDTOs(@PathVariable("id") Long id) {
 		return memberService.getMemberOrderDTOsByID(id);
 	}
-	
+
 	@GetMapping("/logout")
 	void memberLogout(HttpSession session) {
-		if(session.getAttribute("member") != null ) 
-			session.removeAttribute("member");		
+		if (session.getAttribute("member") != null)
+			session.removeAttribute("member");
 	}
+
 }

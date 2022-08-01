@@ -1,5 +1,6 @@
 package vn.com.groupfive.tgdd.services;
 
+import java.util.Date;
 import java.util.List;
 
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
@@ -8,11 +9,10 @@ import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
-import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
 import vn.com.groupfive.tgdd.payload.entities.Member;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 
@@ -24,10 +24,9 @@ public interface CustomerService {
 
 	ProductListItemDTO versionColorToProductDTO(VersionColor versionColor);
 
-	List<CategorySlimDTO> getAllCategoryByLevel(int level);
+	List<CategorySlimDTO> getAllCategoryByLevelAndStatus(int level, boolean status);
 
 	VersionColorItemDTO getVersionColorDefault(Long productId);
-	
 
 	List<VersionColorItemDTO> getAllVersionColorItemDTOs();
 
@@ -54,5 +53,9 @@ public interface CustomerService {
 	List<ProvinceDTO> getAllProvince();
 
 	List<DistrictDTO> getAllDistrictByProvinceId(Long provinceId);
+	
+	List<WardDTO> getAllWardByDistrictId(Long districtId);
+	
+	String checkOutCart(String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String addressDetail, Date receiveDate);
 
 }

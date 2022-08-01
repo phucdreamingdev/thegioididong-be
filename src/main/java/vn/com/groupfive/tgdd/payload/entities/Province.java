@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +19,6 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
 
 @Data
 @Entity
@@ -28,15 +29,18 @@ public class Province {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name" , columnDefinition = "nvarchar(50)")
+	@Column(name = "name", columnDefinition = "nvarchar(50)")
 	private String name;
 
 	@OneToMany(mappedBy = "province", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private Set<District> districts  = new HashSet<>();
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "provinces")
+	private Set<District> districts = new HashSet<>();
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "province_promotion", 
+	joinColumns = { @JoinColumn(name = "province_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "promotion_id")})
 	private Set<Promotion> promotions = new HashSet<>();
 
 }

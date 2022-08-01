@@ -1,4 +1,5 @@
 package vn.com.groupfive.tgdd.controllers;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,11 +20,10 @@ import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
-import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
 import vn.com.groupfive.tgdd.payload.entities.VerificationResult;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.services.CustomerService;
@@ -44,7 +44,7 @@ public class CustomerController {
 
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {
-		return customerService.getAllCategoryByLevel(level);
+		return customerService.getAllCategoryByLevelAndStatus(level, true);
 	}
 
 	@GetMapping("/get-all-products")
@@ -138,6 +138,16 @@ public class CustomerController {
 	@GetMapping("/get-all-district-by-provinceid")
 	public List<DistrictDTO> getAllDistrict(@RequestParam Long provinceId) {
 		return customerService.getAllDistrictByProvinceId(provinceId);
+	}
+	
+	@GetMapping("/get-all-ward-by-districtId")
+	public List<WardDTO> getAllWard(@RequestParam Long districtId) {
+		return customerService.getAllWardByDistrictId(districtId);
+	}
+	
+	@GetMapping("/checkoutCart")
+	public String checkoutCart(@RequestParam String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String memberAddress, Date receiveDate) {
+		return customerService.checkOutCart(fullName, phoneNumber, gender, deliveryAD, provinceId, districtId, wardId, memberAddress, receiveDate);
 	}
 		
 }

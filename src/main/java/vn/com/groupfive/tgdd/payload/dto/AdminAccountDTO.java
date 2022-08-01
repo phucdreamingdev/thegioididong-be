@@ -9,16 +9,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class VersionItemDTO {
-	@JsonProperty("id")
-	private Long id;
-	
-	@JsonProperty("name")
-	private String name;
-	
-	@JsonProperty("product")
-	private ProductSlimDTO product;
-	
+@NoArgsConstructor
+public class AdminAccountDTO {
+	private String fullName;
+	private String userName;
 }

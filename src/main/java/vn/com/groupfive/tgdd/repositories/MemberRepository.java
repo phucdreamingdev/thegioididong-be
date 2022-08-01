@@ -17,5 +17,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	@Query("SELECT CASE WHEN (count(m) > 0) THEN true ELSE false END FROM Member m WHERE m.phone = :phone")
 	boolean existsByPhone(@Param("phone") String phone);
 	
+	@Query("SELECT m FROM Member m WHERE m.id = :id")
+	Member findMemberById(@Param("id") Long id);
 	
 }

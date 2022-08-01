@@ -2,6 +2,7 @@ package vn.com.groupfive.tgdd.services;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -9,7 +10,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.MemberAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
@@ -19,29 +19,37 @@ import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.ItemCartDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
-import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.BranchStock;
 import vn.com.groupfive.tgdd.payload.entities.Member;
+import vn.com.groupfive.tgdd.payload.entities.MemberAddress;
+import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
 import vn.com.groupfive.tgdd.payload.entities.OrderDetail;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
+import vn.com.groupfive.tgdd.payload.entities.Ward;
 import vn.com.groupfive.tgdd.payload.mapper.AddressMapper;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
+import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.DistrictRepository;
+import vn.com.groupfive.tgdd.repositories.MemberAddressRepository;
+import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
 import vn.com.groupfive.tgdd.repositories.MemberRepository;
+import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
+import vn.com.groupfive.tgdd.repositories.WardRepository;
+import vn.com.groupfive.tgdd.utils.DeliveryStatus;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -75,7 +83,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	MemberMapper memberMapper;
-	
+
 	@Autowired
 	AddressMapper addressMapper;
 
@@ -85,11 +93,29 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	DistrictRepository districtRepo;
 
+	@Autowired
+	WardRepository wardRepo;
+
+	@Autowired
+	MemberRepository memberRepo;
+
+	@Autowired
+	MemberAddressRepository memberAddressRepo;
+
+	@Autowired
+	MemberOrderRepository memberOrderRepo;
+
+	@Autowired
+	BranchRepository branchRepo;
+
+	@Autowired
+	OrderDetailRepository orderDetailRepo;
+
 	private Cart cart = new Cart();
 
 	@Override
-	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
-		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.getByLevel(level));
+	public List<CategorySlimDTO> getAllCategoryByLevelAndStatus(int level, boolean status) {
+		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevelAndStatus(level, true));
 	}
 
 	@Override
@@ -263,37 +289,165 @@ public class CustomerServiceImpl implements CustomerService {
 
 		return memberMapper.memberToMemberDto(memberRepository.getByPhone(phone));
 	}
-	
+
 	private Member setMember(String phone) {
-		Member member = new Member();	
-		member.setPhone(phone);	
+		Member member = new Member();
+		member.setPhone(phone);
 		return member;
 	}
 
 	@Override
 	public Member addNewMember(String phone) throws CrudException {
-		if(memberRepository.existsByPhone(phone)) {
+		if (memberRepository.existsByPhone(phone)) {
+
 			throw new MemberAlreadyExistedException();
 		}
-		Member member= setMember(phone);
+		Member member = setMember(phone);
 		return memberRepository.save(member);
 	}
 
 	@Override
-	public VersionColorItemDTO getVersionColorDefault(Long productId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<WardDTO> getAllWardByDistrictId(Long districtId) {
+		return addressMapper.wardsToWardDtos(wardRepo.getAllWardByDistrictId(districtId));
 	}
 
+	@Override
+	public String checkOutCart(String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId,
+			Long districtId, Long wardId, String addressDetail, Date receiveDate) {
+		if (cart.getCartProducts().size() == 0)
+			return "Nothing in cart to checkout";
+		if (deliveryAD) {
+			if (fullName == null) {
+				return "Not Found Fullname parameter";
+			} else if (fullName.length() == 0) {
+				return "Fullname must not empty";
+			}
+			if (phoneNumber == null) {
+				return "Not Found phoneNumber parameter";
+			} else if (phoneNumber.length() != 10 || phoneNumber.contains("[a-zA-Z]+")) {
+				return "Phone number must be 10 number";
+			}
+			if (addressDetail == null) {
+				return "Not Found memberAddress parameter";
+			} else if (addressDetail.length() == 0) {
+				return "Address must not empty";
+			}
+			if (provinceId == null) {
+				return "Not Found provinceId parameter";
+			}
+			if (districtId == null) {
+				return "Not Found districtId parameter";
+			}
 
-	
+			if (wardId == null) {
+				return "Not Found wardId parameter";
+			}
 
+			List<CartProductDTO> listCart = cart.getCartProducts();
+			double totalPayment = 0;
+			if (listCart != null && listCart.size() > 0) {
+				List<BranchStock> leftInStocks = new ArrayList<>();
+				for (CartProductDTO cartProd : listCart) {
+					List<Branch> listBranch = branchStockRepository.getBranchInStock(cartProd.getProduct().getId(),
+							provinceId);
+					if (listBranch != null && listBranch.size() > 0) {
+						for (Branch branch : listBranch) {
+							Set<BranchStock> branchStocks = branch.getBranchStocks();
+							if (branchStocks != null && branchStocks.size() > 0) {
+								for (BranchStock branchStock : branchStocks) {
+									if (branchStock.getVersionColor().getId().equals(cartProd.getProduct().getId())
+											&& branchStock.getStock() > 0) {
+										int inStock = branchStock.getStock() - cartProd.getQuantity();
+										if (inStock > 0) {
+											branchStock.setStock(inStock);
+											leftInStocks.add(branchStock);
+										} else
+											return cartProd.getProduct().getId() + "/" + provinceId
+													+ " Not Enough in stock";
+									}
+								}
+							}
+						}
+					}
+					totalPayment += Double.parseDouble(cartProd.getTotalPrice());
+				}
+				if (leftInStocks.size() > 0) {
+					for (BranchStock stock : leftInStocks) {
+						branchStockRepository.save(stock);
+					}
+				} else
+					return "Not Found Any Stock";
+				Member member = memberRepo.getByPhone(phoneNumber);
+				if (member != null) {
+					MemberAddress memberAddress = memberAddressRepo.getMemberAddressByMemberId(member.getId());
+					MemberOrder memberOrder = new MemberOrder();
+					memberOrder.setOrderDate(new Date());
+					memberOrder.setDeliveryDate(new Date());
+					memberOrder.setRecieveDate(receiveDate);
+					Branch branch = branchRepo.getBranchByWardId(wardId);
+					if (branch == null)
+						return "Not Found branch to checkout";
+					memberOrder.setBranch(branch);
+					memberOrder.setDeliveryStatus(DeliveryStatus.PREPARING);
+					memberOrder.setMember(member);
+					memberOrder.setTotalPayment(totalPayment);
+					memberOrderRepo.save(memberOrder);
+				} else {
+					member = new Member();
+					member.setFullname(fullName);
+					member.setPhone(phoneNumber);
+					member.setGender(gender);
+					memberRepo.save(member);
+					MemberAddress memberAddress = new MemberAddress();
+					memberAddress.setAddress(addressDetail);
+					memberAddress.setDefault(true);
+					Member curMem = memberRepo.getByPhone(phoneNumber);
+					Ward ward = wardRepo.getWardById(wardId);
+					if (ward == null)
+						return "Need Ward Information to using";
+					memberAddress.setMember(curMem);
+					memberAddress.setWard(ward);
+					memberAddressRepo.save(memberAddress);
+					MemberOrder memberOrder = new MemberOrder();
+					memberOrder.setOrderDate(new Date());
+					memberOrder.setDeliveryDate(new Date());
+					memberOrder.setRecieveDate(receiveDate);
+					Branch branch = branchRepo.getBranchByWardId(wardId);
+					if (branch == null)
+						return "Not Found branch to checkout";
+					memberOrder.setBranch(branch);
+					memberOrder.setDeliveryStatus(DeliveryStatus.PREPARING);
+					memberOrder.setMember(member);
+					memberOrder.setTotalPayment(totalPayment);
+					memberOrderRepo.save(memberOrder);
+				}
+				MemberOrder memberOrder = memberOrderRepo.findTopByOrderByIdDesc();
+				if (memberOrder != null) {
+					if (listCart != null && listCart.size() > 0) {
+						for (CartProductDTO cartProd : listCart) {
+							OrderDetail orderDetail = new OrderDetail();
+							orderDetail.setMemberOrder(memberOrder);
+							orderDetail.setOriginalPrice(Float.parseFloat(cartProd.getProduct().getPrice()));
+							orderDetail.setPromotionPrice(0);
+							orderDetail.setQuantity(cartProd.getQuantity());
+							VersionColor versionColor = versionColorRepository
+									.getVersionColorById(cartProd.getProduct().getId());
+							orderDetail.setVersionColor(versionColor);
+							orderDetailRepo.save(orderDetail);
+						}
+					}
+				}
+				cart.getCartProducts().clear();
+				return "Check out successful";
+			}
+		}
+		return "Need To Delivery At destination to checkout";
+	}
 
-
-
-	
-
-
-	
+	@Override
+	public VersionColorItemDTO getVersionColorDefault(Long productId) {
+		List<VersionColor> versionColors = versionColorRepository.getDefaultByProductId(productId);
+		return versionMapper.versionColorToVersionColorItemDto(versionColors.get(0));
+	}
 
 }

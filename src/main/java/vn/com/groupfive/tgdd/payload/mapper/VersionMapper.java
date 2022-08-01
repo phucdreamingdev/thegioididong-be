@@ -6,11 +6,13 @@ import org.mapstruct.Mapper;
 
 import vn.com.groupfive.tgdd.payload.dto.ColorDTO;
 import vn.com.groupfive.tgdd.payload.dto.ColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionItemDTO;
 import vn.com.groupfive.tgdd.payload.entities.Color;
+import vn.com.groupfive.tgdd.payload.entities.Product;
 import vn.com.groupfive.tgdd.payload.entities.Version;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 
@@ -32,12 +34,16 @@ public interface VersionMapper {
 
 	List<ColorItemDTO> colorsToColorSlimDtos(List<ColorItemDTO> colors);
 
-	VersionItemDTO versionToVersionSlimItemDto(Version version);
+	VersionItemDTO versionToVersionItemDto(Version version);
 
 	List<VersionItemDTO> versionsToVersionSlimItemDtos(List<Version> versions);
 
 	VersionColorItemDTO versionColorToVersionColorItemDto(VersionColor versionColor);
 
 	List<VersionColorItemDTO> versionColorsToVersionColorItemDtos(List<VersionColor> versionColors);
+	
+	ProductSlimDTO productToProductSlimDto(Product product);
+	
+	List<ProductSlimDTO> productsToProductSlimDtos(List<Product> products);
 
 }

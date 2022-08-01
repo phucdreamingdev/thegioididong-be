@@ -7,12 +7,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.MemberAlreadyExistedException;
+import vn.com.groupfive.tgdd.exceptions.PromotionAlreadyExisted;
+import vn.com.groupfive.tgdd.exceptions.PromotionDoesNotExist;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(value = {
 		CategoryAlreadyExistedException.class,
-		MemberAlreadyExistedException.class
+		MemberAlreadyExistedException.class,
+		CategoryAlreadyExistedException.class,
+		PromotionAlreadyExisted.class,
+		PromotionDoesNotExist.class,
+		
 	})
 	protected ResponseEntity<Response> handleAuthExceptions(CrudException exception) {
 		return ResponseEntity

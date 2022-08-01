@@ -28,9 +28,10 @@ public class MemberDTO {
 	private boolean gender;
 	
 	@JsonProperty("memberAddresses")
-	private List<MemberAddressDTO> memberAddresses;
+	private List<MemberAddressDTO> memberAddresses;	
 	
 	@JsonProperty("memberOrders")
 	private List<MemberOrderDTO> memberOrders;
+
 
 }
