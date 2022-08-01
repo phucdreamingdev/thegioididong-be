@@ -116,8 +116,8 @@ public class CustomerServiceImpl implements CustomerService {
 	private Cart cart = new Cart();
 
 	@Override
-	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
-		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevel(level));
+	public List<CategorySlimDTO> getAllCategoryByLevelAndStatus(int level, boolean status) {
+		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevelAndStatus(level, true));
 	}
 
 	@Override

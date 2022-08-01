@@ -45,7 +45,7 @@ public class CustomerController {
 
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {
-		return customerService.getAllCategoryByLevel(level);
+		return customerService.getAllCategoryByLevelAndStatus(level, true);
 	}
 
 	@GetMapping("/get-all-products")
