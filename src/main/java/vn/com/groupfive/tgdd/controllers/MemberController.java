@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import vn.com.groupfive.tgdd.payload.dto.MemberAddressDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.services.MemberService;
@@ -24,11 +25,15 @@ public class MemberController {
 	@Autowired
 	MemberMapper memberMapper;
 
-	@GetMapping("/get-member-order-by-id/{id}")
+	@GetMapping("/get-member-order-by-member-id/{id}")
 	List<MemberOrderDTO> getListMemberOrderDTOs(@PathVariable("id") Long id) {
 		return memberService.getMemberOrderDTOsByID(id);
 	}
-
+	
+	@GetMapping("/get-member-address-by-member-id/{id}")
+	List<MemberAddressDTO> getListMemberAddressDTOs(@PathVariable("id") Long id) {
+		return memberService.getListMemberAddressDTOs(id);
+	}
 	@GetMapping("/logout")
 	void memberLogout(HttpSession session) {
 		if (session.getAttribute("member") != null)

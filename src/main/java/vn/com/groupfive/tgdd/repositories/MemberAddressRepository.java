@@ -4,9 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import vn.com.groupfive.tgdd.payload.entities.Member;
 import vn.com.groupfive.tgdd.payload.entities.MemberAddress;
 
 @Repository
 public interface MemberAddressRepository extends JpaRepository<MemberAddress, Long>{
 	MemberAddress getMemberAddressByMemberId(@Param("member_id") Long memberId);
+	MemberAddress getMemberAddressByMember(Member member);
+	
 }
