@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
-import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
-import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
@@ -95,7 +94,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/get-member-by-id")
-	public MemberDTO findMemberById(@RequestParam Long id) {
+	public MemberDTO findMemberById(@RequestParam(name = "id") Long id) {
 		return adminService.findMemberById(id);
 	}
 	

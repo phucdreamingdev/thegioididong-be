@@ -2,8 +2,6 @@ package vn.com.groupfive.tgdd.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,24 +27,18 @@ public class MemberController {
 
 	@GetMapping("/get-member-order-by-member-id/{id}")
 	List<MemberOrderDTO> getListMemberOrderDTOs(@PathVariable("id") Long id) throws CrudException {
-		return memberService.getMemberOrderDTOsByID(id);
+		return memberService.getMemberOrderDTOsByMemberID(id);
 	}
-	
+
 	@GetMapping("/get-member-address-by-member-id/{id}")
 	List<MemberAddressDTO> getListMemberAddressDTOs(@PathVariable("id") Long id) throws CrudException {
+
 		return memberService.getListMemberAddressDTOs(id);
 	}
-	
+
 	@GetMapping("/get-order-detail-by-member-order-id/{id}")
 	List<OrderDetailDTO> getListOrderDetailDTOs(@PathVariable("id") Long id) throws CrudException {
 		return memberService.getListOrderDetailDTOs(id);
-	}
-	
-	
-	@GetMapping("/logout")
-	void memberLogout(HttpSession session) {
-		if (session.getAttribute("member") != null)
-			session.removeAttribute("member");
 	}
 
 }

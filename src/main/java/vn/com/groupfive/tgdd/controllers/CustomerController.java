@@ -85,15 +85,15 @@ public class CustomerController {
 	@PostMapping("/verifyotp")
 	public ResponseEntity<Object> verifyotp(@RequestParam("phone") String phone, @RequestParam("otp") String otp, HttpSession session) throws CrudException {
 		VerificationResult result = phonesmsservice.checkverification(phone, otp);
-		if (result.isValid()) {
-			
+		if (result.isValid()) {			
 			MemberDTO member = customerService.getMemberDTOByPhone(phone);
+			
 			if(member == null) {
 				member = memberMapper.memberToMemberDto(customerService.addNewMember(phone));
-			}
-			session.setAttribute("member",member);
+			}			
+			String id = String.valueOf(member.getId());			
 			System.out.println("Your number is verified");		
-			return new ResponseEntity<>(member,HttpStatus.OK);
+			return new ResponseEntity<>(id,HttpStatus.OK);
 		}
 		String msg = "Something wrong / Incorrect OTP";
 		return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);

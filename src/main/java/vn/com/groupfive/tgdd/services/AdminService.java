@@ -10,13 +10,10 @@ import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
-
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
-import vn.com.groupfive.tgdd.payload.entities.Category;
-import vn.com.groupfive.tgdd.payload.entities.Promotion;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Category;
-import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
+import vn.com.groupfive.tgdd.payload.entities.Promotion;
 
 public interface AdminService {
 	Category addCategory(CategoryRequest categoryRequest) throws CrudException;

@@ -8,7 +8,7 @@ import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 
 public interface MemberService { 
-	List<MemberOrderDTO> getMemberOrderDTOsByID(Long id) throws CrudException;
+	List<MemberOrderDTO> getMemberOrderDTOsByMemberID(Long id) throws CrudException;
 	List<MemberAddressDTO> getListMemberAddressDTOs(Long id) throws CrudException;
 	List<OrderDetailDTO> getListOrderDetailDTOs(Long id) throws CrudException;
 	
