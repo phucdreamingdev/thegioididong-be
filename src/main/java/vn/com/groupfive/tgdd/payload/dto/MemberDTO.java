@@ -16,14 +16,14 @@ public class MemberDTO {
 	@JsonProperty("id")
 	private Long id;
 
-//	@JsonProperty("fullname")
-//	private String fullname;
-//	
-//	@JsonProperty("phone")
-//	private String phone;
-//	
-//	@JsonProperty("gender")
-//	private boolean gender;
+	@JsonProperty("fullname")
+	private String fullname;
+	
+	@JsonProperty("phone")
+	private String phone;
+	
+	@JsonProperty("gender")
+	private boolean gender;
 	
 
 }
