@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import vn.com.groupfive.tgdd.exceptions.BranchDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.MemberAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.MemberDoesNotExistedException;
@@ -21,7 +22,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 		PromotionAlreadyExisted.class,
 		PromotionDoesNotExist.class,
 		MemberDoesNotExistedException.class,
-		MemberOrderDoesNotExistedException.class
+		MemberOrderDoesNotExistedException.class,
+		BranchDoesNotExistException.class
 	})
 	protected ResponseEntity<Response> handleAuthExceptions(CrudException exception) {
 		return ResponseEntity

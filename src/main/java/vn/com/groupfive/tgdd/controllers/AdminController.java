@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
+import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
@@ -20,8 +21,11 @@ import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
+import vn.com.groupfive.tgdd.payload.entities.Member;
+import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.PromotionMapper;
 import vn.com.groupfive.tgdd.services.AdminService;
@@ -38,6 +42,9 @@ public class AdminController {
 	
 	@Autowired
 	PromotionMapper promotioMapper;
+	
+	@Autowired
+	BranchMapper branchMapper;
 
 	@PostMapping("/create-new-category")
 	public CategorySlimDTO createCategory(@RequestBody CategoryRequest category) throws CrudException {
@@ -77,7 +84,6 @@ public class AdminController {
 		return adminService.getAllMemberOrders();
 	}
 	
-	
 	@GetMapping("/get-all-order-by-branchid")
 	public List<MemberOrderDTO> getAllOrdersByBranchId(Long branchId) {
 		return adminService.getAllMemberOrdersByBranch(branchId);
@@ -98,8 +104,30 @@ public class AdminController {
 		return adminService.findMemberById(id);
 	}
 	
+	@GetMapping("/get-all-member")
+	public List<MemberDTO> getAllMember() {
+		return adminService.getAllMember();
+	}
+	
 	@GetMapping("/get-version-color-by-name")
 	public List<VersionColorSlimDTO> findByName(@RequestParam String name){
 		return adminService.searchVersionColorByName(name);
 	}
+	
+	@PostMapping("/create-branch")
+	public BranchSlimResponeDTO createBranch(@RequestBody BranchCreateRequest branch)throws CrudException{		
+		return branchMapper.branchToBranchSlimResponeDto(adminService.addBranch(branch));
+	}
+	@PutMapping("/update-branch/{id}")
+	public BranchSlimResponeDTO updateBranch(@PathVariable Long id, @RequestBody BranchCreateRequest branch)throws CrudException{		
+		return branchMapper.branchToBranchSlimResponeDto(adminService.updateBranch(id,branch));
+	}
+	@GetMapping("/get-all-branch")
+	public List<BranchSlimResponeDTO> getAllBranch() {
+		return adminService.getAllBranches();
+	}
+//	@GetMapping("/search-branch")
+//	public List<BranchSlimResponeDTO> searchBranch(String ward, String district, String province ) {
+//		return adminService.getAllBranches();
+//	}
 }

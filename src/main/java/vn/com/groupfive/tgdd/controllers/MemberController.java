@@ -5,13 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.MemberAddressDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
+import vn.com.groupfive.tgdd.payload.dto.MemberUpdateDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
+import vn.com.groupfive.tgdd.payload.dto.request.MemberRequest;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.services.MemberService;
 
@@ -40,5 +44,9 @@ public class MemberController {
 	List<OrderDetailDTO> getListOrderDetailDTOs(@PathVariable("id") Long id) throws CrudException {
 		return memberService.getListOrderDetailDTOs(id);
 	}
-
+	
+	@PutMapping("/update-profile-by-id/{id}")
+	MemberUpdateDTO updateMemberUpdateDTO(@PathVariable Long id, @RequestBody MemberRequest memberRequest) throws CrudException {
+		return memberMapper.memberToMemberUpdateDTO(memberService.updateMemberUpdateDTO(id, memberRequest));
+	}
 }

@@ -6,25 +6,32 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vn.com.groupfive.tgdd.exceptions.BranchDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.CategoryAlreadyExistedException;
 import vn.com.groupfive.tgdd.exceptions.CategoryDoesNotExistException;
 import vn.com.groupfive.tgdd.exceptions.PromotionDoesNotExist;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
+import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
+import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.Category;
+import vn.com.groupfive.tgdd.payload.entities.Member;
 import vn.com.groupfive.tgdd.payload.entities.Promotion;
+import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
+import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
 import vn.com.groupfive.tgdd.repositories.MemberRepository;
@@ -32,6 +39,7 @@ import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
+import vn.com.groupfive.tgdd.repositories.WardRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -64,7 +72,16 @@ public class AdminServiceImpl implements AdminService {
 	OrderDetailRepository orderDetailRepo;
 	
 	@Autowired
+	WardRepository wardRepository;
+	
+	@Autowired
+	BranchRepository branchRepository;
+	
+	@Autowired
 	MemberMapper memberMapper;
+	
+	@Autowired
+	BranchMapper branchMapper;
 	
 	@Autowired
 	CategoryMapper categoryMapper;
@@ -205,9 +222,42 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
-		
+	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {		
 		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevel(level));
+	}
+
+	@Override
+	public Branch addBranch(BranchCreateRequest branchRequest) throws CrudException {
+		Branch branch = new Branch();
+		branch.setAddress(branchRequest.getAddress());
+		branch.setStatus(branchRequest.isStatus());
+		branch.setWard(wardRepository.findById(branchRequest.getWardId()).get());	
+		return branchRepository.save(branch);
+	}
+	public Branch updateBranch(Branch branch, BranchCreateRequest branchRequest) {
+		Branch br = branch;
+		br.setStatus(branchRequest.isStatus());	;
+		return br;
+	}
+
+	@Override
+	public Branch updateBranch(Long id,BranchCreateRequest branchRequest) throws CrudException {
+		if (!branchRepository.existsById(id)) {
+			throw new BranchDoesNotExistException();
+		}
+		Branch branch = branchRepository.getById(id);
+		// save to repository after update
+		return branchRepository.save(updateBranch(branch, branchRequest));
+	}
+
+	@Override
+	public List<BranchSlimResponeDTO> getAllBranches() {		
+		return branchMapper.branchsToBranchSlimResponeDtos(branchRepository.findAll());
+	}
+
+	@Override
+	public List<MemberDTO> getAllMember() {
+		return memberMapper.membersToMemberDtos(memberRepository.findAll());
 	}
 
 }

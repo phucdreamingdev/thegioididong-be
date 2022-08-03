@@ -16,13 +16,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "branch")
+@NoArgsConstructor
 public class Branch {
 	@Id
 	@Column(name = "id")
@@ -41,8 +44,6 @@ public class Branch {
 	@ToString.Exclude
 	private Ward ward;
 
-	
-
 	@OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
@@ -52,7 +53,7 @@ public class Branch {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Set<MemberOrder> memberOrders = new HashSet<>();
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branchs")
 	private Set<Transaction> transactions = new HashSet<>();
 

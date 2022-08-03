@@ -7,13 +7,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class MemberRequest {
+@NoArgsConstructor
+public class BranchCreateRequest {
+	private String address;
+	
+	private boolean status;
 
-	private String fullname;
-	
-	private boolean gender;
-		
-	
+	private Long wardId;
 }
