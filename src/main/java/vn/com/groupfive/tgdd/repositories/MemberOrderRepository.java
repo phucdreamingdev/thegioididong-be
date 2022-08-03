@@ -17,5 +17,6 @@ public interface MemberOrderRepository extends JpaRepository<MemberOrder, Long>{
 	
 	@Query("SELECT mo FROM MemberOrder mo WHERE mo.member.phone = :phone")
 	List<MemberOrder> getAllMemberOrderByPhoneNumber(@Param("phone") String phone);
-
+	
+	MemberOrder getMemberOrderById(@Param("id") Long id);
 }
