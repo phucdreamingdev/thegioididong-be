@@ -210,4 +210,10 @@ public class AdminServiceImpl implements AdminService {
 		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevel(level));
 	}
 
+	@Override
+	public List<Object[]> getCategorySelectItemByLevel(int level) {
+		
+		return categoryRepository.getCategoryByLevelItem(level);
+	}
+
 }

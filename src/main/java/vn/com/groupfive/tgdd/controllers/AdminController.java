@@ -10,17 +10,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.PromotionMapper;
@@ -39,6 +45,7 @@ public class AdminController {
 	@Autowired
 	PromotionMapper promotioMapper;
 
+	//CATEGORY FUNCTION
 	@PostMapping("/create-new-category")
 	public CategorySlimDTO createCategory(@RequestBody CategoryRequest category) throws CrudException {
 		return categoryMapper.categoryToCategorySlimDto(adminService.addCategory(category));
@@ -50,11 +57,25 @@ public class AdminController {
 		return categoryMapper.categoryToCategorySlimDto(adminService.updateCategory(id, category));
 	}
 	
+	@GetMapping("/get-category-select-item-by-level")
+	public @ResponseBody String getCategoryByLevelItem(@RequestParam int level) {
+		String json = null;
+		List<Object[]> list = adminService.getCategorySelectItemByLevel(level);
+		try {
+			json = new ObjectMapper().writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {
 		return adminService.getAllCategoryByLevel(level);
 	}
 
+	
+	//PROMOTION FUNCTION
 	@PostMapping("/create-new-promotion")
 	public PromotionDTO createPromotion(
 			@RequestBody PromotionRequest promotion) throws CrudException {
@@ -67,6 +88,13 @@ public class AdminController {
 		return promotioMapper.promotionToPromotionDto(adminService.updatePromotions(id,promotion));
 	}
 	
+	
+	//PRODUCT FUNCTION
+	
+	@PostMapping("/create-new-product")
+	public ProductDTO addProduct(@RequestBody ProductCreateRequest product) throws CrudException {
+		return null;
+	}
 	@GetMapping("/get-version-color-by-id")
 	public VersionColorItemDTO getVersionColorById(Long id) {
 		return adminService.getVersionColorById(id);

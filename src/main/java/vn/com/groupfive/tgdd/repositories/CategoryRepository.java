@@ -19,6 +19,9 @@ public interface CategoryRepository extends JpaRepository<Category, Long>{
 	
 	List<Category> findByLevelAndStatus(int Level, boolean status);
 	
+	@Query("SELECT c.id, c.name FROM Category c WHERE c.level=:level")
+	List<Object[]> getCategoryByLevelItem(@Param("level") int level); 
+	
 	
 	
 }	

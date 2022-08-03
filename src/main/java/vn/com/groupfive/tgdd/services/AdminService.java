@@ -46,4 +46,8 @@ public interface AdminService {
 	
 	List<CategorySlimDTO> getAllCategoryByLevel(int level);
 	
+	List<Object[]> getCategorySelectItemByLevel(int level);
+	
+	
+	
 }
