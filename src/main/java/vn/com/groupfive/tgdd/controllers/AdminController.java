@@ -102,4 +102,9 @@ public class AdminController {
 	public List<VersionColorSlimDTO> findByName(@RequestParam String name){
 		return adminService.searchVersionColorByName(name);
 	}
+	
+	@GetMapping("/update-order")
+	public boolean updateMemberOrderStatusByIdAndStatus(Long memberOrderId, String status) {
+		return adminService.updateOrderStatusByMemberOrderIdAndStatus(memberOrderId, status);
+	}
 }
