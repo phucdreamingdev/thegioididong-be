@@ -52,10 +52,17 @@ public interface AdminService {
 	
 	List<CategorySlimDTO> getAllCategoryByLevel(int level);
 	
+
 	Branch addBranch(BranchCreateRequest branchRequest) throws CrudException;
 	
 	Branch updateBranch(Long id,BranchCreateRequest branchRequest) throws CrudException;
 	
 	List<BranchSlimResponeDTO> getAllBranches();	
+
+	List<Object[]> getCategorySelectItemByLevel(int level);
+	
+	boolean updateOrderStatusByMemberOrderIdAndStatus(Long memberOrderId, String status);
+
+
 	
 }
