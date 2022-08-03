@@ -20,6 +20,7 @@ import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Category;
+import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
 import vn.com.groupfive.tgdd.payload.entities.Promotion;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
@@ -32,6 +33,7 @@ import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
+import vn.com.groupfive.tgdd.utils.DeliveryStatus;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -208,6 +210,38 @@ public class AdminServiceImpl implements AdminService {
 	public List<CategorySlimDTO> getAllCategoryByLevel(int level) {
 		
 		return categoryMapper.categoriesToCategorySlimDtos(categoryRepository.findByLevel(level));
+	}
+
+	@Override
+	public boolean updateOrderStatusByMemberOrderIdAndStatus(Long memberOrderId, String status) {
+		if(memberOrderId == null || status == null) return false;
+		MemberOrder memberOrder = memberOrderRepo.getMemberOrderById(memberOrderId);
+		status = status.trim().toLowerCase();
+		if(memberOrder.getDeliveryStatus().equals(DeliveryStatus.PREPARING)) {
+			if(status.equals("ready")) {
+				memberOrder.setDeliveryStatus(DeliveryStatus.READY);
+				memberOrderRepo.save(memberOrder);
+				return true;
+			}
+			if(status.equals("cancel")) {
+				memberOrder.setDeliveryStatus(DeliveryStatus.CANCEL);
+				memberOrderRepo.save(memberOrder);
+				return true;
+			}
+		}
+		if(memberOrder.getDeliveryStatus().equals(DeliveryStatus.READY)) {
+			if(status.equals("delivered")) {
+				memberOrder.setDeliveryStatus(DeliveryStatus.DELIVERED);
+				memberOrderRepo.save(memberOrder);
+				return true;
+			}
+			if(status.equals("cancel")) {
+				memberOrder.setDeliveryStatus(DeliveryStatus.CANCEL);
+				memberOrderRepo.save(memberOrder);
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

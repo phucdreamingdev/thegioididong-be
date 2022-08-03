@@ -46,4 +46,6 @@ public interface AdminService {
 	
 	List<CategorySlimDTO> getAllCategoryByLevel(int level);
 	
+	boolean updateOrderStatusByMemberOrderIdAndStatus(Long memberOrderId, String status);
+	
 }
