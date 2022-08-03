@@ -48,6 +48,7 @@ public interface AdminService {
 	
 	List<Object[]> getCategorySelectItemByLevel(int level);
 	
-	
+	boolean updateOrderStatusByMemberOrderIdAndStatus(Long memberOrderId, String status);
+
 	
 }
