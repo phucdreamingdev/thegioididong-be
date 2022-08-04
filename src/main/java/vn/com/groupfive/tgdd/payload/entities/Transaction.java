@@ -12,17 +12,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "transactions")
 public class Transaction {
 	@Id
@@ -39,11 +40,11 @@ public class Transaction {
 	@Column(name = "detail")
 	private String detail;
 	 
-	@ManyToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
-	@JoinTable(name = "transaction_branch",
-			joinColumns = { @JoinColumn(name ="transaciton_id")},
-			inverseJoinColumns = { @JoinColumn(name ="branch_id")})
-	private Set<Branch> branchs = new HashSet<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "branch_id")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Branch branch;
 	
 	@OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude

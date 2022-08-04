@@ -11,7 +11,10 @@ import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.BranchStock;
 
 @Repository
-public interface BranchStockRepository extends JpaRepository<BranchStock, Long>{
+public interface BranchStockRepository extends JpaRepository<BranchStock, Long> {
 	@Query("SELECT bs.branch FROM BranchStock bs WHERE bs.versionColor.id = :versionColorid AND bs.branch.ward.district.province.id = :provinceId AND bs.stock > 0")
 	List<Branch> getBranchInStock(@Param("versionColorid") Long versionColorid, @Param("provinceId") Long provinceId);
+
+	BranchStock findBranchStockByBranchIdAndVersionColorId(@Param("branch_id") Long branchId,
+			@Param("version_color_id") Long versionColorId);
 }
