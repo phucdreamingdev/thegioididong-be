@@ -107,6 +107,12 @@ public class AdminController {
 		return productMapper.productToProductDto(adminService.createProduct(productCreateRequest));
 	}
 	
+//	@PostMapping("/create-new-version")
+//	public ProductDTO createVersion(
+//			@RequestBody VersionRequest versionRequest) throws CrudException {
+//		return productMapper.productToProductDto(adminService.createProduct(productCreateRequest));
+//	}
+	
 	@GetMapping("/get-version-color-by-id")
 	public VersionColorItemDTO getVersionColorById(Long id) {
 		return adminService.getVersionColorById(id);

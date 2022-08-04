@@ -1,5 +1,6 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "branch")
 @NoArgsConstructor
-public class Branch {
+public class Branch implements Serializable{
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

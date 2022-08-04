@@ -19,6 +19,7 @@ import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.ManufacturerDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
@@ -41,6 +42,13 @@ public class CustomerController {
 	
 	@Autowired
 	MemberMapper memberMapper;
+	
+	//MANUFACTURER FUNTION
+	
+	@GetMapping("/get-manufacturers-by-category")
+	List<ManufacturerDTO> getManufacturersByCategory(@RequestParam Long categoryId){
+		return customerService.getManufacturerByCategoryId(categoryId);
+	}
 
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {

@@ -11,6 +11,7 @@ import vn.com.groupfive.tgdd.payload.entities.Version;
 
 @Repository
 public interface VersionRepository extends JpaRepository<Version, Long>{
-	@Query("SELECT v FROM Version v WHERE v.product.id = :id")
-	List<Version> findByProductId(@Param("id") Long productId);
+	List<Version> findByProductId(Long id);
+	
+	
 }

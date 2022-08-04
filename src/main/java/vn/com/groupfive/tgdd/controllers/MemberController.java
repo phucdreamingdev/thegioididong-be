@@ -29,24 +29,45 @@ public class MemberController {
 	@Autowired
 	MemberMapper memberMapper;
 
+	/*
+	 * =============================================
+	 * GET MEMBER ORDER BY MEMBER ID
+	 * =============================================
+	 */
 	@GetMapping("/get-member-order-by-member-id/{id}")
 	List<MemberOrderDTO> getListMemberOrderDTOs(@PathVariable("id") Long id) throws CrudException {
 		return memberService.getMemberOrderDTOsByMemberID(id);
 	}
 
+	/*
+	 * =============================================
+	 * GET MEMBER ADDRESS BY MEMBER ID
+	 * =============================================
+	 */
 	@GetMapping("/get-member-address-by-member-id/{id}")
 	List<MemberAddressDTO> getListMemberAddressDTOs(@PathVariable("id") Long id) throws CrudException {
 
 		return memberService.getListMemberAddressDTOs(id);
 	}
 
+	/*
+	 * =============================================
+	 * GET ORDER DETAILS BY MEMBER ORDER ID
+	 * =============================================
+	 */
 	@GetMapping("/get-order-detail-by-member-order-id/{id}")
 	List<OrderDetailDTO> getListOrderDetailDTOs(@PathVariable("id") Long id) throws CrudException {
 		return memberService.getListOrderDetailDTOs(id);
 	}
-	
+
+	/*
+	 * =============================================
+	 * UPDATE PROFILE BY ID
+	 * =============================================
+	 */
 	@PutMapping("/update-profile-by-id/{id}")
-	MemberUpdateDTO updateMemberUpdateDTO(@PathVariable Long id, @RequestBody MemberRequest memberRequest) throws CrudException {
+	MemberUpdateDTO updateMemberUpdateDTO(@PathVariable Long id, @RequestBody MemberRequest memberRequest)
+			throws CrudException {
 		return memberMapper.memberToMemberUpdateDTO(memberService.updateMemberUpdateDTO(id, memberRequest));
 	}
 }

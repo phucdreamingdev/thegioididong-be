@@ -1,5 +1,7 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "admin_account")
-public class AdminAccount {
+public class AdminAccount implements Serializable{
 
 	@Id
 	@Column(name = "id")

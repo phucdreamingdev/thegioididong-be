@@ -8,6 +8,7 @@ import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.ManufacturerDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
@@ -57,5 +58,8 @@ public interface CustomerService {
 	List<WardDTO> getAllWardByDistrictId(Long districtId);
 	
 	String checkOutCart(String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String addressDetail, Date receiveDate);
+	
+	//MANUFACTURER FUNCTION
+	List<ManufacturerDTO> getManufacturerByCategoryId(Long categoryId);
 
 }

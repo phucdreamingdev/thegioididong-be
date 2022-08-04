@@ -1,5 +1,7 @@
 package vn.com.groupfive.tgdd.payload.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +19,7 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "branch_stock")
-public class BranchStock {
+public class BranchStock implements Serializable{
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
