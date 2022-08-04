@@ -54,7 +54,8 @@ public class Branch {
 	@ToString.Exclude
 	private Set<MemberOrder> memberOrders = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branchs")
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "branch")
 	private Set<Transaction> transactions = new HashSet<>();
 
 }

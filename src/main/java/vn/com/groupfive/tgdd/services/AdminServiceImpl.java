@@ -2,6 +2,7 @@ package vn.com.groupfive.tgdd.services;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,13 +23,17 @@ import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.TransactionDetailRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.TransactionRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
+import vn.com.groupfive.tgdd.payload.entities.BranchStock;
 import vn.com.groupfive.tgdd.payload.entities.Category;
-import vn.com.groupfive.tgdd.payload.entities.Manufacturer;
 import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
 import vn.com.groupfive.tgdd.payload.entities.Product;
 import vn.com.groupfive.tgdd.payload.entities.Promotion;
+import vn.com.groupfive.tgdd.payload.entities.Transaction;
+import vn.com.groupfive.tgdd.payload.entities.TransactionDetail;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
@@ -36,6 +41,7 @@ import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.BranchRepository;
+import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.ManufacturerRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
@@ -44,6 +50,8 @@ import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
 import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
+import vn.com.groupfive.tgdd.repositories.TransactionDetailRepository;
+import vn.com.groupfive.tgdd.repositories.TransactionRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
 import vn.com.groupfive.tgdd.repositories.WardRepository;
 import vn.com.groupfive.tgdd.utils.DeliveryStatus;
@@ -69,6 +77,18 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	ProductRepository productRepository;
+	
+	@Autowired
+	TransactionRepository transactionRepository;
+	
+	@Autowired
+	BranchRepository branchRepo;
+	
+	@Autowired
+	TransactionDetailRepository transactionDetailRepository;
+	
+	@Autowired
+	BranchStockRepository branchStockRepo;
 	
 	@Autowired
 	VersionMapper versionMapper;
@@ -321,6 +341,40 @@ public class AdminServiceImpl implements AdminService {
 		product.setCategory(categoryRepository.findById(productCreateRequest.getCategoryId()).get());
 		product.setManufacturer(manufacturerRepository.findById(productCreateRequest.getManufacturerId()).get());
 		return productRepository.save(product);
+	}
+	
+	@Override
+	public Transaction addTransaction(TransactionRequest transactionRequest) throws CrudException {
+		Set<TransactionDetail> transactionDetails = new HashSet<>();
+		int total =0;
+		for (TransactionDetailRequest transactionDetail : transactionRequest.getTransactionDetailRequests()) {
+			TransactionDetail transactionDetailEntity = new TransactionDetail();
+			transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),
+					transactionDetail.getVersionColorId()).getStock());
+			transactionDetailEntity.setNote(transactionDetail.getNote());
+			transactionDetailEntity.setTransactionQuantity(transactionDetail.getTransactionQuantity());
+			transactionDetailEntity.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
+			total += transactionDetail.getTransactionQuantity();
+			
+			if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
+				BranchStock branchStock= branchStockRepo.findById(transactionDetail.getVersionColorId()).get();
+				branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
+				branchStockRepo.save(branchStock);
+			}
+		}
+		
+		Transaction transaction = new Transaction();
+		transaction.setDetail(transactionRequest.getDetail());
+		transaction.setBranch(branchRepo.findById(transactionRequest.getBranchId()).get());
+		transaction.setTransactionDetails(transactionDetails);
+		transaction.setTotal(total);
+		return transactionRepository.save(transaction);
+	}
+
+	@Override
+	public Transaction updateTransaction(TransactionRequest transactionRequest) throws CrudException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
