@@ -28,11 +28,12 @@ import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
-
+import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.entities.Member;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
+import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.PromotionMapper;
 import vn.com.groupfive.tgdd.services.AdminService;
 
@@ -51,6 +52,9 @@ public class AdminController {
 	
 	@Autowired
 	BranchMapper branchMapper;
+	
+	@Autowired
+	ProductMapper productMapper;
 
 	//CATEGORY FUNCTION
 	@PostMapping("/create-new-category")
@@ -97,8 +101,12 @@ public class AdminController {
 	
 	
 	//PRODUCT FUNCTION
+	@PostMapping("/create-new-product")
+	public ProductDTO createProduct(
+			@RequestBody ProductCreateRequest productCreateRequest) throws CrudException {
+		return productMapper.productToProductDto(adminService.createProduct(productCreateRequest));
+	}
 	
-
 	@GetMapping("/get-version-color-by-id")
 	public VersionColorItemDTO getVersionColorById(Long id) {
 		return adminService.getVersionColorById(id);

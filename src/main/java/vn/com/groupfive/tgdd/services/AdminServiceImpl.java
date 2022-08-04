@@ -20,22 +20,28 @@ import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.Category;
+import vn.com.groupfive.tgdd.payload.entities.Manufacturer;
 import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
+import vn.com.groupfive.tgdd.payload.entities.Product;
 import vn.com.groupfive.tgdd.payload.entities.Promotion;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
+import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
+import vn.com.groupfive.tgdd.repositories.ManufacturerRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
 import vn.com.groupfive.tgdd.repositories.MemberRepository;
 import vn.com.groupfive.tgdd.repositories.OrderDetailRepository;
+import vn.com.groupfive.tgdd.repositories.ProductRepository;
 import vn.com.groupfive.tgdd.repositories.PromotionRepository;
 import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
@@ -62,10 +68,16 @@ public class AdminServiceImpl implements AdminService {
 	MemberRepository memberRepository;
 	
 	@Autowired
+	ProductRepository productRepository;
+	
+	@Autowired
 	VersionMapper versionMapper;
 	
 	@Autowired
 	AdminAccountRepository adminAccRepo;
+	
+	@Autowired
+	ManufacturerRepository manufacturerRepository;
 	
 	@Autowired
 	MemberOrderRepository memberOrderRepo;
@@ -87,6 +99,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	CategoryMapper categoryMapper;
+	
+	@Autowired
+	ProductMapper productMapper;
 	// create Category
 		
 	private Category createCategory(CategoryRequest categoryRequest) {
@@ -296,6 +311,16 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return false;
 
+	}
+
+	@Override
+	public Product createProduct(ProductCreateRequest productCreateRequest) throws CrudException {
+		Product product = new Product();
+		product.setName(productCreateRequest.getName());
+		product.setActived(productCreateRequest.isActived());
+		product.setCategory(categoryRepository.findById(productCreateRequest.getCategoryId()).get());
+		product.setManufacturer(manufacturerRepository.findById(productCreateRequest.getManufacturerId()).get());
+		return productRepository.save(product);
 	}
 
 }

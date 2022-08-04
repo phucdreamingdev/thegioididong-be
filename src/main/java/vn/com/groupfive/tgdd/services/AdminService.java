@@ -12,29 +12,42 @@ import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.Category;
 import vn.com.groupfive.tgdd.payload.entities.Member;
+import vn.com.groupfive.tgdd.payload.entities.Product;
 import vn.com.groupfive.tgdd.payload.entities.Promotion;
 
 public interface AdminService {
+	/*------------------------------CATEGORY-------------------------------------------*/
 	Category addCategory(CategoryRequest categoryRequest) throws CrudException;
 	
 	Category updateCategory(Long id, CategoryRequest categoryRequest) throws CrudException;
 	
+	List<CategorySlimDTO> getAllCategoryByLevel(int level);
+	
+	List<Object[]> getCategorySelectItemByLevel(int level);
+	
+	/*------------------------------PRODUCT-------------------------------------------*/
+	Product createProduct(ProductCreateRequest productCreateRequest) throws CrudException;
+	
+	VersionColorItemDTO getVersionColorById(Long id);
+	
+	/*------------------------------PROMOTION-------------------------------------------*/
 	Promotion addPromotions(PromotionRequest promotionRequest) throws CrudException;
 	
 	Promotion updatePromotions(Long id, PromotionRequest promotionRequest) throws CrudException;
-	
-	VersionColorItemDTO getVersionColorById(Long id);
 	
 	AdminAccount login(String username, String password);
 	
 	AdminAccount getAdminAccountByUsername(String username);
 	
 	List<AdminAccount> getAllAccount();
+	
+	/*------------------------------MEMBER-------------------------------------------*/
 	
 	List<MemberOrderDTO> getAllMemberOrders();
 	
@@ -50,18 +63,18 @@ public interface AdminService {
 	
 	List<VersionColorSlimDTO> searchVersionColorByName(String name);
 	
-	List<CategorySlimDTO> getAllCategoryByLevel(int level);
+	boolean updateOrderStatusByMemberOrderIdAndStatus(Long memberOrderId, String status);
 	
-
+	/*------------------------------BRANCH-------------------------------------------*/
 	Branch addBranch(BranchCreateRequest branchRequest) throws CrudException;
 	
 	Branch updateBranch(Long id,BranchCreateRequest branchRequest) throws CrudException;
 	
 	List<BranchSlimResponeDTO> getAllBranches();	
 
-	List<Object[]> getCategorySelectItemByLevel(int level);
 	
-	boolean updateOrderStatusByMemberOrderIdAndStatus(Long memberOrderId, String status);
+	
+	
 
 
 	
