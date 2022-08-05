@@ -347,29 +347,28 @@ public class AdminServiceImpl implements AdminService {
 	public Transaction addTransaction(TransactionRequest transactionRequest) throws CrudException {
 		Set<TransactionDetail> transactionDetails = new HashSet<>();
 		int total =0;
-//		for (TransactionDetailRequest transactionDetail : transactionRequest.getTransactionDetailRequests()) {
-//			TransactionDetail transactionDetailEntity = new TransactionDetail();
-//			transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),
-//					transactionDetail.getVersionColorId()).getStock());
-//			transactionDetailEntity.setNote(transactionDetail.getNote());
-//			transactionDetailEntity.setTransactionQuantity(transactionDetail.getTransactionQuantity());
-//			transactionDetailEntity.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
-//			total += transactionDetail.getTransactionQuantity();
-//			
-//			if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
-//				BranchStock branchStock= branchStockRepo.findById(transactionDetail.getVersionColorId()).get();
-//				branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
-//				branchStockRepo.save(branchStock);
-//			}
-//		}
-//		
-//		Transaction transaction = new Transaction();
-//		transaction.setDetail(transactionRequest.getDetail());
-//		transaction.setBranch(branchRepo.findById(transactionRequest.getBranchId()).get());
-//		transaction.setTransactionDetails(transactionDetails);
-//		transaction.setTotal(total);
-//		return transactionRepository.save(transaction);
-		return null;
+		for (TransactionDetailRequest transactionDetail : transactionRequest.getTransactionDetailRequests()) {
+			TransactionDetail transactionDetailEntity = new TransactionDetail();
+			transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),
+					transactionDetail.getVersionColorId()).getStock());
+			transactionDetailEntity.setNote(transactionDetail.getNote());
+			transactionDetailEntity.setTransactionQuantity(transactionDetail.getTransactionQuantity());
+			transactionDetailEntity.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
+			total += transactionDetail.getTransactionQuantity();
+			
+			if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
+				BranchStock branchStock= branchStockRepo.findById(transactionDetail.getVersionColorId()).get();
+				branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
+				branchStockRepo.save(branchStock);
+			}
+		}
+		
+		Transaction transaction = new Transaction();
+		transaction.setDetail(transactionRequest.getDetail());
+		transaction.setBranch(branchRepo.findById(transactionRequest.getBranchId()).get());
+		transaction.setTransactionDetails(transactionDetails);
+		transaction.setTotal(total);
+		return transactionRepository.save(transaction);
 	}
 
 	@Override
