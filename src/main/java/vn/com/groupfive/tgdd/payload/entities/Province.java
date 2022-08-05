@@ -18,9 +18,14 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "province")
 public class Province {
@@ -37,10 +42,7 @@ public class Province {
 	@ToString.Exclude
 	private Set<District> districts = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "province_promotion", 
-	joinColumns = { @JoinColumn(name = "province_id") }, 
-	inverseJoinColumns = {@JoinColumn(name = "promotion_id")})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "provinces")
 	private Set<Promotion> promotions = new HashSet<>();
 
 }

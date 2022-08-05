@@ -16,10 +16,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "promotion")
@@ -44,24 +46,13 @@ public class Promotion {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "promotion_verion_color", 
 	joinColumns = { @JoinColumn(name = "promotion_id") }, 
-	inverseJoinColumns = {@JoinColumn(name = "province_id")})
+	inverseJoinColumns = {@JoinColumn(name = "version_color_id")})
 	private Set<VersionColor> versionColors = new HashSet<>();
 
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "promotions")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "promotion_province", 
+	joinColumns = { @JoinColumn(name = "province_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "promotion_id")})
 	private Set<Province> provinces = new HashSet<>();
-
-	//contructor to create promotion
-	public Promotion(int promotionPercent, Date startDate, Date endDate, boolean isActived,
-			Set<VersionColor> versionColors, Set<Province> provinces) {
-		
-		this.promotionPercent = promotionPercent;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.isActived = isActived;
-		this.versionColors = versionColors;
-		this.provinces = provinces;
-	}
-	
 	
 }

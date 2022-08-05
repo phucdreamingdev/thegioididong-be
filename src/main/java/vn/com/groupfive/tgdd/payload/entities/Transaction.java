@@ -18,12 +18,15 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Data
-@Entity
+@Getter
+@Setter
 @NoArgsConstructor
+@Entity
 @Table(name = "transactions")
 public class Transaction {
 	@Id

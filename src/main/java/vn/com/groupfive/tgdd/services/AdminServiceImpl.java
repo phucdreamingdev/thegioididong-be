@@ -192,7 +192,7 @@ public class AdminServiceImpl implements AdminService {
 		promotion.setStartDate(promotionRequest.getStartDate());
 		promotion.setEndDate(promotionRequest.getEndDate());
 		promotion.setActived(promotionRequest.isActived());
-		promotion.setVersionColors(new HashSet<>(versionColorRepository.findAllById(promotionRequest.getProvinceIds())));
+		promotion.setVersionColors(new HashSet<>(versionColorRepository.findAllById(promotionRequest.getVersionColorIds())));
 		promotion.setProvinces(new HashSet<>(provinceRepository.findAllById(promotionRequest.getProvinceIds())));
 		return promotion;
 	}
