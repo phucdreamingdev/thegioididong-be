@@ -19,6 +19,7 @@ import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.ImageGroupVersionDTO;
 import vn.com.groupfive.tgdd.payload.dto.ManufacturerDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
@@ -157,5 +158,9 @@ public class CustomerController {
 	public String checkoutCart(@RequestParam String fullName, String phoneNumber, boolean gender, boolean deliveryAD, Long provinceId, Long districtId, Long wardId, String memberAddress, Date receiveDate) {
 		return customerService.checkOutCart(fullName, phoneNumber, gender, deliveryAD, provinceId, districtId, wardId, memberAddress, receiveDate);
 	}
-		
+	
+	@GetMapping("/get-all-image-group-version")
+	public ImageGroupVersionDTO getAllImageGroupVersion(@RequestParam Long groupId, Long versionId) {
+		return customerService.getAllImageGroupVersion(groupId, versionId);
+	}
 }

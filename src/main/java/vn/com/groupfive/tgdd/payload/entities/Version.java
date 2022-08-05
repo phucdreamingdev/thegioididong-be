@@ -36,8 +36,8 @@ public class Version {
 	@Column(name = "video_url")
 	private String videoUrl;
 	
-	@Column(name = "isDefault")
-	private boolean isDefault;
+//	@Column(name = "isDefault")
+//	private boolean isDefault;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id")

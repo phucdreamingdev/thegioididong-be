@@ -17,6 +17,7 @@ import vn.com.groupfive.tgdd.payload.dto.Cart;
 import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.ImageGroupVersionDTO;
 import vn.com.groupfive.tgdd.payload.dto.ItemCartDTO;
 import vn.com.groupfive.tgdd.payload.dto.ManufacturerDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
@@ -35,6 +36,7 @@ import vn.com.groupfive.tgdd.payload.entities.Ward;
 import vn.com.groupfive.tgdd.payload.mapper.AddressMapper;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
+import vn.com.groupfive.tgdd.payload.mapper.ImageMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ManufacturerMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
@@ -43,6 +45,7 @@ import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
 import vn.com.groupfive.tgdd.repositories.DistrictRepository;
+import vn.com.groupfive.tgdd.repositories.ImageGroupVersionRepository;
 import vn.com.groupfive.tgdd.repositories.ManufacturerRepository;
 import vn.com.groupfive.tgdd.repositories.MemberAddressRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
@@ -92,6 +95,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	AddressMapper addressMapper;
+	
+	@Autowired
+	ImageMapper imageMapper;
+	
+	@Autowired
+	ImageGroupVersionRepository imageGroupVersionRepository;
 
 	@Autowired
 	ProvinceRepository provinceRepo;
@@ -462,6 +471,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<ManufacturerDTO> getManufacturerByCategoryId(Long categoryId) {
 		return manufacturerMapper.manufacturersToManufacturerDTOs(manufacturerRepository.getByCategoryId(categoryId));
+	}
+
+	@Override
+	public ImageGroupVersionDTO getAllImageGroupVersion(Long groupId, Long versionId) {
+		return imageMapper.imageGroupVersionToImageGroupVersionDto(imageGroupVersionRepository.findByImageGroupIdAndVersionId(groupId, versionId));
 	}
 
 }

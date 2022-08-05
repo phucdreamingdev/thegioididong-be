@@ -40,7 +40,7 @@ public interface AdminService {
 	/*------------------------------PRODUCT-------------------------------------------*/
 	Product createProduct(ProductCreateRequest productCreateRequest) throws CrudException;
 
-	VersionColorItemDTO getVersionColorById(Long id);
+//	VersionColorItemDTO getVersionColorById(Long id);
 
 	/*------------------------------PROMOTION-------------------------------------------*/
 	Promotion addPromotions(PromotionRequest promotionRequest) throws CrudException;
@@ -67,7 +67,7 @@ public interface AdminService {
 
 	List<MemberDTO> getAllMember();
 
-	List<VersionColorSlimDTO> searchVersionColorByName(String name);
+//	List<VersionColorSlimDTO> searchVersionColorByName(String name);
 
 	boolean updateOrderStatusByMemberOrderIdAndStatus(Long memberOrderId, String status);
 

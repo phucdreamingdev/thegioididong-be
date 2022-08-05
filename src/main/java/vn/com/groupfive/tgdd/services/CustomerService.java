@@ -8,6 +8,7 @@ import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CartProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.ImageGroupVersionDTO;
 import vn.com.groupfive.tgdd.payload.dto.ManufacturerDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductListItemDTO;
@@ -61,5 +62,7 @@ public interface CustomerService {
 	
 	//MANUFACTURER FUNCTION
 	List<ManufacturerDTO> getManufacturerByCategoryId(Long categoryId);
+	
+	ImageGroupVersionDTO getAllImageGroupVersion(Long groupId, Long versionId);
 
 }

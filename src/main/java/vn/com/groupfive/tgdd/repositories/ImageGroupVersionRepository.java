@@ -9,5 +9,5 @@ import vn.com.groupfive.tgdd.payload.entities.ImageGroupVersion;
 @Repository
 public interface ImageGroupVersionRepository extends JpaRepository<ImageGroupVersion, Long>{
 	
-//	ImageGroupVersion findByImageGroupIdAndVersionId(Long groupId, Long versionId);
+	ImageGroupVersion findByImageGroupIdAndVersionId(Long groupId, Long versionId);
 }

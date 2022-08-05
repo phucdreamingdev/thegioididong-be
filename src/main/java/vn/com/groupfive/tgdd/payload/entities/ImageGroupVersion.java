@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -31,7 +32,7 @@ public class ImageGroupVersion {
 	@Column(name = "detail", columnDefinition = "nvarchar(200)")
 	private String detail;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "image_group_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
