@@ -1,5 +1,7 @@
 package vn.com.groupfive.tgdd.payload.dto;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -11,13 +13,21 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WardDTO {
+
+public class TransactionDTO {
 	@JsonProperty("id")
 	private Long id;
 	
-	@JsonProperty("name")
-	private String name;
+	@JsonProperty("transaction_date")
+	private Date transactionDate;
 	
-	@JsonProperty("district")
-	private DistrictDTO district;
+	@JsonProperty("total")
+	private int total;
+	
+	@JsonProperty("detail")
+	private String detail;
+	
+	@JsonProperty("branch")
+	private BranchSlimResponeDTO branch;
+	
 }

@@ -1,7 +1,6 @@
 package vn.com.groupfive.tgdd.controllers;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,18 +24,18 @@ import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
-import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.TransactionDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
-import vn.com.groupfive.tgdd.payload.dto.request.ProvinceRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.TransactionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.VietnamAddressRequest;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.PromotionMapper;
+import vn.com.groupfive.tgdd.payload.mapper.TransactionMapper;
 import vn.com.groupfive.tgdd.services.AdminService;
 
 @RestController
@@ -58,8 +57,8 @@ public class AdminController {
 	@Autowired
 	ProductMapper productMapper;
 	
-//	@Autowired
-//	TransactionMapper transactionMapper;
+	@Autowired
+	TransactionMapper transactionMapper;
 
 	//CATEGORY FUNCTION
 	@PostMapping("/create-new-category")
@@ -105,15 +104,15 @@ public class AdminController {
 	}
 	//TRANSACTION FUNCTION
 
-//	@PostMapping("/create-new-transaction")
-//	public TransactionDTO addTransaction(@RequestBody TransactionRequest transaction) throws CrudException {
-//		return transactionMapper.transactionToTransactionDto(adminService.addTransaction(transaction));
-//	}
-//	
-//	@PutMapping("/update-transaction/{id}")
-//	public TransactionDTO updateTransaction(@RequestBody TransactionRequest transaction) throws CrudException{
-//		return transactionMapper.transactionToTransactionDto(adminService.updateTransaction(transaction));
-//	}
+	@PostMapping("/create-new-transaction")
+	public TransactionDTO addTransaction(@RequestBody TransactionRequest transaction) throws CrudException {
+		return transactionMapper.transactionToTransactionDto(adminService.addTransaction(transaction));
+	}
+	
+	@PutMapping("/update-transaction/{id}")
+	public TransactionDTO updateTransaction(@RequestBody TransactionRequest transaction) throws CrudException{
+		return transactionMapper.transactionToTransactionDto(adminService.updateTransaction(transaction));
+	}
 	
 	//PRODUCT FUNCTION
 	@PostMapping("/create-new-product")

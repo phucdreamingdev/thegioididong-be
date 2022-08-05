@@ -1,6 +1,5 @@
 package vn.com.groupfive.tgdd.services;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,11 +23,13 @@ import vn.com.groupfive.tgdd.payload.dto.request.DistrictRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProvinceRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.TransactionDetailRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.TransactionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.VietnamAddressRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.WardRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
+import vn.com.groupfive.tgdd.payload.entities.BranchStock;
 import vn.com.groupfive.tgdd.payload.entities.Category;
 import vn.com.groupfive.tgdd.payload.entities.District;
 import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
@@ -361,32 +362,31 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Transaction addTransaction(TransactionRequest transactionRequest) throws CrudException {
 		Set<TransactionDetail> transactionDetails = new HashSet<>();
-		int total = 0;
-		// for (TransactionDetailRequest transactionDetail :
-		// transactionRequest.getTransactionDetailRequests()) {
-		// TransactionDetail transactionDetailEntity = new TransactionDetail();
-		// transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),
-		// transactionDetail.getVersionColorId()).getStock());
-		// transactionDetailEntity.setNote(transactionDetail.getNote());
-		// transactionDetailEntity.setTransactionQuantity(transactionDetail.getTransactionQuantity());
-		// transactionDetailEntity.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
-		// total += transactionDetail.getTransactionQuantity();
-		//
-		// if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
-		// BranchStock branchStock=
-		// branchStockRepo.findById(transactionDetail.getVersionColorId()).get();
-		// branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
-		// branchStockRepo.save(branchStock);
-		// }
-		// }
-		//
-		// Transaction transaction = new Transaction();
-		// transaction.setDetail(transactionRequest.getDetail());
-		// transaction.setBranch(branchRepo.findById(transactionRequest.getBranchId()).get());
-		// transaction.setTransactionDetails(transactionDetails);
-		// transaction.setTotal(total);
-		// return transactionRepository.save(transaction);
-		return null;
+
+		int total =0;
+		for (TransactionDetailRequest transactionDetail : transactionRequest.getTransactionDetailRequests()) {
+			TransactionDetail transactionDetailEntity = new TransactionDetail();
+			transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),
+					transactionDetail.getVersionColorId()).getStock());
+			transactionDetailEntity.setNote(transactionDetail.getNote());
+			transactionDetailEntity.setTransactionQuantity(transactionDetail.getTransactionQuantity());
+			transactionDetailEntity.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
+			total += transactionDetail.getTransactionQuantity();
+			
+			if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
+				BranchStock branchStock= branchStockRepo.findById(transactionDetail.getVersionColorId()).get();
+				branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
+				branchStockRepo.save(branchStock);
+			}
+		}
+		
+		Transaction transaction = new Transaction();
+		transaction.setDetail(transactionRequest.getDetail());
+		transaction.setBranch(branchRepo.findById(transactionRequest.getBranchId()).get());
+		transaction.setTransactionDetails(transactionDetails);
+		transaction.setTotal(total);
+		return transactionRepository.save(transaction);
+
 	}
 
 	@Override
