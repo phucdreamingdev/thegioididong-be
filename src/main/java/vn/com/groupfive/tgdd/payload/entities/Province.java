@@ -36,7 +36,7 @@ public class Province {
 
 	@Column(name = "name", columnDefinition = "nvarchar(50)")
 	private String name;
-
+	
 	@OneToMany(mappedBy = "province", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
@@ -44,5 +44,6 @@ public class Province {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "provinces")
 	private Set<Promotion> promotions = new HashSet<>();
+
 
 }

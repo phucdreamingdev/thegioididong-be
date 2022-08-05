@@ -1,6 +1,7 @@
 package vn.com.groupfive.tgdd.services;
 
 import java.util.List;
+import java.util.Set;
 
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
@@ -14,7 +15,9 @@ import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ProvinceRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.TransactionRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.VietnamAddressRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.Category;
@@ -77,5 +80,7 @@ public interface AdminService {
 	Branch updateBranch(Long id, BranchCreateRequest branchRequest) throws CrudException;
 
 	List<BranchSlimResponeDTO> getAllBranches();
+	
+	boolean addVietNamAddress (VietnamAddressRequest vietnamAddressRequest);
 
 }

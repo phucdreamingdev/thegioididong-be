@@ -18,6 +18,15 @@ public class WardDTO {
 	@JsonProperty("name")
 	private String name;
 	
+	@JsonProperty("codeName")
+	private String codeName;
+	
+	@JsonProperty("divisionType")
+	private String divisionType;
+	
+	@JsonProperty("shortCodename")
+	private String shortCodename;
+	
 	@JsonProperty("district")
 	private DistrictDTO district;
 }

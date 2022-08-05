@@ -1,6 +1,7 @@
 package vn.com.groupfive.tgdd.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,8 @@ import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ProvinceRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.VietnamAddressRequest;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
@@ -186,6 +189,11 @@ public class AdminController {
 	@GetMapping("/update-order")
 	public boolean updateMemberOrderStatusByIdAndStatus(Long memberOrderId, String status) {
 		return adminService.updateOrderStatusByMemberOrderIdAndStatus(memberOrderId, status);
+	}
+	
+	@PostMapping("/viet-nam")
+	public boolean vietNam(@RequestBody VietnamAddressRequest vietnamAddressRequest) {
+		return adminService.addVietNamAddress(vietnamAddressRequest);
 	}
 	
 
