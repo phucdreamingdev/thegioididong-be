@@ -17,6 +17,7 @@ import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
+import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.DistrictRequest;
@@ -43,6 +44,7 @@ import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
+import vn.com.groupfive.tgdd.payload.mapper.PromotionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
@@ -132,6 +134,12 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	ProductMapper productMapper;
+	
+	@Autowired
+	PromotionRepository promotionRepo;
+	
+	@Autowired
+	PromotionMapper promotionMapper;
 	// create Category
 
 	private Category createCategory(CategoryRequest categoryRequest) {
@@ -452,6 +460,11 @@ public class AdminServiceImpl implements AdminService {
 		}
 	
 		return true;
+	}
+
+	@Override
+	public List<PromotionDTO> getAllPromotion() {
+		return promotionMapper.promotionToPromotionDtos(promotionRepo.findAll());
 	}
 
 }

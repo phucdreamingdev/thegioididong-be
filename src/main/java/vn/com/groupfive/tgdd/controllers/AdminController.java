@@ -102,6 +102,11 @@ public class AdminController {
 			@RequestBody PromotionRequest promotion) throws CrudException {
 		return promotioMapper.promotionToPromotionDto(adminService.updatePromotions(id,promotion));
 	}
+	
+	@GetMapping("/get-all-promotion")
+	public List<PromotionDTO> getAllPromotion(){
+		return adminService.getAllPromotion();
+	}
 	//TRANSACTION FUNCTION
 
 	@PostMapping("/create-new-transaction")
