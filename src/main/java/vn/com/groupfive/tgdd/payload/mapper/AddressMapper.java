@@ -5,8 +5,10 @@ import java.util.List;
 import org.mapstruct.Mapper;
 
 import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.WardDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardSlimDTO;
 import vn.com.groupfive.tgdd.payload.entities.District;
 import vn.com.groupfive.tgdd.payload.entities.Province;
 import vn.com.groupfive.tgdd.payload.entities.Ward;
@@ -24,4 +26,15 @@ public interface AddressMapper {
 	WardDTO wardToWardDto(Ward ward);
 
 	List<WardDTO> wardsToWardDtos(List<Ward> wards);
+	
+	
+	
+	
+	DistrictSlimDTO districtTDistrictSlimDTO(District district);
+	List<DistrictSlimDTO> districtsToDistrictSlimDTOs(List<District> districts);
+	
+	WardSlimDTO wardToWardSlimDto(Ward ward);
+
+	List<WardSlimDTO> wardsToWardSlimDTOs(List<Ward> wards);
+	
 }

@@ -19,12 +19,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.TransactionDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
@@ -200,5 +205,21 @@ public class AdminController {
 		return adminService.addVietNamAddress(vietnamAddressRequest);
 	}
 	
+	
+	/*LONG*/
+	@GetMapping("/get-all-province")
+	public List<ProvinceDTO> getAllProvince() {
+		return adminService.getAllProvince();
+	}
+	
+	@GetMapping("/get-all-district-by-province-id/{id}")
+	public List<DistrictSlimDTO> getAllDistrictByProvinceId(@PathVariable Long id) {
+		return adminService.getDistrictByProvinceId(id);
+	}
+	
+	@GetMapping("/get-all-ward-by-district-id/{id}")
+	public List<WardSlimDTO> getAllWardByDistrictId(@PathVariable Long id) {
+		return adminService.getWardByDistrictId(id);
+	}
 
 }

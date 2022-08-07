@@ -293,7 +293,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<DistrictDTO> getAllDistrictByProvinceId(Long provinceId) {
-		return addressMapper.districtsToDistrictDtos(districtRepo.getAllDistrictByProvinceId(provinceId));
+		return addressMapper.districtsToDistrictDtos(new ArrayList<>(provinceRepo.findById(provinceId).get().getDistricts()));
 	}
 
 	@Override

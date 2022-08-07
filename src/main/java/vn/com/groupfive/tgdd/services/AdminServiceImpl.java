@@ -1,5 +1,6 @@
 package vn.com.groupfive.tgdd.services;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,10 +15,15 @@ import vn.com.groupfive.tgdd.exceptions.PromotionDoesNotExist;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
+import vn.com.groupfive.tgdd.payload.dto.DistrictSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardDTO;
+import vn.com.groupfive.tgdd.payload.dto.WardSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.DistrictRequest;
@@ -40,6 +46,7 @@ import vn.com.groupfive.tgdd.payload.entities.Province;
 import vn.com.groupfive.tgdd.payload.entities.Transaction;
 import vn.com.groupfive.tgdd.payload.entities.TransactionDetail;
 import vn.com.groupfive.tgdd.payload.entities.Ward;
+import vn.com.groupfive.tgdd.payload.mapper.AddressMapper;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
@@ -122,6 +129,10 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	BranchRepository branchRepository;
+	
+	
+	@Autowired
+	AddressMapper addressMapper;
 	
 	@Autowired
 	MemberMapper memberMapper;
@@ -465,6 +476,23 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<PromotionDTO> getAllPromotion() {
 		return promotionMapper.promotionToPromotionDtos(promotionRepo.findAll());
+	}
+
+	/*LONG*/
+
+	@Override
+	public List<DistrictSlimDTO> getDistrictByProvinceId(Long id) {
+		return addressMapper.districtsToDistrictSlimDTOs(new ArrayList<>(provinceRepository.findById(id).get().getDistricts()));
+	}
+
+	@Override
+	public List<WardSlimDTO> getWardByDistrictId(Long id) {
+		return addressMapper.wardsToWardSlimDTOs(new ArrayList<>(districtRepository.findById(id).get().getWards()));
+	}
+
+	@Override
+	public List<ProvinceDTO> getAllProvince() {		
+		return addressMapper.provincesToProvinceDtos(provinceRepository.findAll());
 	}
 
 }
