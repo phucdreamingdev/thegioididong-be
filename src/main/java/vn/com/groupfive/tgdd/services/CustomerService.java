@@ -63,6 +63,9 @@ public interface CustomerService {
 	//MANUFACTURER FUNCTION
 	List<ManufacturerDTO> getManufacturerByCategoryId(Long categoryId);
 	
+	//GET ALL PRODUCT BY MANUFACTURER-ID
+	List<VersionColorItemDTO>getAllProductByManufacturerId(Long id);
+	
 	ImageGroupVersionDTO getAllImageGroupVersion(Long groupId, Long versionId);
 
 }

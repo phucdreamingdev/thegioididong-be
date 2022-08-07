@@ -477,5 +477,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public ImageGroupVersionDTO getAllImageGroupVersion(Long groupId, Long versionId) {
 		return imageMapper.imageGroupVersionToImageGroupVersionDto(imageGroupVersionRepository.findByImageGroupIdAndVersionId(groupId, versionId));
 	}
-
+	
+	//GET ALL PRODUCT BY MANUFACTURER-ID
+	@Override
+	public List<VersionColorItemDTO> getAllProductByManufacturerId(Long id) {	
+		return versionMapper.versionColorsToVersionColorItemDtos(versionColorRepository.getAllProductByManufacturerId(id));
+	}
 }
