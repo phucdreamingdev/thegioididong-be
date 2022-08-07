@@ -16,9 +16,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -35,9 +38,11 @@ public class Promotion {
 	private int promotionPercent;
 
 	@Column(name = "start_date")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date startDate;
 
 	@Column(name = "end_date")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date endDate;
 
 	@Column(name = "is_actived")

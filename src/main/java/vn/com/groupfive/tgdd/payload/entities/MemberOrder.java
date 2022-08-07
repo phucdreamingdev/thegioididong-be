@@ -18,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,12 +39,15 @@ public class MemberOrder {
 	private Long id;
 
 	@Column(name = "order_date")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date orderDate;
 
 	@Column(name = "delivery_date")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date deliveryDate;
 
 	@Column(name = "recieve_date")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date recieveDate;
 	
 	@Column(name = "total_payment")

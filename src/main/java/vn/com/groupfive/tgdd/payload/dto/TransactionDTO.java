@@ -2,6 +2,8 @@ package vn.com.groupfive.tgdd.payload.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ public class TransactionDTO {
 	private Long id;
 	
 	@JsonProperty("transaction_date")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date transactionDate;
 	
 	@JsonProperty("total")
