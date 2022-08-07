@@ -409,7 +409,7 @@ public class AdminServiceImpl implements AdminService {
 			total += transactionDetail.getTransactionQuantity();
 			
 			if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
-				BranchStock branchStock= branchStockRepo.findById(transactionDetail.getVersionColorId()).get();
+				BranchStock branchStock= branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),transactionDetail.getVersionColorId());
 				branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
 				branchStockRepo.save(branchStock);
 			}
