@@ -1,12 +1,10 @@
 package vn.com.groupfive.tgdd.services;
 
 import java.util.List;
-import java.util.Set;
 
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
-import vn.com.groupfive.tgdd.payload.dto.DistrictDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
@@ -14,16 +12,13 @@ import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
-import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
-import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
-import vn.com.groupfive.tgdd.payload.dto.WardDTO;
+import vn.com.groupfive.tgdd.payload.dto.TransactionDTO;
 import vn.com.groupfive.tgdd.payload.dto.WardSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ColorRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
-import vn.com.groupfive.tgdd.payload.dto.request.ProvinceRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.TransactionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.VersionColorRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.VersionRequest;
@@ -52,7 +47,8 @@ public interface AdminService {
 	Transaction addTransaction(TransactionRequest transactionRequest) throws CrudException;
 
 	Transaction updateTransaction(Long id ) throws CrudException;
-
+	
+	List<TransactionDTO> getAllTransaction();
 	/*------------------------------PRODUCT-------------------------------------------*/
 	Product createProduct(ProductCreateRequest productCreateRequest) throws CrudException;
 

@@ -22,6 +22,7 @@ import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
+import vn.com.groupfive.tgdd.payload.dto.TransactionDTO;
 import vn.com.groupfive.tgdd.payload.dto.WardSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
@@ -57,6 +58,7 @@ import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.MemberMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.PromotionMapper;
+import vn.com.groupfive.tgdd.payload.mapper.TransactionMapper;
 import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
@@ -163,6 +165,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	PromotionMapper promotionMapper;
+	
+	@Autowired
+	TransactionMapper transactionMapper;
 	// create Category
 
 	private Category createCategory(CategoryRequest categoryRequest) {
@@ -423,6 +428,11 @@ public class AdminServiceImpl implements AdminService {
 
 	}
 
+	@Override
+	public List<TransactionDTO> getAllTransaction(){
+		return transactionMapper.transactionToTransactionDtos(transactionRepository.findAll());
+	}
+	
 	@Override
 	public Transaction updateTransaction(Long id) throws CrudException {
 
