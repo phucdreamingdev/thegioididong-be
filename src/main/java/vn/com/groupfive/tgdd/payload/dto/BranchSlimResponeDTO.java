@@ -18,4 +18,7 @@ public class BranchSlimResponeDTO {
 	@JsonProperty("ward")
 	private WardDTO ward;
 	
+	@JsonProperty("status")
+	private boolean status;
+	
 }
