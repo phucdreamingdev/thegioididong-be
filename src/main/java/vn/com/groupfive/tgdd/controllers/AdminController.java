@@ -19,23 +19,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import vn.com.groupfive.tgdd.exceptions.handlers.CrudException;
 import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.ColorDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.TransactionDTO;
+import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.VersionItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ColorRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.TransactionRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.VersionColorRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.VersionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.VietnamAddressRequest;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
 import vn.com.groupfive.tgdd.payload.mapper.CategoryMapper;
 import vn.com.groupfive.tgdd.payload.mapper.ProductMapper;
 import vn.com.groupfive.tgdd.payload.mapper.PromotionMapper;
 import vn.com.groupfive.tgdd.payload.mapper.TransactionMapper;
+import vn.com.groupfive.tgdd.payload.mapper.VersionMapper;
+import vn.com.groupfive.tgdd.repositories.ColorRepository;
 import vn.com.groupfive.tgdd.services.AdminService;
 
 @RestController
@@ -60,6 +68,9 @@ public class AdminController {
 	@Autowired
 	TransactionMapper transactionMapper;
 
+	@Autowired
+	VersionMapper versionMapper;
+	
 	//CATEGORY FUNCTION
 	@PostMapping("/create-new-category")
 	public CategorySlimDTO createCategory(@RequestBody CategoryRequest category) throws CrudException {
@@ -126,11 +137,20 @@ public class AdminController {
 		return productMapper.productToProductDto(adminService.createProduct(productCreateRequest));
 	}
 	
-//	@PostMapping("/create-new-version")
-//	public ProductDTO createVersion(
-//			@RequestBody VersionRequest versionRequest) throws CrudException {
-//		return productMapper.productToProductDto(adminService.createProduct(productCreateRequest));
-//	}
+	@PostMapping("/create-new-version")
+	public VersionItemDTO createVersion(@RequestBody VersionRequest versionRequest) throws CrudException {
+		return versionMapper.versionToVersionItemDto(adminService.createVersion(versionRequest));
+	}
+	
+	@PostMapping("/create-new-version-color")
+	public VersionColorItemDTO createVersionColor(@RequestBody VersionColorRequest versionColorRequest) throws CrudException {
+		return versionMapper.versionColorToVersionColorItemDto(adminService.createVersionColor(versionColorRequest));
+	}
+	
+	@PostMapping("/create-new-color")
+	public ColorDTO createColor(@RequestBody ColorRequest colorRequest) throws CrudException {
+		return versionMapper.colorToColorDto(adminService.createColor(colorRequest));
+	}
 	
 //	@GetMapping("/get-version-color-by-id")
 //	public VersionColorItemDTO getVersionColorById(Long id) {

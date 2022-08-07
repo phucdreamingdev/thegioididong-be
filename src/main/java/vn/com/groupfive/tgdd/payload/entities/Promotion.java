@@ -51,8 +51,8 @@ public class Promotion {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "promotion_province", 
-	joinColumns = { @JoinColumn(name = "province_id") }, 
-	inverseJoinColumns = {@JoinColumn(name = "promotion_id")})
+	joinColumns = { @JoinColumn(name = "promotion_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "province_id")})
 	private Set<Province> provinces = new HashSet<>();
 	
 }
