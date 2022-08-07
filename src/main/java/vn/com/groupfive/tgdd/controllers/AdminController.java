@@ -21,6 +21,7 @@ import vn.com.groupfive.tgdd.payload.dto.BranchSlimResponeDTO;
 import vn.com.groupfive.tgdd.payload.dto.CategorySlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.ColorDTO;
 import vn.com.groupfive.tgdd.payload.dto.DistrictSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.ManufacturerDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
@@ -152,6 +153,11 @@ public class AdminController {
 	@PostMapping("/create-new-color")
 	public ColorDTO createColor(@RequestBody ColorRequest colorRequest) throws CrudException {
 		return versionMapper.colorToColorDto(adminService.createColor(colorRequest));
+	}
+	
+	@GetMapping("/get-all-product") 
+	public List<ProductDTO> getAllProduct() {
+		return adminService.getAllProduct();
 	}
 	
 //	@GetMapping("/get-version-color-by-id")

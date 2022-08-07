@@ -19,6 +19,7 @@ import vn.com.groupfive.tgdd.payload.dto.DistrictSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberDTO;
 import vn.com.groupfive.tgdd.payload.dto.MemberOrderDTO;
 import vn.com.groupfive.tgdd.payload.dto.OrderDetailDTO;
+import vn.com.groupfive.tgdd.payload.dto.ProductDTO;
 import vn.com.groupfive.tgdd.payload.dto.PromotionDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProvinceDTO;
 import vn.com.groupfive.tgdd.payload.dto.WardSlimDTO;
@@ -593,6 +594,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<ProvinceDTO> getAllProvince() {
 		return addressMapper.provincesToProvinceDtos(provinceRepository.findAll());
+	}
+
+	@Override
+	public List<ProductDTO> getAllProduct() {
+		return productMapper.productsToProductDtos(productRepository.findAllByIsActived(true));
 	}
 
 }

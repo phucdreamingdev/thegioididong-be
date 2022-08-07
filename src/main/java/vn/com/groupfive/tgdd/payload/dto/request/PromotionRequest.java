@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class PromotionRequest {
 
 	@NotNull
-	@Min(value = 10)
+	@Min(value = 1)
 	@Max(value = 100)
 	private int promotionPercent;
 	

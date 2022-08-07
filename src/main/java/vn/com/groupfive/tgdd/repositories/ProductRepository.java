@@ -20,4 +20,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 	@Query("SELECT p FROM Product p WHERE p.category.id = :id")
 	List<Product> findByCategoryId(@Param("id") Long categoryId);
 	
+	List<Product> findAllByIsActived(boolean isActived); 
+	
 }
