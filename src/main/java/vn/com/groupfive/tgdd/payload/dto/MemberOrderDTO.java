@@ -3,6 +3,8 @@ package vn.com.groupfive.tgdd.payload.dto;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +20,7 @@ public class MemberOrderDTO {
 	private Long id;
 	
 	@JsonProperty("orderDate")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date orderDate;
 	
 	@JsonProperty("totalPayment")

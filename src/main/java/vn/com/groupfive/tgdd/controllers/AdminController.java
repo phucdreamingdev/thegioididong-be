@@ -133,6 +133,11 @@ public class AdminController {
 		return transactionMapper.transactionToTransactionDto(adminService.updateTransaction(id));
 	}
 	
+	@GetMapping("/get-all-transaction")
+	public List<TransactionDTO> getAllTransaction(){
+		return adminService.getAllTransaction();
+	}
+	
 	//PRODUCT FUNCTION
 	@PostMapping("/create-new-product")
 	public ProductDTO createProduct(
