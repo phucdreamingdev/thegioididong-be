@@ -42,6 +42,9 @@ public class Transaction {
 	
 	@Column(name = "detail")
 	private String detail;
+	
+	@Column(name="is_actived")
+	private boolean isActived;
 	 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "branch_id")

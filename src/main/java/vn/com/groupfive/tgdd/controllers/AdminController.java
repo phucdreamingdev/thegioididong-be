@@ -128,8 +128,8 @@ public class AdminController {
 	}
 	
 	@PutMapping("/update-transaction/{id}")
-	public TransactionDTO updateTransaction(@RequestBody TransactionRequest transaction) throws CrudException{
-		return transactionMapper.transactionToTransactionDto(adminService.updateTransaction(transaction));
+	public TransactionDTO updateTransaction(@PathVariable Long id) throws CrudException{
+		return transactionMapper.transactionToTransactionDto(adminService.updateTransaction(id));
 	}
 	
 	//PRODUCT FUNCTION

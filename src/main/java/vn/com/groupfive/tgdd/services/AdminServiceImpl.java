@@ -106,10 +106,10 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	BranchRepository branchRepo;
-	
+
 	@Autowired
 	WardRepository warRepository;
-	
+
 	@Autowired
 	DistrictRepository districtRepository;
 
@@ -121,10 +121,10 @@ public class AdminServiceImpl implements AdminService {
 
 	// @Autowired
 	// VersionMapper versionMapper;
-	
+
 	@Autowired
 	ColorRepository colorRepository;
-	
+
 	@Autowired
 	VersionRepository versionRepository;
 
@@ -145,11 +145,10 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	BranchRepository branchRepository;
-	
-	
+
 	@Autowired
 	AddressMapper addressMapper;
-	
+
 	@Autowired
 	MemberMapper memberMapper;
 
@@ -161,10 +160,10 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	ProductMapper productMapper;
-	
+
 	@Autowired
 	PromotionRepository promotionRepo;
-	
+
 	@Autowired
 	PromotionMapper promotionMapper;
 	// create Category
@@ -220,8 +219,8 @@ public class AdminServiceImpl implements AdminService {
 		promotion.setStartDate(promotionRequest.getStartDate());
 		promotion.setEndDate(promotionRequest.getEndDate());
 		promotion.setActived(promotionRequest.isActived());
-		promotion
-				.setVersionColors(new HashSet<>(versionColorRepository.findAllById(promotionRequest.getVersionColorIds())));
+		promotion.setVersionColors(
+				new HashSet<>(versionColorRepository.findAllById(promotionRequest.getVersionColorIds())));
 		promotion.setProvinces(new HashSet<>(provinceRepository.findAllById(promotionRequest.getProvinceIds())));
 		return promotion;
 	}
@@ -398,41 +397,81 @@ public class AdminServiceImpl implements AdminService {
 	public Transaction addTransaction(TransactionRequest transactionRequest) throws CrudException {
 		Set<TransactionDetail> transactionDetails = new HashSet<>();
 
-		int total =0;
+		int total = 0;
 		for (TransactionDetailRequest transactionDetail : transactionRequest.getTransactionDetailRequests()) {
 			TransactionDetail transactionDetailEntity = new TransactionDetail();
-			transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),
-					transactionDetail.getVersionColorId()).getStock());
+			transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(
+					transactionRequest.getBranchId(), transactionDetail.getVersionColorId()).getStock());
 			transactionDetailEntity.setNote(transactionDetail.getNote());
 			transactionDetailEntity.setTransactionQuantity(transactionDetail.getTransactionQuantity());
-			transactionDetailEntity.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
+			transactionDetailEntity
+					.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
 			total += transactionDetail.getTransactionQuantity();
-			
-			if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
-				BranchStock branchStock= branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),transactionDetail.getVersionColorId());
-				branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
+
+			if (transactionDetailRepository.save(transactionDetailEntity) != null) {
+				BranchStock branchStock = branchStockRepo.findBranchStockByBranchIdAndVersionColorId(
+						transactionRequest.getBranchId(), transactionDetail.getVersionColorId());
+				branchStock.setStock(branchStock.getStock() + transactionDetail.getTransactionQuantity());
 				branchStockRepo.save(branchStock);
 			}
 		}
-		
+
 		Transaction transaction = new Transaction();
 		transaction.setDetail(transactionRequest.getDetail());
 		transaction.setBranch(branchRepo.findById(transactionRequest.getBranchId()).get());
 		transaction.setTransactionDetails(transactionDetails);
 		transaction.setTotal(total);
+		transaction.setActived(true);
 		return transactionRepository.save(transaction);
 
 	}
 
 	@Override
-	public Transaction updateTransaction(TransactionRequest transactionRequest) throws CrudException {
-		// TODO Auto-generated method stub
-		return null;
+	public Transaction updateTransaction(Long id) throws CrudException {
+
+//		Set<TransactionDetail> transactionDetails = new HashSet<>();
+//
+//		int total =0;
+//		for (TransactionDetailRequest transactionDetail : transactionRequest.getTransactionDetailRequests()) {
+//			TransactionDetail transactionDetailEntity = new TransactionDetail();
+//			transactionDetailEntity.setStock(branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),
+//					transactionDetail.getVersionColorId()).getStock());
+//			transactionDetailEntity.setNote(transactionDetail.getNote());
+//			transactionDetailEntity.setTransactionQuantity(transactionDetail.getTransactionQuantity());
+//			transactionDetailEntity.setVersionColor(versionColorRepository.findById(transactionDetail.getVersionColorId()).get());
+//			total -= transactionDetail.getTransactionQuantity();
+//			
+//			if(transactionDetailRepository.save(transactionDetailEntity)!= null) {
+//				BranchStock branchStock= branchStockRepo.findBranchStockByBranchIdAndVersionColorId(transactionRequest.getBranchId(),transactionDetail.getVersionColorId());
+//				branchStock.setStock(branchStock.getStock()+transactionDetail.getTransactionQuantity());
+//				branchStockRepo.save(branchStock);
+//			}
+//		}
+//		
+//		Transaction transaction = transactionRepository.findById(id).get();
+//		transaction.setDetail(transactionRequest.getDetail());
+//		transaction.setBranch(branchRepo.findById(transactionRequest.getBranchId()).get());
+//		transaction.setTransactionDetails(transactionDetails);
+//		transaction.setTotal(total);
+//		transaction.setActived(true);
+//		return transactionRepository.save(transaction);
+		Transaction transaction = transactionRepository.findById(id).get();
+		for (TransactionDetail transactionDetail : transaction.getTransactionDetails()) {
+			BranchStock branchStock = branchStockRepo.findBranchStockByBranchIdAndVersionColorId(
+					transaction.getBranch().getId(), transactionDetail.getVersionColor().getId());
+			int currentBranchStock = branchStock.getStock();
+			int transactionQuantity= transactionDetail.getTransactionQuantity();
+			branchStock.setStock(currentBranchStock - transactionQuantity);
+			branchStockRepo.save(branchStock);
+		}
+		transaction.setActived(false);
+		transactionRepository.save(transaction);
+		return transaction;
 	}
 
 	@Override
 	public boolean addVietNamAddress(VietnamAddressRequest vietnamAddressRequest) {
-		//Luu thu 1 thang duoi dang luu 1 lan 
+		// Luu thu 1 thang duoi dang luu 1 lan
 //		Province provice = new Province();
 //		provice.setName("Province 1");
 //		
@@ -456,36 +495,36 @@ public class AdminServiceImpl implements AdminService {
 //		provice.setDistricts(districts);
 //		provinceRepository.save(provice);
 		for (ProvinceRequest vietnam : vietnamAddressRequest.getProvinces()) {
-			//Create province
+			// Create province
 			Province province = new Province();
 			province.setName(vietnam.getName());
 			provinceRepository.save(province);
-			
+
 			Set<District> districts = new HashSet<>();
-			//Pass set value to set Entity
+			// Pass set value to set Entity
 			for (DistrictRequest vietnamdistrict : vietnam.getDistricts()) {
 				Set<Ward> wards = new HashSet<>();
-				//Nho set ward list trong vong lap
+				// Nho set ward list trong vong lap
 				District district = new District();
 				district.setName(vietnamdistrict.getName());
 				district.setProvince(province);
-				
+
 				for (WardRequest vietnamward : vietnamdistrict.getWards()) {
 					Ward ward = new Ward();
 					ward.setName(vietnamward.getName());
 					ward.setDistrict(district);
-					
+
 					wards.add(ward);
 				}
 				district.setWards(wards);
 				districts.add(district);
 			}
-			
+
 			province.setDistricts(districts);
 			provinceRepository.save(province);
-			
+
 		}
-	
+
 		return true;
 	}
 
@@ -493,7 +532,7 @@ public class AdminServiceImpl implements AdminService {
 	public List<PromotionDTO> getAllPromotion() {
 		return promotionMapper.promotionToPromotionDtos(promotionRepo.findAll());
 	}
-	
+
 	@Override
 	public Version createVersion(VersionRequest versionRequest) throws CrudException {
 		Version version = new Version();
@@ -542,11 +581,12 @@ public class AdminServiceImpl implements AdminService {
 		return colorRepository.save(color);
 	}
 
-	/*LONG*/
+	/* LONG */
 
 	@Override
 	public List<DistrictSlimDTO> getDistrictByProvinceId(Long id) {
-		return addressMapper.districtsToDistrictSlimDTOs(new ArrayList<>(provinceRepository.findById(id).get().getDistricts()));
+		return addressMapper
+				.districtsToDistrictSlimDTOs(new ArrayList<>(provinceRepository.findById(id).get().getDistricts()));
 	}
 
 	@Override
@@ -555,7 +595,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ProvinceDTO> getAllProvince() {		
+	public List<ProvinceDTO> getAllProvince() {
 		return addressMapper.provincesToProvinceDtos(provinceRepository.findAll());
 	}
 

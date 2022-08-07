@@ -50,7 +50,7 @@ public interface AdminService {
 	/*------------------------------TRANSACTION-------------------------------------------*/
 	Transaction addTransaction(TransactionRequest transactionRequest) throws CrudException;
 
-	Transaction updateTransaction(TransactionRequest transactionRequest) throws CrudException;
+	Transaction updateTransaction(Long id ) throws CrudException;
 
 	/*------------------------------PRODUCT-------------------------------------------*/
 	Product createProduct(ProductCreateRequest productCreateRequest) throws CrudException;
