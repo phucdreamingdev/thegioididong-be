@@ -26,25 +26,33 @@ import vn.com.groupfive.tgdd.payload.dto.WardDTO;
 import vn.com.groupfive.tgdd.payload.dto.WardSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.request.BranchCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.CategoryRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ColorRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.DistrictRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.ImageGroupRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProductCreateRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.PromotionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.ProvinceRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.TransactionDetailRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.TransactionRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.VersionColorRequest;
+import vn.com.groupfive.tgdd.payload.dto.request.VersionRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.VietnamAddressRequest;
 import vn.com.groupfive.tgdd.payload.dto.request.WardRequest;
 import vn.com.groupfive.tgdd.payload.entities.AdminAccount;
 import vn.com.groupfive.tgdd.payload.entities.Branch;
 import vn.com.groupfive.tgdd.payload.entities.BranchStock;
 import vn.com.groupfive.tgdd.payload.entities.Category;
+import vn.com.groupfive.tgdd.payload.entities.Color;
 import vn.com.groupfive.tgdd.payload.entities.District;
+import vn.com.groupfive.tgdd.payload.entities.ImageGroup;
 import vn.com.groupfive.tgdd.payload.entities.MemberOrder;
 import vn.com.groupfive.tgdd.payload.entities.Product;
 import vn.com.groupfive.tgdd.payload.entities.Promotion;
 import vn.com.groupfive.tgdd.payload.entities.Province;
 import vn.com.groupfive.tgdd.payload.entities.Transaction;
 import vn.com.groupfive.tgdd.payload.entities.TransactionDetail;
+import vn.com.groupfive.tgdd.payload.entities.Version;
+import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 import vn.com.groupfive.tgdd.payload.entities.Ward;
 import vn.com.groupfive.tgdd.payload.mapper.AddressMapper;
 import vn.com.groupfive.tgdd.payload.mapper.BranchMapper;
@@ -56,6 +64,7 @@ import vn.com.groupfive.tgdd.repositories.AdminAccountRepository;
 import vn.com.groupfive.tgdd.repositories.BranchRepository;
 import vn.com.groupfive.tgdd.repositories.BranchStockRepository;
 import vn.com.groupfive.tgdd.repositories.CategoryRepository;
+import vn.com.groupfive.tgdd.repositories.ColorRepository;
 import vn.com.groupfive.tgdd.repositories.DistrictRepository;
 import vn.com.groupfive.tgdd.repositories.ManufacturerRepository;
 import vn.com.groupfive.tgdd.repositories.MemberOrderRepository;
@@ -67,6 +76,7 @@ import vn.com.groupfive.tgdd.repositories.ProvinceRepository;
 import vn.com.groupfive.tgdd.repositories.TransactionDetailRepository;
 import vn.com.groupfive.tgdd.repositories.TransactionRepository;
 import vn.com.groupfive.tgdd.repositories.VersionColorRepository;
+import vn.com.groupfive.tgdd.repositories.VersionRepository;
 import vn.com.groupfive.tgdd.repositories.WardRepository;
 import vn.com.groupfive.tgdd.utils.DeliveryStatus;
 
@@ -111,6 +121,12 @@ public class AdminServiceImpl implements AdminService {
 
 	// @Autowired
 	// VersionMapper versionMapper;
+	
+	@Autowired
+	ColorRepository colorRepository;
+	
+	@Autowired
+	VersionRepository versionRepository;
 
 	@Autowired
 	AdminAccountRepository adminAccRepo;
@@ -205,7 +221,7 @@ public class AdminServiceImpl implements AdminService {
 		promotion.setEndDate(promotionRequest.getEndDate());
 		promotion.setActived(promotionRequest.isActived());
 		promotion
-				.setVersionColors(new HashSet<>(versionColorRepository.findAllById(promotionRequest.getProvinceIds())));
+				.setVersionColors(new HashSet<>(versionColorRepository.findAllById(promotionRequest.getVersionColorIds())));
 		promotion.setProvinces(new HashSet<>(provinceRepository.findAllById(promotionRequest.getProvinceIds())));
 		return promotion;
 	}
@@ -476,6 +492,54 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<PromotionDTO> getAllPromotion() {
 		return promotionMapper.promotionToPromotionDtos(promotionRepo.findAll());
+	}
+	
+	@Override
+	public Version createVersion(VersionRequest versionRequest) throws CrudException {
+		Version version = new Version();
+		version.setName(versionRequest.getName());
+		version.setVideoUrl(versionRequest.getVideoUrl());
+		version.setProduct(productRepository.findById(versionRequest.getProductId()).get());
+//		for (ImageGroupVersionRequest imageGroupVersionRequest : versionRequest.getImageGroupVersions()) {
+//			ImageGroupVersion imageGroupVersion = new ImageGroupVersion();
+//			imageGroupVersion.setDetail(imageGroupVersionRequest.getDetail());
+//			imageGroupVersion.setImageGroup(imageGroupRepository.findById(imageGroupVersionRequest.getImageGroupId()).get());
+//			for (ImageRequest imageRequest : imageGroupVersionRequest.getImages()) {
+//				Image image = new Image();
+//				image.setUrl(imageRequest.getUrl());
+//				imageGroupVersion.getImage().add(image);
+//			}
+//			version.getImageGroupVersions().add(imageGroupVersion);
+//		}
+		return versionRepository.save(version);
+	}
+
+	@Override
+	public VersionColor createVersionColor(VersionColorRequest versionColorRequest) throws CrudException {
+		VersionColor versionColor = new VersionColor();
+		versionColor.setDefault(versionColorRequest.isDefault());
+		versionColor.setPrice(versionColorRequest.getPrice());
+		versionColor.setName(versionColorRequest.getName());
+		versionColor.setAvartar(versionColorRequest.getAvartar());
+		versionColor.setVersion(versionRepository.findById(versionColorRequest.getVersionId()).get());
+		versionColor.setColor(colorRepository.findByName(versionColorRequest.getColorName()));
+		return versionColorRepository.save(versionColor);
+	}
+
+//	@Override
+//	public ImageGroup addImageGroup(ImageGroupRequest imageGroupRequest) throws CrudException {
+//		ImageGroup imageGroup = new ImageGroup();
+//		imageGroup.setName(imageGroupRequest.getName());
+//		imageGroup.setCategory(categoryRepository.findById(imageGroupRequest.getCategoryId()).get());
+//		return imageGroupRepository.save(imageGroup);
+//	}
+
+	@Override
+	public Color createColor(ColorRequest colorRequest) throws CrudException {
+		Color color = new Color();
+		color.setName(colorRequest.getName());
+		color.setManufacturer(manufacturerRepository.findById(colorRequest.getManufacturerId()).get());
+		return colorRepository.save(color);
 	}
 
 	/*LONG*/

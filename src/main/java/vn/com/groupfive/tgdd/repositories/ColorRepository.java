@@ -7,5 +7,5 @@ import vn.com.groupfive.tgdd.payload.entities.Color;
 
 @Repository
 public interface ColorRepository extends JpaRepository<Color, Long> {
-
+	Color findByName(String name);
 }
