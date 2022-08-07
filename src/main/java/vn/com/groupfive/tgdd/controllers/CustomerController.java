@@ -50,6 +50,12 @@ public class CustomerController {
 	List<ManufacturerDTO> getManufacturersByCategory(@RequestParam Long categoryId){
 		return customerService.getManufacturerByCategoryId(categoryId);
 	}
+	//GET ALL PRODUCT BY MANUFACTURER-ID
+	@GetMapping("/get-all-product-by-manufacturer-id/{id}")
+	public List<VersionColorItemDTO> getAllProductByManufacturerId(@PathVariable("id") Long id) {
+		return customerService.getAllProductByManufacturerId(id);
+	}
+	
 
 	@GetMapping("/get-all-category-by-level/{level}")
 	List<CategorySlimDTO> getCategoryByLevel(@PathVariable("level") int level) {

@@ -189,6 +189,11 @@ public class AdminController {
 		return adminService.getAllMember();
 	}
 	
+	@GetMapping("/get-all-member-default")
+	public List<MemberDTO> getAllMemberDefault() {
+		return adminService.getAllMember();
+	}
+	
 //	@GetMapping("/get-version-color-by-name")
 //	public List<VersionColorSlimDTO> findByName(@RequestParam String name){
 //		return adminService.searchVersionColorByName(name);
