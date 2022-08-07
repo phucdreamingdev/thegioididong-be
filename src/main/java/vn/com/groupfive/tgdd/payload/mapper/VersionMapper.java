@@ -7,12 +7,18 @@ import org.mapstruct.Mapper;
 import vn.com.groupfive.tgdd.payload.dto.ColorDTO;
 import vn.com.groupfive.tgdd.payload.dto.ColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.ProductSlimDTO;
+import vn.com.groupfive.tgdd.payload.dto.SpecificationDTO;
+import vn.com.groupfive.tgdd.payload.dto.SpecificationDetailDTO;
+import vn.com.groupfive.tgdd.payload.dto.SpecificationGroupDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorItemDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionColorSlimDTO;
-import vn.com.groupfive.tgdd.payload.dto.VersionSlimDTO;
 import vn.com.groupfive.tgdd.payload.dto.VersionItemDTO;
+import vn.com.groupfive.tgdd.payload.dto.VersionSlimDTO;
 import vn.com.groupfive.tgdd.payload.entities.Color;
 import vn.com.groupfive.tgdd.payload.entities.Product;
+import vn.com.groupfive.tgdd.payload.entities.Specification;
+import vn.com.groupfive.tgdd.payload.entities.SpecificationDetail;
+import vn.com.groupfive.tgdd.payload.entities.SpecificationGroup;
 import vn.com.groupfive.tgdd.payload.entities.Version;
 import vn.com.groupfive.tgdd.payload.entities.VersionColor;
 
@@ -45,5 +51,16 @@ public interface VersionMapper {
 	ProductSlimDTO productToProductSlimDto(Product product);
 	
 	List<ProductSlimDTO> productsToProductSlimDtos(List<Product> products);
-
+	
+	SpecificationDTO specificationToSpecificationDTO(Specification specification);
+	
+	List<SpecificationDTO> specificationsToSpecificationDTOs(List<Specification> specifications);
+	
+	SpecificationDetailDTO specificationDetailToSpecificationDetailDTO(SpecificationDetail specificationDetail);
+	
+	List<SpecificationDetailDTO> specificationDetailsToSpecificationDetailDTOs(List<SpecificationDetail> specificationDetails);
+	
+	SpecificationGroupDTO specificationGroupToSpecificationGroup(SpecificationGroup specificationGroup);
+	
+	List<SpecificationGroupDTO> specificationGroupsToSpecificationGroups(List<SpecificationGroup> specificationGroups);	
 }

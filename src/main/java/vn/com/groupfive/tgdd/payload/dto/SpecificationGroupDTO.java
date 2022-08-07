@@ -11,17 +11,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VersionItemDTO {
+public class SpecificationGroupDTO {
 	@JsonProperty("id")
 	private Long id;
 	
 	@JsonProperty("name")
 	private String name;
-	
-	@JsonProperty("product")
-	private ProductSlimDTO product;
-	
-	@JsonProperty("specification")
-	private SpecificationDTO specification;
-	
 }

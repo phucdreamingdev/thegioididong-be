@@ -72,6 +72,7 @@ public class CustomerController {
 		return customerService.getAllVersionColorItemDTOs();
 	}
 	
+	
 	@GetMapping("/get-all-products-by-category-id/{id}")
 	List<ProductListItemDTO> getListProductByCategoryId(@PathVariable("id") Long id) {
 		return customerService.getAllProductByCategoryId(id);

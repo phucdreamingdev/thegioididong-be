@@ -6,7 +6,7 @@ import lombok.Data;
 public class VersionRequest {
 	private String name;
 	private String videoUrl;
-//	private boolean isDefault;
 	private Long productId;
+	private SpecificationCreateRequest specification;
 	
 }
